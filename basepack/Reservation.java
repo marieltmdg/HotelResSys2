@@ -1,3 +1,5 @@
+package basepack;
+
 /**
  * The Reservation class represents a reservation made by a guest.
  */

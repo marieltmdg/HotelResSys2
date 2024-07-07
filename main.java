@@ -1,8 +1,9 @@
+import mvcpack.*;
+
 public class main {
     public static void main(String[] args) {
-        DriverModel driverModel = new DriverModel();
-        DriverView driverView = new DriverView();
-
-        DriverController driverController = new DriverController(driverModel, driverView);
+        Model driverModel = new Model();
+        View driverView = new View();
+        Controller driverController = new Controller(driverModel, driverView);
     }
 }

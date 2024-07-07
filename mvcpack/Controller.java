@@ -1,11 +1,14 @@
+package mvcpack;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DriverController implements ActionListener {
-    private DriverModel driverModel;
-    private DriverView driverView;
+import basepack.*;
 
-    public DriverController(DriverModel driverModel, DriverView driverView){
+public class Controller implements ActionListener {
+    private Model driverModel;
+    private View driverView;
+
+    public Controller(Model driverModel, View driverView){
         this.driverModel = driverModel;
         this.driverView = driverView;
 

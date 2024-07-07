@@ -1,3 +1,5 @@
+package basepack;
+
 /**
  * The Manager class handles the addition and removal of reservations for a hotel.
  */

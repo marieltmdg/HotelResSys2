@@ -1,8 +1,9 @@
+package mvcpack;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class DriverView extends JFrame {
+public class View extends JFrame {
     private JLabel createLbl, feedbackLbl;
     private JTextField hotelNameTf;
     private JButton createBtn, openBtn;
@@ -10,7 +11,7 @@ public class DriverView extends JFrame {
     private final int TF_WIDTH = 150;
     private final int BTN_WIDTH = 150;
 
-    public DriverView() {
+    public View() {
         super("Hotel Reservation System");
         setLayout(new BorderLayout());
         setSize(450,300);

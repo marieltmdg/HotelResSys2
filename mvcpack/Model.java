@@ -1,16 +1,19 @@
+package mvcpack;
 import java.util.ArrayList;
+
+import basepack.*;
 
 /**
  * The Driver class is responsible for managing the overall operations involving hotels, rooms, and reservations.
  */
-public class DriverModel {
+public class Model {
     private Utility utility;
     private Manager manager;
     private ArrayList<Hotel> hotelList;
     /**
      * Constructs a Driver instance and initializes the necessary objects.
      */
-    public DriverModel() {
+    public Model() {
         this.utility = new Utility();
         this.manager = new Manager();
         this.hotelList = new ArrayList<Hotel>();
