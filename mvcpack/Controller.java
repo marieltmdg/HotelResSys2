@@ -2,42 +2,45 @@ package mvcpack;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import basepack.*;
+public class Controller {
+    private Model model;
+    private View view;
 
-public class Controller implements ActionListener {
-    private Model driverModel;
-    private View driverView;
+    public Controller(Model model, View view){
+        this.model = model;
+        this.view = view;
 
-    public Controller(Model driverModel, View driverView){
-        this.driverModel = driverModel;
-        this.driverView = driverView;
-
-        updateView();
-
-        this.driverView.setActionListener(new ActionListener() {
+        this.view.setCreateListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                driverView.getHotelNameTfText();
-                String hotelName = driverView.getHotelNameTfText();
-            
-                boolean result = driverModel.addHotel(hotelName);
-
-                if (result) {
-                    driverView.setFeedbackLblText("Hotel added successfully");
-                } else driverView.setFeedbackLblText("Hotel NOT added");
-
+                System.out.println("pressed create"); // CHECKER
+                view.createHotel();
             }
         });
 
+        this.view.setOpenListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("pressed open"); //CHECKER
+                String[] hotelListNames= model.getHotelListNames();
+                view.printHotels(hotelListNames);
+            }
+        });
+
+        this.view.setConfirmListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.getHotelNameTfText();
+                String hotelName = view.getHotelNameTfText();
+            
+                boolean result = model.addHotel(hotelName);
+
+                if (result) {
+                    view.setFeedbackLblText("Hotel \"" + hotelName + "\" added successfully");
+                } else view.setFeedbackLblText("Hotel NOT added");
+            }
+        });
     }
 
-    public void updateView() {
-        
-    }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
-    }
 }

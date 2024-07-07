@@ -303,5 +303,15 @@ public class Model {
         }
         return ret;
     }
+
+    public String[] getHotelListNames(){
+        String[] names = new String[hotelList.size()];
+
+        for(int i = 0; i <hotelList.size();i++){
+            names[i] = hotelList.get(i).getHotelName();
+        }
+
+        return names;
+    }
 }
 
