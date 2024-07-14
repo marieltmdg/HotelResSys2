@@ -10,6 +10,8 @@ public class Model {
     private Utility utility;
     private Manager manager;
     private ArrayList<Hotel> hotelList;
+    private int selectedHotelIndex;
+
     /**
      * Constructs a Driver instance and initializes the necessary objects.
      */
@@ -156,24 +158,15 @@ public class Model {
      * The openHotel() method checks if there are hotels in the system, allows the user to select a
      * hotel, and then provides options to view, manage, or add reservations for the selected hotel.
      */
-    private void openHotel() {
-        if (hotelList.isEmpty()) {
-            utility.printBorder();
-            System.out.println("There are no hotels in the system");
-            return;
-        }
+    public String openHotel(String hotelName) {
 
         boolean quit = false;
-
-        int hotelIndex = utility.hotelIndexSelection(hotelList);
+        int hotelIndex = Integer.parseInt(hotelName) - 1;
 
         //checker for invalid hotel indices
-        if (hotelIndex != -1) {
+        if (hotelIndex >= 0 && hotelIndex < hotelList.size()) {
             //loop to stay in Open Hotel menu unless the user wants to quit
-            while(!quit){
-                System.out.print("\n=================OPEN HOTEL==================");
-                System.out.println("\nHOTEL: " + hotelList.get(hotelIndex).getHotelName());
-                utility.printOpenHotel();
+            /*while(!quit){
                 switch (utility.getIntInput()) {
                     case 1:
                         viewHotel(hotelIndex);
@@ -188,12 +181,15 @@ public class Model {
                         quit = true;
                         break;
                     default:
-                        System.out.println("Invalid input");
-                        break;
+                        return "Invalid input";
                 }
-            }
+            }*/
+            
+            //TESTING
+            this.selectedHotelIndex = hotelIndex;
+            return "Selected Hotel: " + hotelList.get(hotelIndex).getHotelName();
         } else {
-            System.out.println("Hotel does not exist");
+            return "Hotel does not exist";
         }
     }
 

@@ -18,14 +18,6 @@ public class Controller {
             }
         });
 
-        this.view.setOpenListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("pressed open"); //CHECKER
-                String[] hotelListNames= model.getHotelListNames();
-                view.printHotels(hotelListNames);
-            }
-        });
 
         this.view.setConfirmListener(new ActionListener() {
             @Override
@@ -38,6 +30,25 @@ public class Controller {
                 if (result) {
                     view.setFeedbackLblText("Hotel \"" + hotelName + "\" added successfully");
                 } else view.setFeedbackLblText("Hotel NOT added");
+            }
+        });
+
+        this.view.setOpenListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("pressed open"); //CHECKER
+                String[] hotelListNames= model.getHotelListNames();
+                view.printHotels(hotelListNames);
+            }
+        });
+
+        this.view.setSelectListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.getHotelNameTfText();
+                String hotelName = view.getHotelNameTfText();
+            
+                view.setFeedbackLblText(model.openHotel(hotelName));
             }
         });
     }

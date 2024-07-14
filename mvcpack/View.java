@@ -6,7 +6,7 @@ import javax.swing.*;
 public class View extends JFrame {
     private JLabel createLbl, openLbl, feedbackLbl;
     private JTextField hotelNameTf;
-    private JButton createBtn, openBtn, confirmBtn;
+    private JButton createBtn, openBtn, confirmBtn, selectBtn;
     private JPanel northPnl, southPnl, westPnl, eastPnl, centerPnl;
     
     private final int TF_WIDTH = 150;
@@ -24,10 +24,14 @@ public class View extends JFrame {
 
     //initial values when opening
     private void init() {
+
+        //BUTTONS
+        this.confirmBtn = new JButton("Confirm");
+        this.selectBtn = new JButton("Select");
+
         //NORTH PANEL
 
         //CENTER PANEL
-        this.confirmBtn = new JButton("Confirm Creation");
 
         centerPnl = new JPanel();
 
@@ -72,7 +76,7 @@ public class View extends JFrame {
         centerPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         // add text fields
-
+        
         this.hotelNameTf = new JTextField();
         this.hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH, 30));
         this.createLbl = new JLabel("Hotel Name: ");
@@ -94,6 +98,8 @@ public class View extends JFrame {
 
         this.remove(centerPnl);
         centerPnl = new JPanel();
+        this.hotelNameTf = new JTextField();
+        this.hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH, 30));
         centerPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         
         this.openLbl = new JLabel("Hotels in the system: ", SwingConstants.CENTER);
@@ -104,7 +110,9 @@ public class View extends JFrame {
             JLabel hotel = new JLabel("[" + num + "] " + hotelNames[i]);
             centerPnl.add(hotel);
         }
-        
+
+        centerPnl.add(hotelNameTf);
+        centerPnl.add(selectBtn);
         this.add(centerPnl);
         centerPnl.revalidate();
         centerPnl.repaint();
@@ -123,6 +131,10 @@ public class View extends JFrame {
     //LISTENER FOR CONFIRM
     public void setConfirmListener(ActionListener actionListener){
         this.confirmBtn.addActionListener(actionListener);
+    }
+
+    public void setSelectListener(ActionListener actionListener){
+        this.selectBtn.addActionListener(actionListener);
     }
 
     //return feedback

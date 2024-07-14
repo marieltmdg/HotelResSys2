@@ -200,6 +200,19 @@ public class Utility {
         }
     }
 
+    public int hotelIndexLocator(ArrayList<Hotel> hotelList, String hotelName) {
+        int selection = -1;
+
+        //prompt user to select
+        for (int i = 0 ; i < hotelList.size(); i++){
+            if(hotelList.get(i).getHotelName().equals(hotelName)){
+                selection = i;
+            }
+        }
+
+        return selection;
+    }
+
     /**
      * Prompts the user to select the index of a room from a list of rooms.
      * 
