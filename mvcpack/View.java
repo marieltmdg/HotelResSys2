@@ -4,7 +4,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class View extends JFrame {
-    private JLabel createLbl, openLbl, feedbackLbl;
+    private JLabel createLbl, openLbl, feedbackLbl, titleLbl;
     private JTextField hotelNameTf;
     private JButton createBtn, openBtn, confirmBtn, selectBtn;
     private JPanel northPnl, southPnl, westPnl, eastPnl, centerPnl;
@@ -16,16 +16,18 @@ public class View extends JFrame {
     private JButton iHotelBtn, iRoomBtn, iResBtn, iDateBtn, backBtn;
     private JButton renameBtn, addRoomBtn, removeRoomBtn;
     
-    private final int TF_WIDTH = 400;
-    private final int BTN_WIDTH = 220;
+    private final int TF_WIDTH = 200;
+    private final int BTN_WIDTH = 210;
     private final int BTN_HEIGHT = 60;
-    private final int TF_HEIGHT = 40;
+    private final int TF_HEIGHT = 35;
+    private final int MAINFRAME_WIDTH = 700;
+    private final int MAINFRAME_HEIGHT = 500;
     
 
     public View() {
         super("Hotel Reservation System");
         setLayout(new BorderLayout());
-        setSize(700,500);
+        setSize( MAINFRAME_WIDTH,MAINFRAME_HEIGHT);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         init();
@@ -85,9 +87,25 @@ public class View extends JFrame {
 
         //EAST PANEL
         
+        //NORTH PANEL
+        this.titleLbl = new JLabel();
+        this.titleLbl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, TF_HEIGHT + 10));
+        this.titleLbl.setFont(new Font("Arial", Font.BOLD, 30));
+        this.titleLbl.setHorizontalAlignment(SwingConstants.CENTER);
+        this.titleLbl.setVerticalAlignment(SwingConstants.CENTER);
+        this.titleLbl.setBackground(Color.decode("#1B384B"));
+
+        setTitleLblText("Main Menu");
+
+        northPnl = new JPanel();
+        northPnl.setLayout(new FlowLayout());
+        northPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH,TF_HEIGHT+20));
+        northPnl.setBackground(Color.decode("#1B384B"));
+        northPnl.add(titleLbl);
+
         //SOUTH PANEL
         this.feedbackLbl = new JLabel();
-        this.feedbackLbl.setPreferredSize(new Dimension(450, TF_HEIGHT));
+        this.feedbackLbl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, TF_HEIGHT + 10));
         this.feedbackLbl.setFont(new Font("Arial", Font.BOLD, 15));
         this.feedbackLbl.setHorizontalAlignment(SwingConstants.CENTER);
         this.feedbackLbl.setVerticalAlignment(SwingConstants.CENTER);
@@ -98,6 +116,7 @@ public class View extends JFrame {
         southPnl.add(feedbackLbl);
         
         //ADD EVERYTHING
+        this.add(titleLbl, BorderLayout.NORTH);
         this.add(centerPnl, BorderLayout.CENTER);
         this.add(westPnl, BorderLayout.WEST);
         this.add(southPnl, BorderLayout.SOUTH);
@@ -109,16 +128,43 @@ public class View extends JFrame {
 
     // TODO BACK BUTTON
     public void home(){
-
         
     }
 
+    // PRINT HOTEL PANEL
+    public JPanel printHotels(String[] hotelNames){
+        System.out.println("PRINT HOTELS"); // CHECKER
+        int num;
+
+        JPanel printHotelsPnl = new JPanel();
+        
+        this.openLbl = new JLabel("Hotels in the system: ", SwingConstants.CENTER);
+        printHotelsPnl.add(openLbl);
+        
+        for(int i = 0; i < hotelNames.length; i++){
+            num = i + 1;
+            JLabel hotel = new JLabel("[" + num + "] " + hotelNames[i]);
+            printHotelsPnl.add(hotel);
+        }
+
+        return printHotelsPnl;
+    }
+
     // CREATE HOTEL PRESSED
-    public void createHotel(){
+    public void createHotel(String[] hotelNames){
         this.remove(centerPnl);
         
+        this.setTitleLblText("Hotel Creation");
         centerPnl = new JPanel();
-        centerPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        centerPnl.setLayout(new BorderLayout());
+
+        JPanel centerRightPnl = new JPanel();
+        JPanel centerLeftPnl = new JPanel();
+
+        centerRightPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        centerRightPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
+        centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        centerLeftPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
 
         // add text fields
         
@@ -126,38 +172,46 @@ public class View extends JFrame {
         this.hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
         this.createLbl = new JLabel("Hotel Name: ");
 
-        centerPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
-        centerPnl.add(createLbl);
-        centerPnl.add(hotelNameTf);
-        centerPnl.add(confirmBtn);
+        centerRightPnl.add(createLbl);
+        centerRightPnl.add(hotelNameTf);
+        centerRightPnl.add(confirmBtn);
 
-        this.add(centerPnl, BorderLayout.CENTER);
+        centerLeftPnl.add(printHotels(hotelNames));
+
+        centerPnl.add(centerLeftPnl, BorderLayout.WEST);
+        centerPnl.add(centerRightPnl, BorderLayout.EAST);
+        this.add(centerPnl);
         centerPnl.revalidate();
         centerPnl.repaint();
     }
 
-    // OPEN HOTEL PRESSED
-    public void printHotels(String[] hotelNames){
-        System.out.println("PRINT HOTELS"); // CHECKER
-        int num;
 
+    public void selectHotel(String[] hotelNames){
         this.remove(centerPnl);
+        this.setTitleLblText("Hotel Selection");
+
         centerPnl = new JPanel();
+        centerPnl.setLayout(new BorderLayout());
+
+        JPanel centerLeftPnl = new JPanel();
+        JPanel centerRightPnl = new JPanel();
+        JLabel selectHotelLbl = new JLabel("Indicate number [n] of  hotel: ");
+
+        centerRightPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        centerRightPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
+        centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        centerLeftPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
+
         this.hotelNameTf = new JTextField();
         this.hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
-        centerPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
-        
-        this.openLbl = new JLabel("Hotels in the system: ", SwingConstants.CENTER);
-        centerPnl.add(openLbl);
-        
-        for(int i = 0; i < hotelNames.length; i++){
-            num = i + 1;
-            JLabel hotel = new JLabel("[" + num + "] " + hotelNames[i]);
-            centerPnl.add(hotel);
-        }
+        centerLeftPnl.add(printHotels(hotelNames));
 
-        centerPnl.add(hotelNameTf);
-        centerPnl.add(selectBtn);
+        centerRightPnl.add(selectHotelLbl);
+        centerRightPnl.add(hotelNameTf);
+        centerRightPnl.add(selectBtn);
+
+        centerPnl.add(centerLeftPnl, BorderLayout.WEST);
+        centerPnl.add(centerRightPnl, BorderLayout.EAST);
         this.add(centerPnl);
         centerPnl.revalidate();
         centerPnl.repaint();
@@ -165,7 +219,7 @@ public class View extends JFrame {
 
     // there is a selected hotel
     public void openHotel(String hotelName){
-        System.out.println("OPEN HOTEL");
+        setTitleLblText("Current Hotel: " + hotelName);
 
         this.westPnl.remove(this.createBtn);
         this.westPnl.remove(this.openBtn);
@@ -183,7 +237,6 @@ public class View extends JFrame {
         this.remove(this.southPnl);
         centerPnl = new JPanel();
         JPanel centerLeftPnl = new JPanel();
-
         //ctrleft panel
 
         centerPnl.setLayout(new BorderLayout());
@@ -260,6 +313,10 @@ public class View extends JFrame {
         this.manageBtn.addActionListener(actionListener);
     }
 
+    public void setReserveListener(ActionListener actionListener){
+        this.reserveBtn.addActionListener(actionListener);
+    }
+
 
     public void setInquireHotelListener(ActionListener actionListener){
         this.iHotelBtn.addActionListener(actionListener);
@@ -281,6 +338,10 @@ public class View extends JFrame {
     //return feedback
     public void setFeedbackLblText(String text) {
         this.feedbackLbl.setText(text);
+    }
+
+    public void setTitleLblText(String text) {
+        this.titleLbl.setText(text);
     }
 
     // GET TF HOTELNAME
