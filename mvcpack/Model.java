@@ -18,18 +18,22 @@ public class Model {
         this.hotelList = new ArrayList<Hotel>();
     }
 
-    public boolean addHotel(String name, int standardRoomCount, int deluxeRoomCount, int ExecRoomCount) {
-        boolean cont = true;
+    public int addHotel(String name, int standardRoomCount, int deluxeRoomCount, int execRoomCount) {
+        int cont = 1;
 
         //loop to check hotel name similarity
-        for(int i = 0; i < hotelList.size() && cont; i++){
+        for(int i = 0; i < hotelList.size() && cont == 1; i++){
             if (name.equals(hotelList.get(i).getHotelName())){
-                cont = false;
+                cont = 0;
             } 
         }
 
+        if(standardRoomCount + deluxeRoomCount + execRoomCount <= 0){
+            cont = -1;
+        }
+
         //valid case        
-        if (cont){
+        if (cont == 1){
             Hotel hotel = new Hotel(name);
             hotelList.add(hotel);
             for(int i = 0; i < standardRoomCount; i++){
@@ -38,11 +42,11 @@ public class Model {
             for(int i = 0; i < deluxeRoomCount; i++){
                 hotel.addDeluxeRoom();
             }
-            for(int i = 0; i < standardRoomCount; i++){
+            for(int i = 0; i < execRoomCount; i++){
                 hotel.addExecRoom();
             }
         }
-
+        
         return cont;
     }
 

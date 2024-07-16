@@ -17,6 +17,7 @@ public class Controller {
                 String[] hotelListNames= model.getHotelListNames();
                 view.createHotel(hotelListNames);
                 confirmCreateListener();
+                
             }
         });
 
@@ -62,13 +63,29 @@ public class Controller {
             public void actionPerformed(ActionEvent e){
                 view.getHotelNameTfText();
                 String hotelName = view.getHotelNameTfText();
-                boolean result = model.addHotel(hotelName);
+                String stringStandard = view.getNumStandardTf();
+                String stringDeluxe = view.getNumDeluxeTf();
+                String stringExecutive = view.getNumExecutiveTf();
+                
+                int numStandard = Integer.parseInt(stringStandard);
+                int numDeluxe = Integer.parseInt(stringDeluxe);
+                int numExecutive = Integer.parseInt(stringExecutive);
+
+                int result = model.addHotel(hotelName, numStandard, numDeluxe, numExecutive);
                 String[] hotelListNames= model.getHotelListNames();
 
-                if (result) {
-                    view.createHotel(hotelListNames);
-                    view.setFeedbackLblText("Hotel \"" + hotelName + "\" added successfully");
-                } else view.setFeedbackLblText("Hotel NOT added");
+                switch(result){
+                    case -1://error no room
+                        view.setFeedbackLblText("Hotel NOT added. Hotels must have atleast one room");
+                        break;
+                    case 0://error same name
+                        view.setFeedbackLblText("Hotel NOT added. Hotel with the same name exists");
+                        break;
+                    case 1://valid case
+                        view.createHotel(hotelListNames);
+                        view.setFeedbackLblText("Hotel \"" + hotelName + "\" added successfully");
+                        break;
+                }
             }
         });
     }
