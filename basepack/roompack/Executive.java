@@ -3,9 +3,14 @@ package basepack.roompack;
 import basepack.Room;
 
 public class Executive extends Room {
+    private double ePrice;
 
     public Executive(String roomName) {
         super(roomName);
-        super.setBasePrice(super.getBasePrice() * 1.35);
+        ePrice = super.getBasePrice() * 1.35;
+    }
+
+    public double getEPrice(){
+        return ePrice;
     }
 }
