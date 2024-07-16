@@ -18,7 +18,6 @@ public class Controller {
             }
         });
 
-
         this.view.setConfirmListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -47,10 +46,66 @@ public class Controller {
             public void actionPerformed(ActionEvent e){
                 view.getHotelNameTfText();
                 String hotelName = view.getHotelNameTfText();
-            
-                view.setFeedbackLblText(model.openHotel(hotelName));
+                int hotelIndex = Integer.parseInt(hotelName) - 1;
+                hotelName = model.openHotel(hotelIndex);
+
+                if (!hotelName.equals("\0")){
+                    view.setFeedbackLblText("Selected Hotel: " + hotelName);
+                    view.openHotel(hotelName);
+
+                } else {
+                    view.setFeedbackLblText("Hotel does not exist");
+                }
             }
         });
+
+        this.view.setInquireListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.inquireHotel();
+            }
+        });
+
+        this.view.setManageListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.manageHotel();
+            }
+        });
+
+        this.view.setBackListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.home();
+            }
+        });
+
+        // BUTTONS UNDER OPEN HOTEL
+       this.view.setInquireHotelListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+            }
+        });
+    
+        this.view.setInquireRoomListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+            }
+        });
+    
+        this.view.setInquireReservationListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+            }
+        });
+    
+        this.view.setInquireDateListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+            }
+        });
+
+
     }
 
 

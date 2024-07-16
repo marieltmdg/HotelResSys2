@@ -158,38 +158,14 @@ public class Model {
      * The openHotel() method checks if there are hotels in the system, allows the user to select a
      * hotel, and then provides options to view, manage, or add reservations for the selected hotel.
      */
-    public String openHotel(String hotelName) {
-
-        boolean quit = false;
-        int hotelIndex = Integer.parseInt(hotelName) - 1;
-
+    public String openHotel(int hotelIndex) {
         //checker for invalid hotel indices
         if (hotelIndex >= 0 && hotelIndex < hotelList.size()) {
-            //loop to stay in Open Hotel menu unless the user wants to quit
-            /*while(!quit){
-                switch (utility.getIntInput()) {
-                    case 1:
-                        viewHotel(hotelIndex);
-                        break;
-                    case 2:
-                        quit = manageHotel(hotelIndex);
-                        break;
-                    case 3:
-                        manager.inputAddReservation(hotelList.get(hotelIndex));
-                        break;
-                    case 0:
-                        quit = true;
-                        break;
-                    default:
-                        return "Invalid input";
-                }
-            }*/
-            
             //TESTING
             this.selectedHotelIndex = hotelIndex;
-            return "Selected Hotel: " + hotelList.get(hotelIndex).getHotelName();
+            return hotelList.get(hotelIndex).getHotelName();
         } else {
-            return "Hotel does not exist";
+            return "\0";
         }
     }
 
