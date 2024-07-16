@@ -14,21 +14,9 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("pressed create"); // CHECKER
-                view.createHotel();
-            }
-        });
-
-        this.view.setConfirmListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                view.getHotelNameTfText();
-                String hotelName = view.getHotelNameTfText();
-            
-                boolean result = model.addHotel(hotelName);
-
-                if (result) {
-                    view.setFeedbackLblText("Hotel \"" + hotelName + "\" added successfully");
-                } else view.setFeedbackLblText("Hotel NOT added");
+                String[] hotelListNames= model.getHotelListNames();
+                view.createHotel(hotelListNames);
+                confirmCreateListener();
             }
         });
 
@@ -37,7 +25,7 @@ public class Controller {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("pressed open"); //CHECKER
                 String[] hotelListNames= model.getHotelListNames();
-                view.printHotels(hotelListNames);
+                view.selectHotel(hotelListNames);
             }
         });
 
@@ -52,24 +40,10 @@ public class Controller {
                 if (!hotelName.equals("\0")){
                     view.setFeedbackLblText("Selected Hotel: " + hotelName);
                     view.openHotel(hotelName);
-
+                    openHotelListeners();
                 } else {
                     view.setFeedbackLblText("Hotel does not exist");
                 }
-            }
-        });
-
-        this.view.setInquireListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                view.inquireHotel();
-            }
-        });
-
-        this.view.setManageListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                view.manageHotel();
             }
         });
 
@@ -80,8 +54,53 @@ public class Controller {
             }
         });
 
-        // BUTTONS UNDER OPEN HOTEL
-       this.view.setInquireHotelListener(new ActionListener() {
+    }
+
+    public void confirmCreateListener() {
+        this.view.setConfirmListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.getHotelNameTfText();
+                String hotelName = view.getHotelNameTfText();
+                boolean result = model.addHotel(hotelName);
+                String[] hotelListNames= model.getHotelListNames();
+
+                if (result) {
+                    view.createHotel(hotelListNames);
+                    view.setFeedbackLblText("Hotel \"" + hotelName + "\" added successfully");
+                } else view.setFeedbackLblText("Hotel NOT added");
+            }
+        });
+    }
+
+    //TODO : ADD RESERVE LISTENER
+    public void openHotelListeners(){
+        this.view.setInquireListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.inquireHotel();
+                inquireHotelListeners();
+            }
+        });
+
+        this.view.setManageListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.manageHotel();
+            }
+        });
+
+        this.view.setReserveListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                System.out.println("PRESSED RESERVE");
+                // TODO add reserve stuff
+            }
+        });
+    }
+
+    public void inquireHotelListeners(){
+        this.view.setInquireHotelListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
             }
@@ -104,9 +123,6 @@ public class Controller {
             public void actionPerformed(ActionEvent e){
             }
         });
-
-
     }
-
-
 }
+
