@@ -1,5 +1,6 @@
 package basepack;
 
+import basepack.roompack.*;
 import java.util.ArrayList;
 
 /**
@@ -20,8 +21,6 @@ public class Hotel {
         this.hotelName = hotelName;
         this.roomCount = 0;
         this.roomList = new ArrayList<Room>();
-        //initiate hotel with one room
-        addRoom();
     }
     
     /**
@@ -121,14 +120,37 @@ public class Hotel {
         
     }
 
-    /**
-     * The addRoom() method creates a new room with a generated name and adds it to a list of rooms,
-     * provided that the current room count is below 50.
-     * 
-     */
-    public void addRoom(){
+    public void addStandardRoom(){
         String roomName = generateRoomName();
-        Room newRoom = new Room(roomName);
+        Standard newRoom = new Standard(roomName);
+
+        //check if the room size has not yet reached capacity
+        if(roomList.size() < 50){
+            roomList.add(newRoom);
+            roomCount++;
+            System.out.println("Room " + newRoom.getRoomName() + " added");
+        }
+        else 
+            System.out.println("Hotel capacity at maximum (50 Rooms)");
+    }
+
+    public void addDeluxeRoom(){
+        String roomName = generateRoomName();
+        Deluxe newRoom = new Deluxe(roomName);
+
+        //check if the room size has not yet reached capacity
+        if(roomList.size() < 50){
+            roomList.add(newRoom);
+            roomCount++;
+            System.out.println("Room " + newRoom.getRoomName() + " added");
+        }
+        else 
+            System.out.println("Hotel capacity at maximum (50 Rooms)");
+    }
+
+    public void addExecRoom(){
+        String roomName = generateRoomName();
+        Executive newRoom = new Executive(roomName);
 
         //check if the room size has not yet reached capacity
         if(roomList.size() < 50){
