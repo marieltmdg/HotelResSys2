@@ -1,20 +1,22 @@
 package mvcpack;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import mvcpack.custompack.CButton;
 
 public class View extends JFrame {
     private JLabel createLbl, openLbl, feedbackLbl, titleLbl;
     private JTextField hotelNameTf, numStandardTf, numDeluxeTf, numExecutiveTf;
-    private JButton createBtn, openBtn, confirmBtn, selectBtn;
+    private CButton createBtn, openBtn, confirmBtn, selectBtn;
     private JPanel northPnl, southPnl, westPnl, eastPnl, centerPnl;
 
     //open hotel
     //inquire
-    private JButton inquireBtn, manageBtn, reserveBtn;
+    private CButton inquireBtn, manageBtn, reserveBtn;
     
-    private JButton iHotelBtn, iRoomBtn, iResBtn, iDateBtn, backBtn;
-    private JButton renameBtn, addRoomBtn, removeRoomBtn;
+    private CButton iHotelBtn, iRoomBtn, iResBtn, iDateBtn, backBtn;
+    private CButton renameBtn, addRoomBtn, removeRoomBtn;
     
     private final int SMALL_TF_WIDTH = 50;
     private final int TF_WIDTH = 200;
@@ -39,22 +41,22 @@ public class View extends JFrame {
     private void init() {
 
         //BUTTONS
-        this.confirmBtn = new JButton("Confirm");
-        this.selectBtn = new JButton("Select");
-        inquireBtn = new JButton("Inquire");
-        manageBtn = new JButton("Manage");
-        reserveBtn = new JButton("Reserve");
-        iDateBtn = new JButton("Inquire Dates");
-        iHotelBtn = new JButton("Inquire Hotel");
-        iResBtn = new JButton("Inquire Reservation");
-        iRoomBtn = new JButton("Inquire Room");
+        this.confirmBtn = new CButton("Confirm");
+        this.selectBtn = new CButton("Select");
+        inquireBtn = new CButton("Inquire");
+        manageBtn = new CButton("Manage");
+        reserveBtn = new CButton("Reserve");
+        iDateBtn = new CButton("Inquire Dates");
+        iHotelBtn = new CButton("Inquire Hotel");
+        iResBtn = new CButton("Inquire Reservation");
+        iRoomBtn = new CButton("Inquire Room");
         //westpnl
-        backBtn = new JButton("Back");
+        backBtn = new CButton("Back");
 
         //ctrright pnl
-        renameBtn = new JButton("Rename Hotel");
-        addRoomBtn = new JButton("Add room");
-        removeRoomBtn = new JButton("Remove room");
+        renameBtn = new CButton("Rename Hotel");
+        addRoomBtn = new CButton("Add room");
+        removeRoomBtn = new CButton("Remove room");
         
         this.inquireBtn.setPreferredSize(new Dimension(BTN_WIDTH, BTN_HEIGHT));
         this.manageBtn.setPreferredSize(new Dimension(BTN_WIDTH, BTN_HEIGHT));
@@ -74,8 +76,8 @@ public class View extends JFrame {
         centerPnl = new JPanel();
 
         //WEST PANEL
-        this.createBtn = new JButton("CREATE A HOTEL");
-        this.openBtn = new JButton("OPEN A HOTEL");
+        this.createBtn = new CButton("Create a Hotel");
+        this.openBtn = new CButton("Open a Hotel");
         this.createBtn.setPreferredSize(new Dimension(BTN_WIDTH, BTN_HEIGHT));
         this.openBtn.setPreferredSize(new Dimension(BTN_WIDTH, BTN_HEIGHT));
         
@@ -129,7 +131,30 @@ public class View extends JFrame {
 
     // TODO BACK BUTTON
     public void home(){
-        
+        this.remove(centerPnl);
+        this.remove(westPnl);
+
+        centerPnl = new JPanel();
+
+        //WEST PANEL
+        westPnl = new JPanel();
+        westPnl.setLayout(new FlowLayout());
+        westPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 200));
+        westPnl.setBackground(Color.decode("#1B384B"));
+        westPnl.add(createBtn);
+        westPnl.add(openBtn);
+
+        setTitleLblText("Main Menu");
+
+        //ADD EVERYTHING
+        this.add(centerPnl, BorderLayout.CENTER);
+        this.add(westPnl, BorderLayout.WEST);
+
+        this.revalidate();
+        this.repaint();
+
+
+
     }
 
     
@@ -271,6 +296,7 @@ public class View extends JFrame {
     public void openHotel(String hotelName){
         setTitleLblText("Current Hotel: " + hotelName);
 
+        this.remove(centerPnl);
         this.westPnl.remove(this.createBtn);
         this.westPnl.remove(this.openBtn);
 
