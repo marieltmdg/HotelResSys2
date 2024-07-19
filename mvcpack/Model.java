@@ -32,6 +32,10 @@ public class Model {
             cont = -1;
         }
 
+        if(standardRoomCount + deluxeRoomCount + execRoomCount > 50){
+            cont = -2;
+        }
+
         //valid case        
         if (cont == 1){
             Hotel hotel = new Hotel(name);

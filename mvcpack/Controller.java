@@ -75,6 +75,9 @@ public class Controller {
                 String[] hotelListNames= model.getHotelListNames();
 
                 switch(result){
+                    case -2://error exceeding room limit
+                        view.setFeedbackLblText("Hotel NOT added. Hotels must only contain a total of 50 rooms");
+                        break;
                     case -1://error no room
                         view.setFeedbackLblText("Hotel NOT added. Hotels must have atleast one room");
                         break;
@@ -112,6 +115,8 @@ public class Controller {
             public void actionPerformed(ActionEvent e){
                 System.out.println("PRESSED RESERVE");
                 // TODO add reserve stuff
+
+                view.reserveHotel();
             }
         });
     }
@@ -140,6 +145,29 @@ public class Controller {
             public void actionPerformed(ActionEvent e){
             }
         });
+    }
+
+    public void reserveHotelListeners(){ 
+    this.view.setConfirmResListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e){
+            int checkIn = checkInTf();
+            switch(isPromoValid())
+        }
+    });
+
+    this.view.setInquireReservationListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e){
+        }
+    });
+
+    this.view.setInquireDateListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e){
+        }
+    });
+
     }
 }
 

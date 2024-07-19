@@ -33,4 +33,20 @@ public class Utility {
 
         return selection;
     }
+
+    public int isPromoValid(int checkIn, int checkOut, String promoCode){
+        switch(promoCode){
+            case "I_WORK_HERE":
+                return 1; 
+            case "STAY4_GET1":
+                if(checkOut - checkIn + 1 >= 5)
+                    return 2;
+                else return 0;
+            case "PAYDAY":
+                if((checkIn <= 15 && checkOut > 15) || (checkIn <= 30 && checkOut > 30))
+                    return 3;
+                else return 0;
+            default: return 0;
+        }
+    }
 }
