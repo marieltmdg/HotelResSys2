@@ -11,7 +11,6 @@ public class Hotel {
     private String hotelName;
     private int roomCount;
     private ArrayList<Room> roomList;
-    private ArrayList<DatePrice> datePriceList;
 
     /**
      * Constructs a Hotel instance with the specified hotel name.
