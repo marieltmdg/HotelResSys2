@@ -1,11 +1,9 @@
+package basepack;
+
 public class DatePrice {
-    private int date;
     private double percent;
 
-    // each date has a percent
-
-    public DatePrice(int date, double percent){
-        this.date = date;
+    public DatePrice(){
         this.percent = 1;
     }
 
@@ -14,5 +12,9 @@ public class DatePrice {
             this.percent = percent;
             return true;
         } else return false;
+    }
+
+    public double getPercent(){
+        return percent;
     }
 }

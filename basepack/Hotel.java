@@ -1,6 +1,7 @@
 package basepack;
 
 import basepack.roompack.*;
+
 import java.util.ArrayList;
 
 /**
@@ -10,6 +11,7 @@ public class Hotel {
     private String hotelName;
     private int roomCount;
     private ArrayList<Room> roomList;
+    private ArrayList<DatePrice> datePriceList;
 
     /**
      * Constructs a Hotel instance with the specified hotel name.
@@ -195,6 +197,13 @@ public class Hotel {
             roomList.get(i).setBasePrice(price);
 
         System.out.println("Room price set to "+ price);
+    }
+
+    public void updateDatePrice(int date, double percent){
+        //set the base price for all rooms to the new price
+        for(int i=0; i<roomList.size(); i++)
+            roomList.get(i).setDatePrice(date, percent);
+
     }
 
     /**
