@@ -1,6 +1,7 @@
 package basepack;
 
 import basepack.roompack.*;
+
 import java.util.ArrayList;
 
 /**
@@ -10,6 +11,7 @@ public class Hotel {
     private String hotelName;
     private int roomCount;
     private ArrayList<Room> roomList;
+    private ArrayList<DatePrice> datePriceList;
 
     /**
      * Constructs a Hotel instance with the specified hotel name.
@@ -21,6 +23,11 @@ public class Hotel {
         this.hotelName = hotelName;
         this.roomCount = 0;
         this.roomList = new ArrayList<Room>();
+
+        //initialize all dates
+        for(int i = 0 ; i <= 31; i++){
+            this.datePriceList.add(new DatePrice(i+1));
+        }
     }
     
     /**
@@ -90,6 +97,14 @@ public class Hotel {
     private String generateRoomName(){
         int leadingNum = (roomCount / 10) + 1;
         return leadingNum + "-" + roomCount % 10;
+    }
+
+    public void setDatePrice(int date, double percent){
+        datePriceList.get(date).setPercent(percent);
+    }
+
+    public double getDatePrice(int date){
+        datePriceList.get(date).getPercent();
     }
 
     /**

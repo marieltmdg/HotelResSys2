@@ -2,9 +2,7 @@ public class DatePrice {
     private int date;
     private double percent;
 
-    // each date has a percent
-
-    public DatePrice(int date, double percent){
+    public DatePrice(int date){
         this.date = date;
         this.percent = 1;
     }
@@ -14,5 +12,9 @@ public class DatePrice {
             this.percent = percent;
             return true;
         } else return false;
+    }
+
+    public double getPercent(){
+        return percent;
     }
 }
