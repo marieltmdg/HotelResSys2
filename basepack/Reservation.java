@@ -37,15 +37,15 @@ public class Reservation {
         
         if (this.room instanceof Standard){
             for(int i=checkIn; i<checkOut; i++)
-                total += room.getBasePrice();
+                total += ((Standard) room).getBasePrice() * room.getDatePricePercent(i);
         }
         else if (this.room instanceof Deluxe){
             for(int i=checkIn; i<checkOut; i++)
-                total += room.getDPrice();
+                total += ((Deluxe)room).getDPrice() * room.getDatePricePercent(i);
         }
         else if (this.room instanceof Executive){
             for(int i=checkIn; i<checkOut; i++)
-                total += room.getEPrice();
+                total += ((Executive) room).getEPrice() * room.getDatePricePercent(i);
         }
         return total;
     }

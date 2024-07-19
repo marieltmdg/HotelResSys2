@@ -23,11 +23,6 @@ public class Hotel {
         this.hotelName = hotelName;
         this.roomCount = 0;
         this.roomList = new ArrayList<Room>();
-
-        //initialize all dates
-        for(int i = 0 ; i <= 31; i++){
-            this.datePriceList.add(new DatePrice(i+1));
-        }
     }
     
     /**
@@ -97,14 +92,6 @@ public class Hotel {
     private String generateRoomName(){
         int leadingNum = (roomCount / 10) + 1;
         return leadingNum + "-" + roomCount % 10;
-    }
-
-    public void setDatePrice(int date, double percent){
-        datePriceList.get(date).setPercent(percent);
-    }
-
-    public double getDatePrice(int date){
-        datePriceList.get(date).getPercent();
     }
 
     /**
@@ -210,6 +197,13 @@ public class Hotel {
             roomList.get(i).setBasePrice(price);
 
         System.out.println("Room price set to "+ price);
+    }
+
+    public void updateDatePrice(int date, double percent){
+        //set the base price for all rooms to the new price
+        for(int i=0; i<roomList.size(); i++)
+            roomList.get(i).setDatePrice(date, percent);
+
     }
 
     /**
