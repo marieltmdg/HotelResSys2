@@ -61,6 +61,9 @@ public class View extends JFrame {
         renameBtn = new CButton("Rename Hotel");
         addRoomBtn = new CButton("Add room");
         removeRoomBtn = new CButton("Remove room");
+
+        //res pnl
+        confirmResBtn = new CButton("Confirm");
         
         this.inquireBtn.setPreferredSize(new Dimension(BTN_WIDTH, BTN_HEIGHT));
         this.manageBtn.setPreferredSize(new Dimension(BTN_WIDTH, BTN_HEIGHT));
@@ -395,7 +398,7 @@ public class View extends JFrame {
         this.centerPnl = new JPanel();
         JPanel centerRightPnl = new JPanel();
         JPanel centerLeftPnl = new JPanel();
-        JPanel addRoomPnl = new JPanel();
+        JPanel addResPnl = new JPanel();
         JPanel headerPnl = new JPanel();
 
         centerPnl.setLayout(new BorderLayout());
@@ -403,8 +406,8 @@ public class View extends JFrame {
         centerRightPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
         centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         centerLeftPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
-        addRoomPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
-        addRoomPnl.setLayout(new FlowLayout(FlowLayout.CENTER)); 
+        addResPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
+        addResPnl.setLayout(new FlowLayout(FlowLayout.CENTER)); 
         headerPnl.setPreferredSize(new Dimension(BTN_WIDTH-50, 20));
 
         this.roomIndexTf.setPreferredSize(new Dimension(SMALL_TF_WIDTH, TF_HEIGHT));
@@ -418,7 +421,29 @@ public class View extends JFrame {
         JLabel promoCodeLbl = new JLabel("Promo Code");
         JLabel roomIndexLbl = new JLabel("Room Index to Reserve");  
 
-        JScrollPane printRoomScrPane = new JScrollPane(roomListPnl);
+        centerLeftPnl.add(roomIndexLbl);
+        centerLeftPnl.add(roomIndexTf);
+
+        centerLeftPnl.add(addResPnl);
+        
+        addResPnl.add(checkInLbl);
+        addResPnl.add(this.numCheckInTf);
+
+        addResPnl.add(checkOutLbl);
+        addResPnl.add(numCheckOutTf);
+
+        addResPnl.add(promoCodeLbl);
+        addResPnl.add(promoCodeTf);
+
+        addResPnl.add(confirmResBtn);
+        
+        headerPnl.add(roomReserveLbl);
+        centerRightPnl.add(headerPnl);
+        centerRightPnl.add(printRooms(roomNames));
+
+        centerPnl.add(centerLeftPnl, BorderLayout.WEST);
+        centerPnl.add(centerRightPnl, BorderLayout.EAST);
+        this.add(centerPnl);
 
 
         this.revalidate();

@@ -63,32 +63,35 @@ public class Controller {
             public void actionPerformed(ActionEvent e){
                 view.getHotelNameTfText();
                 String hotelName = view.getHotelNameTfText();
-                String stringStandard = view.getNumStandardTf();
-                String stringDeluxe = view.getNumDeluxeTf();
-                String stringExecutive = view.getNumExecutiveTf();
+
+                String stringStandard = (view.getNumStandardTf().isEmpty()) ? "0" : view.getNumStandardTf();
+                String stringDeluxe = (view.getNumDeluxeTf().isEmpty()) ? "0" :  view.getNumDeluxeTf();
+                String stringExecutive = (view.getNumExecutiveTf().isEmpty()) ? "0" : view.getNumExecutiveTf();
+
+                int numStandard = model.getPosNumValue(stringStandard);
+                int numDeluxe = model.getPosNumValue(stringDeluxe);
+                int numExecutive = model.getPosNumValue(stringExecutive);
+
+                if(!(numStandard == -1 || numDeluxe == -1 || numExecutive == -1)){
+                    int result = model.addHotel(hotelName, numStandard, numDeluxe, numExecutive);
+                    String[] hotelListNames= model.getHotelListNames();
                 
-                int numStandard = Integer.parseInt(stringStandard);
-                int numDeluxe = Integer.parseInt(stringDeluxe);
-                int numExecutive = Integer.parseInt(stringExecutive);
-
-                int result = model.addHotel(hotelName, numStandard, numDeluxe, numExecutive);
-                String[] hotelListNames= model.getHotelListNames();
-
-                switch(result){
-                    case -2://error exceeding room limit
-                        view.setFeedbackLblText("Hotel NOT added. Hotels must only contain a total of 50 rooms");
-                        break;
-                    case -1://error no room
-                        view.setFeedbackLblText("Hotel NOT added. Hotels must have atleast one room");
-                        break;
-                    case 0://error same name
-                        view.setFeedbackLblText("Hotel NOT added. Hotel with the same name exists");
-                        break;
-                    case 1://valid case
-                        view.createHotel(hotelListNames);
-                        view.setFeedbackLblText("Hotel \"" + hotelName + "\" added successfully");
-                        break;
-                }
+                    switch(result){
+                        case -2://error exceeding room limit
+                            view.setFeedbackLblText("Hotel NOT added. Hotels must only contain a total of 50 rooms");
+                            break;
+                        case -1://error no room
+                            view.setFeedbackLblText("Hotel NOT added. Hotels must have atleast one room");
+                            break;
+                        case 0://error same name
+                            view.setFeedbackLblText("Hotel NOT added. Hotel with the same name exists");
+                            break;
+                        case 1://valid case
+                            view.createHotel(hotelListNames);
+                            view.setFeedbackLblText("Hotel \"" + hotelName + "\" added successfully");
+                            break;
+                    }
+                } else view.setFeedbackLblText("Please input a positive number");
             }
         });
     }
@@ -116,7 +119,7 @@ public class Controller {
                 System.out.println("PRESSED RESERVE");
                 // TODO add reserve stuff
 
-                view.reserveHotel();
+                view.reserveHotel(model.getRoomListNames());
             }
         });
     }
@@ -151,8 +154,7 @@ public class Controller {
     this.view.setConfirmResListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e){
-            int checkIn = checkInTf();
-            switch(isPromoValid())
+        
         }
     });
 

@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * The Driver class is responsible for managing the overall operations involving hotels, rooms, and reservations.
  */
 public class Model {
-    private Utility utility;
+    public Utility utility;
     private ArrayList<Hotel> hotelList;
     private int selectedHotelIndex;
 
@@ -28,9 +28,15 @@ public class Model {
             } 
         }
 
-        if(standardRoomCount + deluxeRoomCount + execRoomCount <= 0){
+        int totalRoomCount = standardRoomCount + deluxeRoomCount + execRoomCount;
+        System.out.println(standardRoomCount);
+        System.out.println(deluxeRoomCount);
+        System.out.println(execRoomCount);
+        System.out.println(totalRoomCount);
+        if(totalRoomCount <= 0){
             cont = -1;
         }
+            
 
         if(standardRoomCount + deluxeRoomCount + execRoomCount > 50){
             cont = -2;
@@ -83,6 +89,17 @@ public class Model {
         }
     }
 
+    public int getPosNumValue(String x){
+        int temp = -1;
+        try {
+            temp = Integer.parseInt(x);
+            if (temp >= 0){
+            }
+        } catch (Exception e) {
+            return -1;
+        }
+        return temp;
+    }
 
     public String[] getHotelListNames(){
         String[] names = new String[hotelList.size()];
@@ -93,5 +110,17 @@ public class Model {
 
         return names;
     }
+
+    public String[] getRoomListNames(){
+        String[] names = new String[hotelList.get(selectedHotelIndex).getRoomList().size()];
+
+        for(int i = 0; i <hotelList.get(selectedHotelIndex).getRoomList().size();i++){
+            names[i] = hotelList.get(selectedHotelIndex).getRoomName(i);
+        }
+
+        return names;
+    }
+
+   
 }
 

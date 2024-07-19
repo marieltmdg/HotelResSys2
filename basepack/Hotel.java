@@ -327,5 +327,9 @@ public class Hotel {
         roomList.get(roomIndex).printReservation(resIndex);
     }
 
-
+    public String getRoomName(int roomIndex){
+        return roomList.get(roomIndex).getRoomName();
+    }
 }
+
+ 

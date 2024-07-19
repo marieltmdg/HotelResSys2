@@ -34,6 +34,12 @@ public class Utility {
         return selection;
     }
 
+    public boolean isEmpty(String x){
+        if (x == null){
+            return true;
+        } else return false;
+    }
+
     public int isPromoValid(int checkIn, int checkOut, String promoCode){
         switch(promoCode){
             case "I_WORK_HERE":
