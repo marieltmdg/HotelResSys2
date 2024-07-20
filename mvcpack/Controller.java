@@ -1,4 +1,5 @@
 package mvcpack;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -39,8 +40,8 @@ public class Controller {
                 hotelName = model.openHotel(hotelIndex);
 
                 if (!hotelName.equals("\0")){
-                    view.setFeedbackLblText("Selected Hotel: " + hotelName);
                     view.openHotel(hotelName);
+                    view.setFeedbackLblText("");
                     openHotelListeners();
                 } else {
                     view.setFeedbackLblText("Hotel does not exist");
@@ -96,7 +97,6 @@ public class Controller {
         });
     }
 
-    //TODO : ADD RESERVE LISTENER
     public void openHotelListeners(){
         this.view.setInquireListener(new ActionListener() {
             @Override
@@ -110,6 +110,7 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 view.manageHotel();
+                manageHotelListeners();
             }
         });
 
@@ -152,26 +153,117 @@ public class Controller {
         });
     }
 
-    public void reserveHotelListeners(){ 
-    this.view.setConfirmResListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e){
-            
-        }
-    });
+    public void confirmRenameListener() {
+        this.view.setConfirmRenameListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String newName = view.getNewNameTfText();
+                boolean result = model.renameHotel(newName);
 
-    this.view.setInquireReservationListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e){
-        }
-    });
-
-    this.view.setInquireDateListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e){
-        }
-    });
-
+                if (result) {
+                    view.setFeedbackLblText("Hotel Rename Successful");
+                    view.setTitleLblText("Current Hotel: " + newName);
+                } else view.setFeedbackLblText("Hotel Name Already Taken");
+            }
+        });
     }
+
+    public void confirmAddRmListener(){
+        this.view.setConfirmAddRmBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String stringStandard = (view.getNumStandardTf().isEmpty()) ? "0" : view.getNumStandardTf();
+                String stringDeluxe = (view.getNumDeluxeTf().isEmpty()) ? "0" : view.getNumDeluxeTf();
+                String stringExecutive = (view.getNumExecutiveTf().isEmpty()) ? "0" : view.getNumExecutiveTf();
+
+                int numStandard = model.getPosNumValue(stringStandard);
+                int numDeluxe = model.getPosNumValue(stringDeluxe);
+                int numExecutive = model.getPosNumValue(stringExecutive);
+
+                if(!(numStandard == -1 || numDeluxe == -1 || numExecutive == -1)){
+                    for(int i = 0; i < numStandard; i++){
+                        model.addRoom(1, model.getCurrentHotelIndex());
+                    }
+                    for(int i = 0; i < numDeluxe; i++){
+                        model.addRoom(2, model.getCurrentHotelIndex());
+                    }
+                    for(int i = 0; i < numExecutive; i++){
+                        model.addRoom(3, model.getCurrentHotelIndex());
+                    }
+                    view.setFeedbackLblText("Room Addition Successful");
+                } else view.setFeedbackLblText("Please input a positive number");
+            }
+        });
+    }
+
+    public void manageHotelListeners(){
+
+        this.view.setRenameHotelListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.renameHotel();
+                confirmRenameListener();
+            }
+        });
+
+        this.view.setAddRoomListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.addRoom();
+                confirmAddRmListener();
+            }
+        });
+
+        this.view.setRemoveRoomListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+            }
+        });
+
+        this.view.setUpdatePriceListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+            }
+        });
+
+        this.view.setRemoveResListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+            }
+        });
+
+        this.view.setRemoveHotelListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+            }
+        });
+    }
+
+    public void reserveHotelListeners() {
+            this.view.setConfirmResListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                }
+            });
+
+            this.view.setInquireReservationListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                }
+            });
+
+            this.view.setInquireDateListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                }
+            });
+        }
+
 }
 

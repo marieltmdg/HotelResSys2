@@ -61,7 +61,7 @@ public class Model {
     }
 
 
-    private void addRoom(int roomType, int hotelIndex) {
+    public void addRoom(int roomType, int hotelIndex) {
         System.out.println("Room addition");
          
         switch(roomType){
@@ -87,6 +87,18 @@ public class Model {
         } else {
             return "\0";
         }
+    }
+
+    public boolean renameHotel(String newName){
+        for (Hotel h : hotelList){
+            if (h.getHotelName().equals(newName)){
+                return false;
+            }
+        }
+
+        hotelList.get(selectedHotelIndex).setHotelName(newName);
+        return true;
+
     }
 
 
@@ -124,6 +136,10 @@ public class Model {
 
     public String getCurrentHotel(){
         return this.hotelList.get(selectedHotelIndex).getHotelName();
+    }
+
+    public int getCurrentHotelIndex(){
+        return selectedHotelIndex;
     }
 
     public int getRoomCount(){

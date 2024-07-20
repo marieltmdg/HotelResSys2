@@ -140,13 +140,12 @@ public class Hotel {
     }
 
     /**
-     * The method setHotelName() sets a new name for a hotel and prints a success message.
+     * The method setHotelName() sets a new name for a hotel.
      * 
      * @param newName The parameter newName represents the new name that will be assigned to the hotelName.
      */
     public void setHotelName(String newName) {
         this.hotelName = newName;
-        System.out.println("Hotel rename successful");
         
     }
 
