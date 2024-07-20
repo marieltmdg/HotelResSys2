@@ -466,6 +466,11 @@ public class View extends JFrame {
         addResPnl.setLayout(new FlowLayout(FlowLayout.CENTER)); 
         headerPnl.setPreferredSize(new Dimension(BTN_WIDTH-50, 20));
 
+        this.roomIndexTf = new JTextField();
+        this.numCheckInTf = new JTextField();
+        this.numCheckOutTf = new JTextField();
+        this.promoCodeTf = new JTextField();
+        
         this.roomIndexTf.setPreferredSize(new Dimension(SMALL_TF_WIDTH, TF_HEIGHT));
         this.numCheckInTf.setPreferredSize(new Dimension(SMALL_TF_WIDTH, TF_HEIGHT));
         this.numCheckOutTf.setPreferredSize(new Dimension(SMALL_TF_WIDTH, TF_HEIGHT));
