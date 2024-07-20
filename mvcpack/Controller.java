@@ -154,7 +154,7 @@ public class Controller {
     this.view.setConfirmResListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e){
-        
+            
         }
     });
 
