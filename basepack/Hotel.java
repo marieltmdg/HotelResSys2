@@ -61,6 +61,35 @@ public class Hotel {
         return roomList.get(index);
     }
 
+    public int getRoomTypeCount(String type){
+        int total = 0;
+
+        switch(type){
+            case "Standard":
+                for(Room r : roomList){
+                    if (r instanceof Standard){
+                        total++;
+                    }
+                }
+                break;
+            case "Deluxe":
+                for(Room r : roomList){
+                    if (r instanceof Deluxe){
+                        total++;
+                    }
+                }
+                break;
+            case "Executive":
+                for(Room r : roomList){
+                    if (r instanceof Executive){
+                        total++;
+                    }
+                }
+                break;
+        }
+
+        return total;
+    }
 
     /**
      * The method getAvailableRoom() iterates through a list of rooms to find an available room for a

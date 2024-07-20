@@ -89,6 +89,7 @@ public class Model {
         }
     }
 
+
     public int getPosNumValue(String x){
         int temp = -1;
         try {
@@ -121,6 +122,29 @@ public class Model {
         return names;
     }
 
+    public String getCurrentHotel(){
+        return this.hotelList.get(selectedHotelIndex).getHotelName();
+    }
+
+    public int getRoomCount(){
+        return this.hotelList.get(selectedHotelIndex).getRoomCount();
+    }
+
+    public int getStandardRoomCount(){
+        return this.hotelList.get(selectedHotelIndex).getRoomTypeCount("Standard");
+    }
+
+    public int getDeluxeRoomCount(){
+        return this.hotelList.get(selectedHotelIndex).getRoomTypeCount("Deluxe");
+    }
+
+    public int getExecRoomCount(){
+        return this.hotelList.get(selectedHotelIndex).getRoomTypeCount("Executive");
+    }
+
+    public double getEarnings(){
+        return this.hotelList.get(selectedHotelIndex).getHotelIncome();
+    }
    
 }
 

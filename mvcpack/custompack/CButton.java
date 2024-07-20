@@ -7,6 +7,6 @@ public class CButton extends JButton {
 
     public CButton(String x) {
         super(x);
-        setFont(new Font("Sans Serif", Font.BOLD, 20));
+        setFont(new Font("Verdana", Font.BOLD, 20));
    }
 }

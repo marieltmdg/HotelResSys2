@@ -128,6 +128,8 @@ public class Controller {
         this.view.setInquireHotelListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                view.inquireHotelInfo(model.getCurrentHotel(), model.getRoomCount(), model.getStandardRoomCount(),
+                        model.getDeluxeRoomCount(), model.getExecRoomCount(), model.getEarnings());
             }
         });
     
