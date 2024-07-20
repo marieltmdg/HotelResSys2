@@ -9,6 +9,7 @@ public abstract class Room {
     private String roomName;
     private double basePrice;
     private ArrayList<Reservation> reservationList;
+    private double[] datePricePercentMultiplier;
 
     /**
      * Constructs a Room instance with the specified room name.
@@ -20,6 +21,11 @@ public abstract class Room {
         this.roomName = roomName;
         this.basePrice = 1299;
         this.reservationList = new ArrayList<Reservation>();
+        this.datePricePercentMultiplier = new double[31];
+
+        for(int i = 0; i < 31; i++){
+            datePricePercentMultiplier[i] = 1;
+        }
     }
 
      /**
@@ -38,6 +44,14 @@ public abstract class Room {
      */
     public double getBasePrice() {
         return basePrice;
+    }
+
+    public void setDatePrice(int date, double percent){
+        datePricePercentMultiplier[date-1] = percent;
+    }
+
+    public double getDatePricePercent(int date){
+        return datePricePercentMultiplier[date-1];
     }
 
    /**

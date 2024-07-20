@@ -1,5 +1,7 @@
 package basepack;
 
+import basepack.roompack.*;
+
 /**
  * The Reservation class represents a reservation made by a guest.
  */
@@ -32,9 +34,19 @@ public class Reservation {
      */
     public double getTotalPrice(){
         double total = 0.0;
-        for(int i=checkIn; i<checkOut; i++)
-            total += room.getBasePrice();
-
+        
+        if (this.room instanceof Standard){
+            for(int i=checkIn; i<checkOut; i++)
+                total += ((Standard) room).getBasePrice() * room.getDatePricePercent(i);
+        }
+        else if (this.room instanceof Deluxe){
+            for(int i=checkIn; i<checkOut; i++)
+                total += ((Deluxe)room).getDPrice() * room.getDatePricePercent(i);
+        }
+        else if (this.room instanceof Executive){
+            for(int i=checkIn; i<checkOut; i++)
+                total += ((Executive) room).getEPrice() * room.getDatePricePercent(i);
+        }
         return total;
     }
 
