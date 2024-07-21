@@ -267,9 +267,12 @@ public class Hotel {
      * 
      * @param roomIndex The roomIndex parameter represents the index of the room in the roomList.
      * @param resIndex The resIndex parameter represents the index of the reservation to be removed.
+     * @return String message if successful or not.
      */
-    public void removeHotelReservation(int roomIndex, int resIndex){
-        roomList.get(roomIndex).removeReservation(resIndex);
+    public String removeHotelReservation(int roomIndex, int resIndex){
+        if (roomIndex >= 0 && roomIndex < roomCount)
+            return roomList.get(roomIndex).removeReservation(resIndex);
+        else return "Room input out of bounds";
     }
 
     /**
@@ -291,6 +294,18 @@ public class Hotel {
 
     public double getBasePrice(){
         return roomList.get(0).getBasePrice();
+    }
+
+    public String[][] getReservationListDetailed(){
+
+        String[][] ret = new String[getRoomCount()][30];
+
+        for(int i = 0 ; i < roomList.size() ; i++)
+            for(int j = 0; j < roomList.get(i).getReservationListCount(); j++)
+                ret[i][j] = "Room " + roomList.get(i).getRoomName() +
+                        " " + roomList.get(i).getReservationName(j) + roomList.get(i).getResDates(j);
+
+        return ret;
     }
 
     /**

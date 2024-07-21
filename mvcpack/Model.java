@@ -3,7 +3,7 @@ import basepack.*;
 import java.util.ArrayList;
 
 /**
- * The Driver class is responsible for managing the overall operations involving hotels, rooms, and reservations.
+ * The Model class is responsible for managing the overall operations involving hotels, rooms, and reservations.
  */
 public class Model {
     public Utility utility;
@@ -29,10 +29,6 @@ public class Model {
         }
 
         int totalRoomCount = standardRoomCount + deluxeRoomCount + execRoomCount;
-        System.out.println(standardRoomCount);
-        System.out.println(deluxeRoomCount);
-        System.out.println(execRoomCount);
-        System.out.println(totalRoomCount);
         if(totalRoomCount <= 0){
             cont = -1;
         }
@@ -113,6 +109,14 @@ public class Model {
         } else return "New price must be equal to or greater than 150";
     }
 
+    public String removeReservation(int roomIndex, int resIndex){
+        return hotelList.get(selectedHotelIndex).removeHotelReservation(roomIndex, resIndex);
+    }
+
+    public void removeHotel(){
+        hotelList.remove(hotelList.get(selectedHotelIndex));
+    }
+
     public int getPosNumValue(String x){
         int temp = -1;
         try {
@@ -153,6 +157,14 @@ public class Model {
         }
 
         return names;
+    }
+
+    public String[][] getReservationListDetailed(){
+        return hotelList.get(selectedHotelIndex).getReservationListDetailed();
+    }
+
+    public int getReservationCount(){
+        return hotelList.get(selectedHotelIndex).getReservationCount();
     }
 
     public String getCurrentHotel(){

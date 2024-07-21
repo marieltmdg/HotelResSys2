@@ -1,6 +1,6 @@
 import mvcpack.*;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         Model driverModel = new Model();
         View driverView = new View();

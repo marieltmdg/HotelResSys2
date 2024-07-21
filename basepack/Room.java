@@ -74,6 +74,21 @@ public abstract class Room {
         return reservationList.get(resIndex);
     }
 
+    public int getReservationListCount() {
+        return reservationList.size();
+    }
+
+    public String getReservationName(int index){
+        return reservationList.get(index).getGuestName();
+    }
+
+    public String getResDates(int index){
+        int checkIn = reservationList.get(index).getCheckIn();
+        int checkOut = reservationList.get(index).getCheckOut();
+
+        return "(" +checkIn+checkOut +")";
+    }
+
     /**
      * The method setBasePrice() updates the base price with a new value.
      * 
@@ -101,9 +116,19 @@ public abstract class Room {
      * 
      * @param index The index parameter specifies the position of the reservation in the
      * reservationList.
+     * @return String message if successful or not.
      */
-    public void removeReservation(int index){
-        reservationList.remove(reservationList.get(index));
+    public String removeReservation(int index){
+        if(reservationList.isEmpty()){
+            return "There are no reservations for the selected room";
+        }
+
+        if (!(index >= 0 && index < getReservationListCount())) {
+            reservationList.remove(reservationList.get(index));
+            return "Reservation removal successful";
+        }
+
+        return "Reservation input out of bounds";
     }
 
     /**

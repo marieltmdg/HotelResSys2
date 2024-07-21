@@ -1,5 +1,4 @@
 package mvcpack;
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,7 +24,6 @@ public class Controller {
         this.view.setOpenListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("pressed open"); //CHECKER
                 String[] hotelListNames= model.getHotelListNames();
                 view.selectHotel(hotelListNames);
             }
@@ -34,18 +32,17 @@ public class Controller {
         this.view.setSelectListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                view.getHotelNameTfText();
-                String hotelName = view.getHotelNameTfText();
-                int hotelIndex = Integer.parseInt(hotelName) - 1;
-                hotelName = model.openHotel(hotelIndex);
+                int index = (model.getPosNumValue(view.getHotelNameTfText()));
+                String result = "Please input a positive number";
 
-                if (!hotelName.equals("\0")){
-                    view.openHotel(hotelName);
-                    view.setFeedbackLblText("");
-                    openHotelListeners();
-                } else {
-                    view.setFeedbackLblText("Hotel does not exist");
-                }
+                if(index != -1) {
+                    result = model.openHotel(index-1);
+                    if(!(result.equals("\0"))) {
+                        view.openHotel(result);
+                        view.setFeedbackLblText("");
+                        openHotelListeners();
+                    } else view.setFeedbackLblText("Input out of bounds");
+                } else view.setFeedbackLblText(result);
             }
         });
 
@@ -231,6 +228,42 @@ public class Controller {
                     result = model.updatePrice(price);
 
                 view.setFeedbackLblText(result);
+                view.updatePrice(model.getBasePrice());
+            }
+        });
+    }
+
+    public void confirmRemoveReservationListener(){
+
+        this.view.setConfirmRemoveResBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int roomIndex = model.getPosNumValue(view.getRoomIndexTf());
+                int resIndex = model.getPosNumValue(view.getResIndexTfText());
+                String result = "Please input a positive number";
+
+                if (roomIndex != -1 && resIndex != -1)
+                    result = model.removeReservation(roomIndex-1, resIndex-1);
+
+                view.setFeedbackLblText(result);
+                view.removeReservation(model.getRoomCount(), model.getReservationListDetailed());
+            }
+        });
+    }
+
+    public void confirmRemoveHotelListener(){
+        this.view.setConfirmRemoveHotelBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int count = model.getReservationCount();
+
+                if(count == 0){
+                    model.removeHotel();
+                    view.setFeedbackLblText("Remove hotel successful");
+                    view.home();
+                } else {
+                    view.setFeedbackLblText("Remove hotel unsuccessful. There are current reservations");
+                }
             }
         });
     }
@@ -272,14 +305,16 @@ public class Controller {
         this.view.setRemoveResListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-
+                view.removeReservation(model.getRoomCount(), model.getReservationListDetailed());
+                confirmRemoveReservationListener();
             }
         });
 
         this.view.setRemoveHotelListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-
+                view.removeHotel();
+                confirmRemoveHotelListener();
             }
         });
     }
