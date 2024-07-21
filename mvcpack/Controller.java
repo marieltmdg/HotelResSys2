@@ -18,7 +18,7 @@ public class Controller {
                 String[] hotelListNames= model.getHotelListNames();
                 view.createHotel(hotelListNames);
                 confirmCreateListener();
-                
+
             }
         });
 
@@ -182,17 +182,55 @@ public class Controller {
                 int numExecutive = model.getPosNumValue(stringExecutive);
 
                 if(!(numStandard == -1 || numDeluxe == -1 || numExecutive == -1)){
-                    for(int i = 0; i < numStandard; i++){
-                        model.addRoom(1, model.getCurrentHotelIndex());
+                    if(model.getRoomCount() + numStandard + numDeluxe + numExecutive >= 51){
+                        System.out.println(model.getRoomCount() + numStandard + numDeluxe + numExecutive);
+                        view.setFeedbackLblText("Hotel Room Count Cannot Exceed 50");
+                    } else {
+                        for (int i = 0; i < numStandard; i++) {
+                            model.addRoom(1, model.getCurrentHotelIndex());
+                        }
+                        for (int i = 0; i < numDeluxe; i++) {
+                            model.addRoom(2, model.getCurrentHotelIndex());
+                        }
+                        for (int i = 0; i < numExecutive; i++) {
+                            model.addRoom(3, model.getCurrentHotelIndex());
+                        }
+                        view.setFeedbackLblText("Room Addition Successful");
                     }
-                    for(int i = 0; i < numDeluxe; i++){
-                        model.addRoom(2, model.getCurrentHotelIndex());
-                    }
-                    for(int i = 0; i < numExecutive; i++){
-                        model.addRoom(3, model.getCurrentHotelIndex());
-                    }
-                    view.setFeedbackLblText("Room Addition Successful");
                 } else view.setFeedbackLblText("Please input a positive number");
+            }
+        });
+    }
+
+    public void confirmRemoveRoomListener(){
+
+        this.view.setConfirmRemoveRmListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int index = (model.getPosNumValue(view.getRoomIndexTf()));
+                String result = "Please input a positive number";
+
+                if(index != -1)
+                    result = model.removeRoom(index-1);
+
+                view.setFeedbackLblText(result);
+                view.removeRoom(model.getRoomListNames());
+            }
+        });
+    }
+
+    public void confirmUpdatePriceListener(){
+
+        this.view.setConfirmUpdatePriceListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double price = model.getPosDoubleValue(view.getRoomIndexTf());
+                String result = "Please input a positive number";
+
+                if (price != -1)
+                    result = model.updatePrice(price);
+
+                view.setFeedbackLblText(result);
             }
         });
     }
@@ -218,14 +256,16 @@ public class Controller {
         this.view.setRemoveRoomListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-
+                view.removeRoom(model.getRoomListNames());
+                confirmRemoveRoomListener();
             }
         });
 
         this.view.setUpdatePriceListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-
+                view.updatePrice(model.getBasePrice());
+                confirmUpdatePriceListener();
             }
         });
 

@@ -78,6 +78,12 @@ public class Model {
         }
     }
 
+    public String removeRoom(int index){
+        if (index >= 0 && index < hotelList.get(selectedHotelIndex).getRoomCount())
+            return hotelList.get(selectedHotelIndex).removeRoom(index);
+        else return "Input out of bounds";
+    }
+
     public String openHotel(int hotelIndex) {
         //checker for invalid hotel indices
         if (hotelIndex >= 0 && hotelIndex < hotelList.size()) {
@@ -101,6 +107,11 @@ public class Model {
 
     }
 
+    public String updatePrice(double price){
+        if(price >= 150){
+            return hotelList.get(selectedHotelIndex).updatePrice(price);
+        } else return "New price must be equal to or greater than 150";
+    }
 
     public int getPosNumValue(String x){
         int temp = -1;
@@ -108,6 +119,16 @@ public class Model {
             temp = Integer.parseInt(x);
             if (temp >= 0){
             }
+        } catch (Exception e) {
+            return -1;
+        }
+        return temp;
+    }
+
+    public double getPosDoubleValue(String x){
+        double temp = -1;
+        try {
+            temp = Double.parseDouble(x);
         } catch (Exception e) {
             return -1;
         }
@@ -156,6 +177,10 @@ public class Model {
 
     public int getExecRoomCount(){
         return this.hotelList.get(selectedHotelIndex).getRoomTypeCount("Executive");
+    }
+
+    public double getBasePrice(){
+        return this.hotelList.get(selectedHotelIndex).getBasePrice();
     }
 
     public double getEarnings(){

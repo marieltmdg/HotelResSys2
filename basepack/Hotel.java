@@ -114,12 +114,22 @@ public class Hotel {
     /**
      * The generateRoomName() method generates a room name based on the room count, with a leading number calculated
      * from the room count divided by 10 plus 1, followed by a hyphen and the room count modulo 10.
-     * 
+     *
+     * @param type is the room type of the room
      * @return The generateRoomName method returns a String with a unique room name
      */
-    private String generateRoomName(){
+    private String generateRoomName(String type){
         int leadingNum = (roomCount / 10) + 1;
-        return leadingNum + "-" + roomCount % 10;
+
+        switch(type){
+            case "Standard":
+                return "S" + leadingNum + "-" + roomCount % 10;
+            case "Deluxe":
+                return "D" + leadingNum + "-" + roomCount % 10;
+            case "Executive":
+                return "E" + leadingNum + "-" + roomCount % 10;
+        }
+        return "\0";
     }
 
     /**
@@ -150,7 +160,7 @@ public class Hotel {
     }
 
     public void addStandardRoom(){
-        String roomName = generateRoomName();
+        String roomName = generateRoomName("Standard");
         Standard newRoom = new Standard(roomName);
 
         //check if the room size has not yet reached capacity
@@ -164,7 +174,7 @@ public class Hotel {
     }
 
     public void addDeluxeRoom(){
-        String roomName = generateRoomName();
+        String roomName = generateRoomName("Deluxe");
         Deluxe newRoom = new Deluxe(roomName);
 
         //check if the room size has not yet reached capacity
@@ -178,7 +188,7 @@ public class Hotel {
     }
 
     public void addExecRoom(){
-        String roomName = generateRoomName();
+        String roomName = generateRoomName("Executive");
         Executive newRoom = new Executive(roomName);
 
         //check if the room size has not yet reached capacity
@@ -187,29 +197,29 @@ public class Hotel {
             roomCount++;
             System.out.println("Room " + newRoom.getRoomName() + " added");
         }
-        else 
-            System.out.println("Hotel capacity at maximum (50 Rooms)");
     }
 
    /**
     * The removeRoom() method removes a room from a list if it exists has no reservations, and the room count
-    * is greater than 1, otherwise it displays a message indicating the reason it was not removed.
+    * is greater than 1.
     * 
     * @param index The index of the room in the roomList that will be removed.
+    * @return string result of the removal
     */
-    public void removeRoom(int index){
+    public String removeRoom(int index){
         //check if the room exists
         if (roomList.contains(roomList.get(index))){
             if(roomList.get(index).getReservationList().isEmpty() && roomList.size() > 1){
-                System.out.println("Room " + roomList.get(index).getRoomName() + " deleted");
                 roomList.remove(roomList.get(index));
+                roomCount--;
+                return "Room Removal Successful";
             } else if (roomList.get(index).getReservationList().isEmpty() && roomList.size() == 1) {
                 //check if there is only one room left, and do not continue removal
-                System.out.println("Room " + roomList.get(index).getRoomName() + " not deleted\nHotels must have atleast one room");
+               return "Room " + roomList.get(index).getRoomName() + " not deleted. Hotels must have atleast one room";
             }else 
                 //check if there is a reservation, and do not continue removal
-                System.out.println("Room " + roomList.get(index).getRoomName() + " not deleted\nHas a reservation");
-        } else System.out.println("Room " + roomList.get(index).getRoomName() + " does not exist");
+                return "Room " + roomList.get(index).getRoomName() + " not deleted. Has a reservation";
+        } else return "Room " + roomList.get(index).getRoomName() + " does not exist";
     }
 
     /**
@@ -217,13 +227,14 @@ public class Hotel {
      * prints a confirmation message.
      * 
      * @param price The price represents the new base price that will be set for all rooms in the roomList.
+     * @return String success message
      */
-    public void updatePrice(double price){
+    public String updatePrice(double price){
         //set the base price for all rooms to the new price
         for(int i=0; i<roomList.size(); i++)
             roomList.get(i).setBasePrice(price);
 
-        System.out.println("Room price set to "+ price);
+        return "Room price set to "+ price;
     }
 
     public void updateDatePrice(int date, double percent){
@@ -276,6 +287,10 @@ public class Hotel {
             
         }
         return sum;
+    }
+
+    public double getBasePrice(){
+        return roomList.get(0).getBasePrice();
     }
 
     /**
