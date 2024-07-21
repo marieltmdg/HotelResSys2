@@ -100,7 +100,6 @@ public class Model {
 
         hotelList.get(selectedHotelIndex).setHotelName(newName);
         return true;
-
     }
 
     public String updatePrice(double price){
@@ -115,6 +114,10 @@ public class Model {
 
     public void removeHotel(){
         hotelList.remove(hotelList.get(selectedHotelIndex));
+    }
+
+    public void addReservation(String name, int checkIn, int checkOut, int roomIndex){
+        hotelList.get(selectedHotelIndex).addHotelReservation(name, checkIn, checkOut, roomIndex);
     }
 
     public int getPosNumValue(String x){
@@ -198,6 +201,12 @@ public class Model {
     public double getEarnings(){
         return this.hotelList.get(selectedHotelIndex).getHotelIncome();
     }
+
+    public String[] getPriceBreakdown(int promoValidity, int checkIn, int checkOut, int roomIndex){
+        return hotelList.get(selectedHotelIndex).getRoom(roomIndex).priceBreakdown(promoValidity, checkIn, checkOut);
+    }
+
+
    
 }
 

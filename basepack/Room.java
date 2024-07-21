@@ -217,4 +217,90 @@ public abstract class Room {
     public void printReservation(int resIndex){
         reservationList.get(resIndex).printReservation();
     }
+
+    public double getPriceAfterMultiplier(int day){
+        return this.basePrice * this.datePricePercentMultiplier[day];
+    }
+
+    public double getTotalPriceAfterDiscount(int promoValidity, int checkIn, int checkOut){
+        double price = 0;
+
+        for(int i = checkIn; i < checkOut; i++){
+            price += getPriceAfterMultiplier(i);
+        }
+
+        switch(promoValidity){
+            case 1:
+                price *= 0.9;
+                break;
+            case 2: 
+                price -= getPriceAfterMultiplier(checkIn);
+                break;
+            case 3:
+                price *= 0.93;
+                break;
+            default: price *= 1;
+            
+        }
+        return price; 
+    }
+
+    public double[] getPriceAfterDiscountBreakdown(int promoValidity, int checkIn, int checkOut) {
+        int numDays = checkOut - checkIn;
+        double[] price = new double[numDays];
+    
+        // Initialize price per day
+        for (int i = 0; i < numDays; i++) {
+            price[i] = getPriceAfterMultiplier(checkIn + i);
+        }
+    
+        // Apply discounts based on promoValidity
+        switch (promoValidity) {
+            case 1: // 10% discount
+                for (int i = 0; i < numDays; i++) {
+                    price[i] *= 0.9;
+                }
+                break;
+            case 2: // Free first day
+                if (numDays > 0) {
+                    price[0] = 0.0;
+                }
+                break;
+            case 3: // 7% discount
+                for (int i = 0; i < numDays; i++) {
+                    price[i] *= 0.93;
+                }
+                break;
+        }
+    
+        return price;
+    }
+
+    public String[] priceBreakdown(int promoValidity, int checkIn, int checkOut) {
+        int numDays = checkOut - checkIn;
+        String[] breakdown = new String[numDays];
+        double[] price = getPriceAfterDiscountBreakdown(promoValidity, checkIn, checkOut);
+    
+        for (int i = 0; i < numDays; i++) {
+            int currentDay = checkIn + i;
+            switch (promoValidity) {
+                case 1: // 10% discount
+                case 3: // 10% discount
+                    breakdown[i] = "Day " + currentDay + " : $" + price[i];
+                    break;
+                case 2: // Free first day
+                    if (i == 0) {
+                        breakdown[i] = "Promo Redeemed. Free";
+                    } else {
+                        breakdown[i] = "Day " + currentDay + " : $" + price[i];
+                    }
+                    break;
+                default: // No discount
+                    breakdown[i] = "Day " + currentDay + " : $" + price[i];
+                    break;
+            }
+        }
+    
+        return breakdown;
+    }
 }

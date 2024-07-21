@@ -116,8 +116,9 @@ public class Controller {
             public void actionPerformed(ActionEvent e){
                 System.out.println("PRESSED RESERVE");
                 // TODO add reserve stuff
+                view.reserveHotel(model.getRoomListNames(), null, 1);
+                reserveHotelListeners();
 
-                view.reserveHotel(model.getRoomListNames());
             }
         });
     }
@@ -204,7 +205,7 @@ public class Controller {
         this.view.setConfirmRemoveRmListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int index = (model.getPosNumValue(view.getRoomIndexTf()));
+                int index = (model.getPosNumValue(view.getNumRoomIndexTf()));
                 String result = "Please input a positive number";
 
                 if(index != -1)
@@ -221,7 +222,7 @@ public class Controller {
         this.view.setConfirmUpdatePriceListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double price = model.getPosDoubleValue(view.getRoomIndexTf());
+                double price = model.getPosDoubleValue(view.getNumRoomIndexTf());
                 String result = "Please input a positive number";
 
                 if (price != -1)
@@ -238,7 +239,7 @@ public class Controller {
         this.view.setConfirmRemoveResBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int roomIndex = model.getPosNumValue(view.getRoomIndexTf());
+                int roomIndex = model.getPosNumValue(view.getNumRoomIndexTf());
                 int resIndex = model.getPosNumValue(view.getResIndexTfText());
                 String result = "Please input a positive number";
 
@@ -320,25 +321,36 @@ public class Controller {
     }
 
     public void reserveHotelListeners() {
-            this.view.setConfirmResListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
+        this.view.setConfirmResListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("confirm");
+                String stringRoomIndex = (view.getNumRoomIndexTf().isEmpty()) ? "0" : view.getNumRoomIndexTf();
+                String stringCheckIn = (view.getNumCheckInTf().isEmpty()) ? "0" : view.getNumCheckInTf();
+                String stringCheckOut = (view.getNumCheckOutTf().isEmpty()) ? "0" :  view.getNumCheckOutTf();
+                String stringPromoCode = (view.getPromoCodeTf().isEmpty()) ? "0" : view.getPromoCodeTf();
+                String stringName = (view.getNameTf().isEmpty()) ? " " : view.getNameTf();
 
-                }
-            });
+                int numRoomIndex = model.getPosNumValue(stringRoomIndex) - 1;
+                int numCheckIn = model.getPosNumValue(stringCheckIn);
+                int numCheckOut = model.getPosNumValue(stringCheckOut);
+                int promoValidity = model.utility.isPromoValid(numCheckIn, numCheckOut, stringPromoCode);
+                int days = numCheckOut - numCheckIn;
 
-            this.view.setInquireReservationListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                }
-            });
+                String[] breakdown = model.getPriceBreakdown(promoValidity, numCheckIn, numCheckOut, numRoomIndex);
+                
 
-            this.view.setInquireDateListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
+                if(model.utility.checkDateValidity(numCheckIn, numCheckOut)){
+                    model.addReservation(stringName, numCheckIn, numCheckOut, numRoomIndex);
+
+                    view.reserveHotel(model.getRoomListNames(), breakdown, 2);
                 }
-            });
-        }
+                else view.setFeedbackLblText("Invalid check-in and check-out days");
+
+            }
+        });
+    }
+    
 
 }
 

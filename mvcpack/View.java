@@ -8,7 +8,7 @@ import java.awt.event.*;
 public class View extends JFrame {
     private CLabel createLbl, openLbl, feedbackLbl, titleLbl, centerTitleLbl;
     private JTextField hotelNameTf, numStandardTf, numDeluxeTf, numExecutiveTf,
-                        numCheckInTf, numCheckOutTf, roomIndexTf, promoCodeTf;
+                        numCheckInTf, numCheckOutTf, roomIndexTf, promoCodeTf, nameTf;
     private CButton createBtn, openBtn, confirmBtn, selectBtn;
     private JPanel northPnl, southPnl, westPnl, eastPnl, centerPnl;
 
@@ -25,7 +25,7 @@ public class View extends JFrame {
             ,confirmRemoveResBtn, confirmRemoveHotelBtn;
     private JTextField newNameTf, resIndexTf;
 
-    private CButton confirmResBtn;
+    private CButton confirmResBtn, finalizeResButton, cancelResButton;
     
     private final int SMALL_TF_WIDTH = 50;
     private final int TF_WIDTH = 210;
@@ -83,7 +83,9 @@ public class View extends JFrame {
         confirmRemoveHotelBtn = new CButton("Confirm Removal", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
 
         //res pnl
-        confirmResBtn = new CButton("Confirm", BTN_WIDTH, BTN_HEIGHT);
+        confirmResBtn = new CButton("Add Reservation", BTN_WIDTH, BTN_HEIGHT, 14);
+        finalizeResButton = new CButton("Confirm", BTN_WIDTH, BTN_HEIGHT, 14);
+        cancelResButton = new CButton("Cancel", BTN_WIDTH, BTN_HEIGHT, 14);
 
         centerPnl = new JPanel();
 
@@ -216,7 +218,7 @@ public class View extends JFrame {
         addRoomPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
         addRoomPnl.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        CLabel roomAddLbl = new CLabel("<html>Add Rooms</html>", SUBTITLE_HEIGHT, Font.BOLD);
+        CLabel roomAddLbl = new CLabel("Add Rooms", SUBTITLE_HEIGHT, Font.BOLD);
         CLabel standardAddLbl = new CLabel("Standard Room      ", SUBTITLE_HEIGHT, Font.PLAIN);
         CLabel deluxeAddLbl = new CLabel("Deluxe Room         ", SUBTITLE_HEIGHT, Font.PLAIN);
         CLabel executiveAddLbl = new CLabel("Executive Room     ", SUBTITLE_HEIGHT, Font.PLAIN);
@@ -723,7 +725,23 @@ public class View extends JFrame {
         return printRoomsScrPane;
     }
 
-    public void reserveHotel(String[] roomNames){
+    public JScrollPane printReserveConfirmation(String[] breakdown, int height){
+        JPanel mainBreakdownPnl = new JPanel();
+        mainBreakdownPnl.setLayout(new BoxLayout(mainBreakdownPnl, BoxLayout.Y_AXIS));
+        mainBreakdownPnl.setMaximumSize(new Dimension(Short.MAX_VALUE, height));
+
+        for (String line : breakdown) {
+            CLabel dayPrompt = new CLabel(line);
+            mainBreakdownPnl.add(dayPrompt);
+        }
+
+        JScrollPane printBreakdownScrPane = new JScrollPane(mainBreakdownPnl);
+        printBreakdownScrPane.setPreferredSize(new Dimension(BTN_WIDTH+5, height));
+
+        return printBreakdownScrPane;
+    }
+
+    public void reserveHotel(String[] roomNames, String[] priceBreakdown, int state){
         this.remove(centerPnl);
         this.setTitleLblText("Hotel Reservation");
 
@@ -742,21 +760,30 @@ public class View extends JFrame {
         addResPnl.setLayout(new FlowLayout(FlowLayout.CENTER)); 
         headerPnl.setPreferredSize(new Dimension(BTN_WIDTH-50, 20));
 
+        this.nameTf = new JTextField();
         this.roomIndexTf = new JTextField();
         this.numCheckInTf = new JTextField();
         this.numCheckOutTf = new JTextField();
         this.promoCodeTf = new JTextField();
         
+        this.nameTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
         this.roomIndexTf.setPreferredSize(new Dimension(SMALL_TF_WIDTH, TF_HEIGHT));
         this.numCheckInTf.setPreferredSize(new Dimension(SMALL_TF_WIDTH, TF_HEIGHT));
         this.numCheckOutTf.setPreferredSize(new Dimension(SMALL_TF_WIDTH, TF_HEIGHT));
         this.promoCodeTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
 
+
+        CLabel nameLbl = new CLabel("Guest Name");
         CLabel roomReserveLbl = new CLabel("List of Rooms");
-        CLabel checkInLbl = new CLabel("Check In Date"); 
+        CLabel checkInLbl = new CLabel("Check In Date "); 
         CLabel checkOutLbl = new CLabel("Check Out Date");
         CLabel promoCodeLbl = new CLabel("Promo Code");
-        CLabel roomIndexLbl = new CLabel("Room Index to Reserve");  
+        CLabel roomIndexLbl = new CLabel("Room [Number] to Reserve");  
+        CLabel breakdownLbl = new CLabel("Price Breakdown");
+
+
+        centerLeftPnl.add(nameLbl);
+        centerLeftPnl.add(nameTf);
 
         centerLeftPnl.add(roomIndexLbl);
         centerLeftPnl.add(roomIndexTf);
@@ -772,12 +799,25 @@ public class View extends JFrame {
         addResPnl.add(promoCodeLbl);
         addResPnl.add(promoCodeTf);
 
-        addResPnl.add(confirmResBtn);
+        addResPnl.add(this.confirmResBtn);
         
-        headerPnl.add(roomReserveLbl);
-        centerRightPnl.add(headerPnl);
-        centerRightPnl.add(printRooms(roomNames, 350));
+       
 
+        if(state == 1){
+            headerPnl.add(roomReserveLbl);
+            centerRightPnl.add(headerPnl);
+            centerRightPnl.add(printRooms(roomNames, 350));
+        }
+        
+        if(state == 2){
+
+            for(int i = 0; i< 4; i++)
+                System.out.println(priceBreakdown[i]);
+            headerPnl.add(breakdownLbl);
+            centerRightPnl.add(headerPnl);
+            centerRightPnl.add(printReserveConfirmation(priceBreakdown, 350));
+        }
+     
         centerPnl.add(centerLeftPnl, BorderLayout.WEST);
         centerPnl.add(centerRightPnl, BorderLayout.EAST);
         this.add(centerPnl);
@@ -826,6 +866,13 @@ public class View extends JFrame {
         this.confirmResBtn.addActionListener(actionListener);
     }
 
+    public void setFinalizeResListener(ActionListener actionListener){
+        this.finalizeResButton.addActionListener(actionListener);
+    }
+
+    public void setCancelResListener(ActionListener actionListener){
+        this.cancelResButton.addActionListener(actionListener);
+    }
 
     public void setInquireHotelListener(ActionListener actionListener){
         this.iHotelBtn.addActionListener(actionListener);
@@ -929,15 +976,15 @@ public class View extends JFrame {
         return this.numExecutiveTf.getText();
     }
 
-    public int getNumCheckInTf(){
-        return Integer.parseInt(this.numCheckInTf.getText());
+    public String getNumCheckInTf(){
+        return this.numCheckInTf.getText();
     }
 
-    public int genNumCheckOutTf(){
-        return Integer.parseInt(this.numCheckOutTf.getText());
+    public String getNumCheckOutTf(){
+        return this.numCheckOutTf.getText();
     }
 
-    public String getRoomIndexTf(){
+    public String getNumRoomIndexTf(){
         return this.roomIndexTf.getText();
     }
 
@@ -945,4 +992,7 @@ public class View extends JFrame {
         return this.promoCodeTf.getText();
     }
 
+    public String getNameTf(){
+        return this.nameTf.getText();
+    }
 }
