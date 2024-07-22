@@ -133,7 +133,8 @@ public class Model {
         int temp = -1;
         try {
             temp = Integer.parseInt(x);
-            if (temp >= 0){
+            if (temp < 0){
+                return -1;
             }
         } catch (Exception e) {
             return -1;
@@ -145,6 +146,9 @@ public class Model {
         double temp = -1;
         try {
             temp = Double.parseDouble(x);
+            if (temp < 0){
+                return -1;
+            }
         } catch (Exception e) {
             return -1;
         }
