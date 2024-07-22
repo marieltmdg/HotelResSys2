@@ -218,8 +218,8 @@ public abstract class Room {
         reservationList.get(resIndex).printReservation();
     }
 
-    public double getPriceAfterMultiplier(int day){
-        return this.basePrice * this.datePricePercentMultiplier[day];
+    public double getPriceAfterMultiplier(int date){
+        return this.basePrice * (this.datePricePercentMultiplier[date]/100);
     }
 
     public double getTotalPriceAfterDiscount(int promoValidity, int checkIn, int checkOut){
