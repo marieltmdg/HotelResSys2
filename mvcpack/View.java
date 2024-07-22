@@ -111,37 +111,37 @@ public class View extends JFrame {
         
         //NORTH PANEL
         this.titleLbl = new CLabel();
-        this.titleLbl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, TF_HEIGHT + 5));
+        this.titleLbl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, TF_HEIGHT + 10));
         this.titleLbl.setFont(new Font(DEFAULT_FONT, Font.BOLD, 30));
         this.titleLbl.setHorizontalAlignment(SwingConstants.CENTER);
         this.titleLbl.setVerticalAlignment(SwingConstants.CENTER);
-        this.titleLbl.setBackground(Color.decode("#1B384B"));
 
         setTitleLblText("Main Menu");
 
         this.centerTitleLbl = new CLabel();
-        this.centerTitleLbl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, TF_HEIGHT-10));
+        this.centerTitleLbl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, TF_HEIGHT-5));
         this.centerTitleLbl.setFont(new Font(DEFAULT_FONT, Font.BOLD, 20));
-        this.centerTitleLbl.setBackground(Color.decode("#1B384B"));
+        this.centerTitleLbl.setBackground(Color.lightGray);
+        this.centerTitleLbl.setOpaque(true);
         this.centerTitleLbl.setHorizontalAlignment(SwingConstants.CENTER);
         this.centerTitleLbl.setVerticalAlignment(SwingConstants.CENTER);
 
         northPnl = new JPanel();
         northPnl.setLayout(new FlowLayout());
-        northPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH,TF_HEIGHT+20));
+        northPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH,TF_HEIGHT+15));
         northPnl.setBackground(Color.decode("#1B384B"));
         northPnl.add(titleLbl);
 
         //SOUTH PANEL
         this.feedbackLbl = new CLabel();
-        this.feedbackLbl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, TF_HEIGHT + 10));
+        this.feedbackLbl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, TF_HEIGHT));
         this.feedbackLbl.setFont(new Font(DEFAULT_FONT, Font.BOLD, 15));
         this.feedbackLbl.setHorizontalAlignment(SwingConstants.CENTER);
         this.feedbackLbl.setVerticalAlignment(SwingConstants.CENTER);
         
         southPnl = new JPanel();
         southPnl.setLayout(new FlowLayout());
-        southPnl.setPreferredSize(new Dimension(400,TF_HEIGHT+10));
+        southPnl.setPreferredSize(new Dimension(400,TF_HEIGHT));
         southPnl.add(feedbackLbl);
         
         //ADD EVERYTHING
@@ -213,8 +213,7 @@ public class View extends JFrame {
     // CREATE HOTEL PRESSED
     public void createHotel(String[] hotelNames){
         this.remove(centerPnl);
-        
-        this.setTitleLblText("Hotel Creation");
+
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
 
@@ -273,6 +272,9 @@ public class View extends JFrame {
         centerRightPnl.add(headerPnl);
         centerRightPnl.add(printHotels(hotelNames, 220));
 
+        setCenterTitleLblText("Hotel creation");
+
+        centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
         centerPnl.add(centerLeftPnl, BorderLayout.WEST);
         centerPnl.add(centerRightPnl, BorderLayout.EAST);
         this.add(centerPnl);
@@ -283,7 +285,6 @@ public class View extends JFrame {
 
     public void selectHotel(String[] hotelNames){
         this.remove(centerPnl);
-        this.setTitleLblText("Hotel Selection");
 
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
@@ -305,6 +306,9 @@ public class View extends JFrame {
         centerRightPnl.add(hotelNameTf);
         centerRightPnl.add(selectBtn);
 
+        setCenterTitleLblText("Hotel selection");
+
+        centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
         centerPnl.add(centerLeftPnl, BorderLayout.WEST);
         centerPnl.add(centerRightPnl, BorderLayout.EAST);
         this.add(centerPnl);
@@ -821,7 +825,6 @@ public class View extends JFrame {
 
     public void reserveHotel(String[] roomNames, String[] priceBreakdown, int state){
         this.remove(centerPnl);
-        this.setTitleLblText("Hotel Reservation");
 
         this.centerPnl = new JPanel();
         JPanel centerRightPnl = new JPanel();
@@ -892,7 +895,10 @@ public class View extends JFrame {
             centerRightPnl.add(headerPnl);
             centerRightPnl.add(printReserveConfirmation(priceBreakdown, 350));
         }
-     
+
+        setCenterTitleLblText("Create a Booking");
+
+        centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
         centerPnl.add(centerLeftPnl, BorderLayout.WEST);
         centerPnl.add(centerRightPnl, BorderLayout.EAST);
         this.add(centerPnl);
