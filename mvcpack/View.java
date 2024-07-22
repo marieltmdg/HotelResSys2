@@ -28,13 +28,17 @@ public class View extends JFrame {
     private CButton confirmResBtn, finalizeResButton, cancelResButton;
     
     private final int SMALL_TF_WIDTH = 50;
-    private final int TF_WIDTH = 210;
-    private final int BTN_WIDTH = 210;
+    private final int TF_WIDTH = 200;
+    private final int BTN_WIDTH = 200;
     private final int BTN_HEIGHT = 60;
-    private final int SMALL_BTN_HEIGHT = BTN_HEIGHT -15;
+    private final int SMALL_BTN_HEIGHT = BTN_HEIGHT - 15;
+    private final int SMALL_BTN_WIDTH = BTN_WIDTH - 30;
     private final int TF_HEIGHT = 35;
+
     private final int MAINFRAME_WIDTH = 700;
     private final int MAINFRAME_HEIGHT = 500;
+    private final int CENTER_MAIN_WIDTH = MAINFRAME_WIDTH-(BTN_WIDTH+10 + SMALL_BTN_WIDTH+20)-10;
+    private final int CENTER_MAIN_HEIGHT = 300;
     private final String DEFAULT_FONT = "Verdana";
     private final int SUBTITLE_HEIGHT = 15;
 
@@ -62,23 +66,23 @@ public class View extends JFrame {
         backBtn = new CButton("Back", BTN_WIDTH, BTN_HEIGHT);
 
         //inquire panel
-        iDateBtn = new CButton("Dates", BTN_WIDTH, SMALL_BTN_HEIGHT);
-        iHotelBtn = new CButton("Hotel", BTN_WIDTH, SMALL_BTN_HEIGHT);
-        iResBtn = new CButton("Reservation", BTN_WIDTH, SMALL_BTN_HEIGHT);
-        iRoomBtn = new CButton("Room", BTN_WIDTH, SMALL_BTN_HEIGHT);
+        iDateBtn = new CButton("Dates", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        iHotelBtn = new CButton("Hotel", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        iResBtn = new CButton("Reservation", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        iRoomBtn = new CButton("Room", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
 
         //manage pnl
-        renameBtn = new CButton("Rename Hotel", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
-        addRoomBtn = new CButton("Add Room", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
-        removeRoomBtn = new CButton("Remove Room", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
-        updatePriceBtn = new CButton("Update Price", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
-        removeReservationBtn = new CButton("Remove Reservation", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
-        removeHotelBtn = new CButton("Remove Hotel", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        renameBtn = new CButton("Rename Hotel", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        addRoomBtn = new CButton("Add Room", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        removeRoomBtn = new CButton("Remove Room", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        updatePriceBtn = new CButton("Update Price", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        removeReservationBtn = new CButton("Remove Booking", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        removeHotelBtn = new CButton("Remove Hotel", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
 
         confirmRenameBtn = new CButton("Confirm Rename", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
         confirmAddRmBtn = new CButton("Confirm Add Rooms", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
         confirmRemoveRmBtn = new CButton("Confirm Removal", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
-        confirmUpdatePriceBtn = new CButton("Confirm Update Price", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        confirmUpdatePriceBtn = new CButton("Confirm Update", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
         confirmRemoveResBtn = new CButton("Confirm Removal", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
         confirmRemoveHotelBtn = new CButton("Confirm Removal", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
 
@@ -173,13 +177,13 @@ public class View extends JFrame {
 
     
   // PRINT HOTEL PANEL
-    public JScrollPane printHotels(String[] hotelNames){
+    public JScrollPane printHotels(String[] hotelNames, int width){
         System.out.println("PRINT HOTELS"); // CHECKER
         int num;
 
         JPanel mainHotelPnl = new JPanel();
         mainHotelPnl.setLayout(new BoxLayout(mainHotelPnl, BoxLayout.Y_AXIS));
-        mainHotelPnl.setMaximumSize(new Dimension(Short.MAX_VALUE, 350));
+        mainHotelPnl.setMaximumSize(new Dimension(width, 300));
         
         for(int i = 0; i < hotelNames.length; i++){
             num = i + 1;
@@ -187,8 +191,8 @@ public class View extends JFrame {
 
             CLabel hotel = new CLabel(lbl);
             hotel.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 12));
-            hotel.setPreferredSize(new Dimension(BTN_WIDTH-10, 20));
-            hotel.setMaximumSize(new Dimension(Short.MAX_VALUE, 20));
+            hotel.setPreferredSize(new Dimension(width-10, 20));
+            hotel.setMaximumSize(new Dimension(width, 20));
             
  
             mainHotelPnl.add(hotel);
@@ -196,7 +200,7 @@ public class View extends JFrame {
         }
 
         JScrollPane printHotelsScrPane = new JScrollPane(mainHotelPnl);
-        printHotelsScrPane.setPreferredSize(new Dimension(BTN_WIDTH+5, 320));
+        printHotelsScrPane.setPreferredSize(new Dimension(width, 300));
 
         return printHotelsScrPane;
     }
@@ -213,15 +217,15 @@ public class View extends JFrame {
         JPanel centerRightPnl = new JPanel();
         JPanel centerLeftPnl = new JPanel();
         JPanel headerPnl = new JPanel();
-
         JPanel addRoomPnl = new JPanel();
-        addRoomPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
-        addRoomPnl.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        CLabel roomAddLbl = new CLabel("Add Rooms", SUBTITLE_HEIGHT, Font.BOLD);
-        CLabel standardAddLbl = new CLabel("Standard Room      ", SUBTITLE_HEIGHT, Font.PLAIN);
-        CLabel deluxeAddLbl = new CLabel("Deluxe Room         ", SUBTITLE_HEIGHT, Font.PLAIN);
-        CLabel executiveAddLbl = new CLabel("Executive Room     ", SUBTITLE_HEIGHT, Font.PLAIN);
+        addRoomPnl.setPreferredSize(new Dimension(230, CENTER_MAIN_HEIGHT));
+        addRoomPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        CLabel roomAddLbl = new CLabel("Add Rooms              ", SUBTITLE_HEIGHT, Font.BOLD);
+        CLabel standardAddLbl = new CLabel("Standard Room         ", SUBTITLE_HEIGHT, Font.PLAIN);
+        CLabel deluxeAddLbl = new CLabel("Deluxe Room            ", SUBTITLE_HEIGHT, Font.PLAIN);
+        CLabel executiveAddLbl = new CLabel("Executive Room        ", SUBTITLE_HEIGHT, Font.PLAIN);
 
         this.hotelNameTf = new JTextField();
         this.hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
@@ -234,12 +238,14 @@ public class View extends JFrame {
         this.numDeluxeTf.setPreferredSize(new Dimension(SMALL_TF_WIDTH, TF_HEIGHT));
         this.numExecutiveTf.setPreferredSize(new Dimension(SMALL_TF_WIDTH, TF_HEIGHT));
 
-        centerRightPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
-        centerRightPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
+        centerRightPnl.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        centerRightPnl.setPreferredSize(new Dimension(245, 300));
         centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
-        centerLeftPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
-        headerPnl.setPreferredSize(new Dimension(BTN_WIDTH, TF_HEIGHT));
+        centerLeftPnl.setPreferredSize(new Dimension(245, 300));
 
+        headerPnl.setPreferredSize(new Dimension(230, TF_HEIGHT));
+
+        addRoomPnl.add(new CLabel(""));
         addRoomPnl.add(roomAddLbl);
 
         addRoomPnl.add(standardAddLbl);
@@ -258,10 +264,10 @@ public class View extends JFrame {
         centerLeftPnl.add(hotelNameTf);
         centerLeftPnl.add(addRoomPnl);
 
-        this.openLbl = new CLabel("Hotels in the system: ", SUBTITLE_HEIGHT, Font.BOLD);
+        this.openLbl = new CLabel(TF_WIDTH, TF_HEIGHT-15,"Hotels in the system: ", SUBTITLE_HEIGHT, Font.BOLD);
         headerPnl.add(openLbl);
         centerRightPnl.add(headerPnl);
-        centerRightPnl.add(printHotels(hotelNames));
+        centerRightPnl.add(printHotels(hotelNames, 220));
 
         centerPnl.add(centerLeftPnl, BorderLayout.WEST);
         centerPnl.add(centerRightPnl, BorderLayout.EAST);
@@ -283,13 +289,13 @@ public class View extends JFrame {
         CLabel selectHotelLbl = new CLabel("Select Hotel [n]: ", SUBTITLE_HEIGHT, Font.BOLD);
 
         centerRightPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
-        centerRightPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
+        centerRightPnl.setPreferredSize(new Dimension(245, 300));
         centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
-        centerLeftPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
+        centerLeftPnl.setPreferredSize(new Dimension(245, 300));
 
         this.hotelNameTf = new JTextField();
         this.hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
-        centerLeftPnl.add(printHotels(hotelNames));
+        centerLeftPnl.add(printHotels(hotelNames, 230));
 
         centerRightPnl.add(selectHotelLbl);
         centerRightPnl.add(hotelNameTf);
@@ -323,7 +329,7 @@ public class View extends JFrame {
         //ctrleft panel
 
         centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
-        centerLeftPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
+        centerLeftPnl.setPreferredSize(new Dimension(SMALL_BTN_WIDTH+10, CENTER_MAIN_HEIGHT));
 
         centerLeftPnl.add(iHotelBtn);
         centerLeftPnl.add(iRoomBtn);
@@ -360,7 +366,7 @@ public class View extends JFrame {
 
         JPanel centerRightPnl = new JPanel();
         centerRightPnl.setLayout(new FlowLayout());
-        centerRightPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
+        centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
 
         JPanel hotelNamePnl  = new JPanel();
         hotelNamePnl.setPreferredSize(new Dimension(BTN_WIDTH+10, TF_HEIGHT));
@@ -403,7 +409,7 @@ public class View extends JFrame {
         JPanel centerLeftPnl = new JPanel();
 
         centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
-        centerLeftPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
+        centerLeftPnl.setPreferredSize(new Dimension(SMALL_BTN_WIDTH+10, 300));
 
         centerLeftPnl.add(renameBtn);
         centerLeftPnl.add(addRoomBtn);
@@ -423,7 +429,7 @@ public class View extends JFrame {
 
         centerPnl.setLayout(new BorderLayout());
         centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
-        centerLeftPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
+        centerLeftPnl.setPreferredSize(new Dimension(SMALL_BTN_WIDTH+10, 300));
 
         setCenterTitleLblText("Manage Hotel");
 
@@ -438,8 +444,8 @@ public class View extends JFrame {
     public void renameHotel(){
         this.remove(centerPnl);
 
-        JPanel centerRightPnl = new JPanel();
-        centerRightPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
+        JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
 
@@ -465,18 +471,19 @@ public class View extends JFrame {
     public void addRoom(){
         this.remove(centerPnl);
 
-        JPanel centerRightPnl = new JPanel();
+        JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
 
         JPanel addRoomPnl = new JPanel();
-        addRoomPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
-        addRoomPnl.setLayout(new FlowLayout(FlowLayout.LEFT));
+        addRoomPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
+        addRoomPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        CLabel roomAddLbl = new CLabel("<html>Room Amount</html>", SUBTITLE_HEIGHT, Font.BOLD);
-        CLabel standardAddLbl = new CLabel("Standard Room      ", SUBTITLE_HEIGHT, Font.PLAIN);
-        CLabel deluxeAddLbl = new CLabel("Deluxe Room         ", SUBTITLE_HEIGHT, Font.PLAIN);
-        CLabel executiveAddLbl = new CLabel("Executive Room     ", SUBTITLE_HEIGHT, Font.PLAIN);
+        CLabel roomAddLbl = new CLabel("Room Amount       ", SUBTITLE_HEIGHT, Font.BOLD);
+        CLabel standardAddLbl = new CLabel("Standard Room         ", SUBTITLE_HEIGHT, Font.PLAIN);
+        CLabel deluxeAddLbl = new CLabel("Deluxe Room            ", SUBTITLE_HEIGHT, Font.PLAIN);
+        CLabel executiveAddLbl = new CLabel("Executive Room        ", SUBTITLE_HEIGHT, Font.PLAIN);
 
         this.hotelNameTf = new JTextField();
         this.hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
@@ -490,7 +497,7 @@ public class View extends JFrame {
         this.numExecutiveTf.setPreferredSize(new Dimension(SMALL_TF_WIDTH, TF_HEIGHT));
 
         centerRightPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
-        centerRightPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
+        centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
 
         addRoomPnl.add(roomAddLbl);
 
@@ -521,18 +528,18 @@ public class View extends JFrame {
     public void removeRoom(String[] roomNames){
         this.remove(centerPnl);
 
-        JPanel centerRightPnl = new JPanel(new BorderLayout());
+        JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
         JPanel selectionPnl = new JPanel(new FlowLayout());
         JPanel roomPnl = new JPanel();
         this.roomIndexTf = new JTextField();
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
-        centerRightPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
 
-        roomPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 175));
-        roomPnl.setLayout(new FlowLayout(FlowLayout.LEFT));
-        selectionPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 125));
-        selectionPnl.setLayout(new FlowLayout(FlowLayout.LEFT));
+        roomPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 175));
+        roomPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        selectionPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 125));
+        selectionPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         roomIndexTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
 
@@ -559,10 +566,10 @@ public class View extends JFrame {
     public void updatePrice(double basePrice){
         this.remove(centerPnl);
 
-        JPanel centerRightPnl = new JPanel();
+        JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
-        centerRightPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
 
         CLabel currentPriceLbl = new CLabel("Current Base Price: " , SUBTITLE_HEIGHT, Font.BOLD);
         CLabel priceLbl = new CLabel( Double.toString(basePrice) , SUBTITLE_HEIGHT, Font.ITALIC);
@@ -589,25 +596,25 @@ public class View extends JFrame {
     public void removeReservation(int roomCount, String[][] reservationNames){
         this.remove(centerPnl);
 
-        JPanel centerRightPnl = new JPanel(new BorderLayout());
+        JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
         JPanel selectionPnl = new JPanel(new FlowLayout());
         JPanel resPnl = new JPanel();
         this.roomIndexTf = new JTextField();
         this.resIndexTf = new JTextField();
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
-        centerRightPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
 
-        resPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 175));
+        resPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 175));
         resPnl.setLayout(new FlowLayout(FlowLayout.LEFT));
-        selectionPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 125));
-        selectionPnl.setLayout(new FlowLayout(FlowLayout.LEFT));
+        selectionPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 125));
+        selectionPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         roomIndexTf.setPreferredSize(new Dimension(TF_WIDTH/2-2, TF_HEIGHT));
         resIndexTf.setPreferredSize(new Dimension(TF_WIDTH/2-2, TF_HEIGHT));
 
-        CLabel selectRoomLbl = new CLabel("[Room]  &  [Reservation]", SUBTITLE_HEIGHT, Font.BOLD);
-        resPnl.add(printReservation(roomCount, reservationNames, 170));
+        CLabel selectRoomLbl = new CLabel("[Room]   &   [Reservation]", SUBTITLE_HEIGHT, Font.BOLD);
+        resPnl.add(printReservation(roomCount, reservationNames, CENTER_MAIN_WIDTH -10, 170));
         selectionPnl.add(selectRoomLbl, new FlowLayout(FlowLayout.CENTER));
         selectionPnl.add(roomIndexTf, new FlowLayout(FlowLayout.CENTER));
         selectionPnl.add(resIndexTf, new FlowLayout(FlowLayout.CENTER));
@@ -630,17 +637,16 @@ public class View extends JFrame {
     public void removeHotel(){
         this.remove(centerPnl);
 
-        JPanel centerRightPnl = new JPanel();
+        JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
         centerRightPnl.setLayout(new FlowLayout());
-        centerRightPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
 
-        CLabel confirmLbl = new CLabel("This action cannot be undone", 13, Font.BOLD);
-        confirmLbl.setMaximumSize(new Dimension(BTN_WIDTH+10, 300));
         setCenterTitleLblText("Remove Hotel");
 
-        centerRightPnl.add(confirmLbl);
+        centerRightPnl.add(new CLabel("Are you sure?", 14, Font.PLAIN));
+        centerRightPnl.add(new CLabel("This action cannot be undone", 14, Font.BOLD));
         centerRightPnl.add(confirmRemoveHotelBtn);
 
         centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
@@ -678,14 +684,14 @@ public class View extends JFrame {
         return printRoomsScrPane;
     }
 
-    public JScrollPane printReservation(int roomCount, String[][] reservationNames, int height){
+    public JScrollPane printReservation(int roomCount, String[][] reservationNames, int width, int height){
         System.out.println("PRINT Reservations"); // CHECKER
         int num = 0;
         int roomNum = 0;
 
         JPanel mainRoomPnl = new JPanel();
         mainRoomPnl.setLayout(new BoxLayout(mainRoomPnl, BoxLayout.Y_AXIS));
-        mainRoomPnl.setMaximumSize(new Dimension(Short.MAX_VALUE, height));
+        mainRoomPnl.setMaximumSize(new Dimension(width, height));
 
         for(int j = 0; j < roomCount; j++) {
             roomNum = j + 1;
@@ -693,7 +699,7 @@ public class View extends JFrame {
             CLabel room = new CLabel(roomName);
             room.setFont(new Font(DEFAULT_FONT, Font.BOLD, 12));
             room.setPreferredSize(new Dimension(BTN_WIDTH - 10, 20));
-            room.setMaximumSize(new Dimension(Short.MAX_VALUE, 20));
+            room.setMaximumSize(new Dimension(width, 20));
 
             mainRoomPnl.add(room);
 
@@ -705,14 +711,14 @@ public class View extends JFrame {
                     CLabel res = new CLabel(lbl);
                     res.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 12));
                     res.setPreferredSize(new Dimension(BTN_WIDTH - 10, 20));
-                    res.setMaximumSize(new Dimension(Short.MAX_VALUE, 20));
+                    res.setMaximumSize(new Dimension(width, 20));
 
                     mainRoomPnl.add(res);
                 } else if (i == 0) {
                     CLabel res = new CLabel("No reservations");
                     res.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 12));
                     res.setPreferredSize(new Dimension(BTN_WIDTH - 10, 20));
-                    res.setMaximumSize(new Dimension(Short.MAX_VALUE, 20));
+                    res.setMaximumSize(new Dimension(width, 20));
 
                     mainRoomPnl.add(res);
                 }
@@ -720,7 +726,7 @@ public class View extends JFrame {
         }
 
         JScrollPane printRoomsScrPane = new JScrollPane(mainRoomPnl);
-        printRoomsScrPane.setPreferredSize(new Dimension(BTN_WIDTH+5, height));
+        printRoomsScrPane.setPreferredSize(new Dimension(width, height));
 
         return printRoomsScrPane;
     }
