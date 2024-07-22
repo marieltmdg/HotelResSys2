@@ -108,6 +108,15 @@ public class Model {
         } else return "New price must be equal to or greater than 150";
     }
 
+    public String updateDatePrice(int index, double multiplier){
+        if (index >= 0 && index < 30){
+            if(multiplier >= 50 && multiplier <= 150) {
+                hotelList.get(selectedHotelIndex).updateDatePrice(index, multiplier);
+                return "Date price modifier for Day " + (index + 1) + " to " + multiplier + "% successful";
+            } else return "New % modifier must range 50% to 150%";
+        } else return "Please select valid dates to modify price (1-30)";
+    }
+
     public String removeReservation(int roomIndex, int resIndex){
         return hotelList.get(selectedHotelIndex).removeHotelReservation(roomIndex, resIndex);
     }
@@ -196,6 +205,10 @@ public class Model {
 
     public double getBasePrice(){
         return this.hotelList.get(selectedHotelIndex).getBasePrice();
+    }
+
+    public double[] getDatePrice(){
+        return this.hotelList.get(selectedHotelIndex).getAllDatePrice();
     }
 
     public double getEarnings(){

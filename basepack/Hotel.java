@@ -237,10 +237,10 @@ public class Hotel {
         return "Room price set to "+ price;
     }
 
-    public void updateDatePrice(int date, double percent){
+    public void updateDatePrice(int index, double percent){
         //set the base price for all rooms to the new price
         for(int i=0; i<roomList.size(); i++)
-            roomList.get(i).setDatePrice(date, percent);
+            roomList.get(i).setDatePrice(index, percent);
 
     }
 
@@ -294,6 +294,16 @@ public class Hotel {
 
     public double getBasePrice(){
         return roomList.get(0).getBasePrice();
+    }
+
+    public double[] getAllDatePrice(){
+        double ret[] = new double[30];
+
+        for(int i = 0 ; i < 30; i++){
+            ret[i] = roomList.get(0).getDatePricePercent(i);
+        }
+
+        return ret;
     }
 
     public String[][] getReservationListDetailed(){

@@ -21,10 +21,10 @@ public abstract class Room {
         this.roomName = roomName;
         this.basePrice = 1299;
         this.reservationList = new ArrayList<Reservation>();
-        this.datePricePercentMultiplier = new double[31];
+        this.datePricePercentMultiplier = new double[30];
 
-        for(int i = 0; i < 31; i++){
-            datePricePercentMultiplier[i] = 1;
+        for(int i = 0; i < 30; i++){
+            datePricePercentMultiplier[i] = 100;
         }
     }
 
@@ -46,12 +46,12 @@ public abstract class Room {
         return basePrice;
     }
 
-    public void setDatePrice(int date, double percent){
-        datePricePercentMultiplier[date-1] = percent;
+    public void setDatePrice(int index, double percent){
+        datePricePercentMultiplier[index] = percent;
     }
 
-    public double getDatePricePercent(int date){
-        return datePricePercentMultiplier[date-1];
+    public double getDatePricePercent(int index){
+        return datePricePercentMultiplier[index];
     }
 
    /**

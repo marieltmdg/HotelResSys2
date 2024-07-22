@@ -204,7 +204,7 @@ public class Controller {
         this.view.setConfirmRemoveRmListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int index = (model.getPosNumValue(view.getNumRoomIndexTf()));
+                int index = (model.getPosNumValue(view.getGeneralTf()));
                 String result = "Please input a positive number";
 
                 if(index != -1)
@@ -218,7 +218,7 @@ public class Controller {
         this.view.setConfirmUpdatePriceListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double price = model.getPosDoubleValue(view.getNumRoomIndexTf());
+                double price = model.getPosDoubleValue(view.getGeneralTf());
                 String result = "Please input a positive number";
 
                 if (price != -1)
@@ -229,11 +229,26 @@ public class Controller {
             }
         });
 
-        this.view.setConfirmRemoveResBtnListener(new ActionListener() {
+        this.view.setConfirmDatePriceListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int roomIndex = model.getPosNumValue(view.getNumRoomIndexTf());
-                int resIndex = model.getPosNumValue(view.getResIndexTfText());
+                int date = model.getPosNumValue(view.getGeneralTf());
+                double price = model.getPosDoubleValue(view.getGeneral2TfText());
+                String result = "Please input a positive number";
+
+                if (date != -1 && price != -1)
+                    result = model.updateDatePrice(date - 1, price);
+
+                view.setFeedbackLblText(result);
+                view.datePrice(model.getDatePrice());
+            }
+        });
+
+        this.view.setConfirmRemoveResListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int roomIndex = model.getPosNumValue(view.getGeneralTf());
+                int resIndex = model.getPosNumValue(view.getGeneral2TfText());
                 String result = "Please input a positive number";
 
                 if (roomIndex != -1 && resIndex != -1)
@@ -244,7 +259,7 @@ public class Controller {
             }
         });
 
-        this.view.setConfirmRemoveHotelBtnListener(new ActionListener() {
+        this.view.setConfirmRemoveHotelListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int count = model.getReservationCount();
@@ -290,6 +305,14 @@ public class Controller {
             }
         });
 
+        this.view.setDatePriceListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.datePrice(model.getDatePrice());
+            }
+        });
+
+
         this.view.setRemoveResListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -310,7 +333,7 @@ public class Controller {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     System.out.println("confirm");
-                    String stringRoomIndex = (view.getNumRoomIndexTf().isEmpty()) ? "0" : view.getNumRoomIndexTf();
+                    String stringRoomIndex = (view.getGeneralTf().isEmpty()) ? "0" : view.getGeneralTf();
                     String stringCheckIn = (view.getNumCheckInTf().isEmpty()) ? "0" : view.getNumCheckInTf();
                     String stringCheckOut = (view.getNumCheckOutTf().isEmpty()) ? "0" :  view.getNumCheckOutTf();
                     String stringPromoCode = (view.getPromoCodeTf().isEmpty()) ? "0" : view.getPromoCodeTf();
