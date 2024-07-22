@@ -30,7 +30,7 @@ public class View extends JFrame {
     private final int SMALL_TF_WIDTH = 50;
     private final int TF_WIDTH = 210;
     private final int BTN_WIDTH = 210;
-    private final int BTN_HEIGHT = 60;
+    private final int BTN_HEIGHT = 50;
     private final int SMALL_BTN_HEIGHT = BTN_HEIGHT -15;
     private final int TF_HEIGHT = 35;
     private final int MAINFRAME_WIDTH = 700;
@@ -51,7 +51,7 @@ public class View extends JFrame {
     }
 
     //initial values when opening
-    private void init() {
+    public void init() {
 
         //BUTTONS
         this.confirmBtn = new CButton("Confirm", BTN_WIDTH, BTN_HEIGHT);
@@ -626,6 +626,7 @@ public class View extends JFrame {
     }
 
     public void removeHotel(){
+        centerPnl.removeAll();
         this.remove(centerPnl);
 
         JPanel centerRightPnl = new JPanel();
