@@ -302,8 +302,8 @@ public class Hotel {
 
         for(int i = 0 ; i < roomList.size() ; i++)
             for(int j = 0; j < roomList.get(i).getReservationListCount(); j++)
-                ret[i][j] = "Room " + roomList.get(i).getRoomName() +
-                        " " + roomList.get(i).getReservationName(j) + roomList.get(i).getResDates(j);
+                ret[i][j] = roomList.get(i).getRoomName() +
+                        " " + roomList.get(i).getReservationName(j) + " Date:" + roomList.get(i).getResDates(j);
 
         return ret;
     }

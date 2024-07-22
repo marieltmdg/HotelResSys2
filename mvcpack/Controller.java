@@ -10,14 +10,23 @@ public class Controller {
         this.model = model;
         this.view = view;
 
+        mainMenuListeners();
+        openHotelListeners();
+        inquireHotelListeners();
+        manageHotelListeners();
+        reserveHotelListeners();
+
+        confirmCreateListener();
+        confirmManageListeners();
+    }
+
+    public void mainMenuListeners(){
         this.view.setCreateListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("pressed create"); // CHECKER
                 String[] hotelListNames= model.getHotelListNames();
                 view.createHotel(hotelListNames);
-                confirmCreateListener();
-
             }
         });
 
@@ -40,7 +49,6 @@ public class Controller {
                     if(!(result.equals("\0"))) {
                         view.openHotel(result);
                         view.setFeedbackLblText("");
-                        openHotelListeners();
                     } else view.setFeedbackLblText("Input out of bounds");
                 } else view.setFeedbackLblText(result);
             }
@@ -52,7 +60,6 @@ public class Controller {
                 view.home();
             }
         });
-
     }
 
     public void confirmCreateListener() {
@@ -99,7 +106,6 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 view.inquireHotel();
-                inquireHotelListeners();
             }
         });
 
@@ -107,7 +113,6 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 view.manageHotel();
-                manageHotelListeners();
             }
         });
 
@@ -116,9 +121,8 @@ public class Controller {
             public void actionPerformed(ActionEvent e){
                 System.out.println("PRESSED RESERVE");
                 // TODO add reserve stuff
-                view.reserveHotel(model.getRoomListNames(), null, 1);
-                reserveHotelListeners();
 
+                view.reserveHotel(model.getRoomListNames(), null, 1);
             }
         });
     }
@@ -151,7 +155,7 @@ public class Controller {
         });
     }
 
-    public void confirmRenameListener() {
+    public void confirmManageListeners(){
         this.view.setConfirmRenameListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -164,9 +168,7 @@ public class Controller {
                 } else view.setFeedbackLblText("Hotel Name Already Taken");
             }
         });
-    }
 
-    public void confirmAddRmListener(){
         this.view.setConfirmAddRmBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -198,9 +200,6 @@ public class Controller {
                 } else view.setFeedbackLblText("Please input a positive number");
             }
         });
-    }
-
-    public void confirmRemoveRoomListener(){
 
         this.view.setConfirmRemoveRmListener(new ActionListener() {
             @Override
@@ -215,9 +214,6 @@ public class Controller {
                 view.removeRoom(model.getRoomListNames());
             }
         });
-    }
-
-    public void confirmUpdatePriceListener(){
 
         this.view.setConfirmUpdatePriceListener(new ActionListener() {
             @Override
@@ -232,9 +228,6 @@ public class Controller {
                 view.updatePrice(model.getBasePrice());
             }
         });
-    }
-
-    public void confirmRemoveReservationListener(){
 
         this.view.setConfirmRemoveResBtnListener(new ActionListener() {
             @Override
@@ -250,9 +243,7 @@ public class Controller {
                 view.removeReservation(model.getRoomCount(), model.getReservationListDetailed());
             }
         });
-    }
 
-    public void confirmRemoveHotelListener(){
         this.view.setConfirmRemoveHotelBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -275,7 +266,6 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 view.renameHotel();
-                confirmRenameListener();
             }
         });
 
@@ -283,7 +273,6 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 view.addRoom();
-                confirmAddRmListener();
             }
         });
 
@@ -291,7 +280,6 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 view.removeRoom(model.getRoomListNames());
-                confirmRemoveRoomListener();
             }
         });
 
@@ -299,7 +287,6 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 view.updatePrice(model.getBasePrice());
-                confirmUpdatePriceListener();
             }
         });
 
@@ -307,7 +294,6 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 view.removeReservation(model.getRoomCount(), model.getReservationListDetailed());
-                confirmRemoveReservationListener();
             }
         });
 
@@ -315,42 +301,46 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 view.removeHotel();
-                confirmRemoveHotelListener();
             }
         });
     }
 
     public void reserveHotelListeners() {
-        this.view.setConfirmResListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("confirm");
-                String stringRoomIndex = (view.getNumRoomIndexTf().isEmpty()) ? "0" : view.getNumRoomIndexTf();
-                String stringCheckIn = (view.getNumCheckInTf().isEmpty()) ? "0" : view.getNumCheckInTf();
-                String stringCheckOut = (view.getNumCheckOutTf().isEmpty()) ? "0" :  view.getNumCheckOutTf();
-                String stringPromoCode = (view.getPromoCodeTf().isEmpty()) ? "0" : view.getPromoCodeTf();
-                String stringName = (view.getNameTf().isEmpty()) ? " " : view.getNameTf();
-
-                int numRoomIndex = model.getPosNumValue(stringRoomIndex) - 1;
-                int numCheckIn = model.getPosNumValue(stringCheckIn);
-                int numCheckOut = model.getPosNumValue(stringCheckOut);
-                int promoValidity = model.utility.isPromoValid(numCheckIn, numCheckOut, stringPromoCode);
-                int days = numCheckOut - numCheckIn;
-
-                String[] breakdown = model.getPriceBreakdown(promoValidity, numCheckIn, numCheckOut, numRoomIndex);
-                
-
-                if(model.utility.checkDateValidity(numCheckIn, numCheckOut)){
-                    model.addReservation(stringName, numCheckIn, numCheckOut, numRoomIndex);
-
-                    view.reserveHotel(model.getRoomListNames(), breakdown, 2);
-                }
-                else view.setFeedbackLblText("Invalid check-in and check-out days");
-
-            }
-        });
-    }
+            this.view.setConfirmResListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("confirm");
+                    String stringRoomIndex = (view.getNumRoomIndexTf().isEmpty()) ? "0" : view.getNumRoomIndexTf();
+                    String stringCheckIn = (view.getNumCheckInTf().isEmpty()) ? "0" : view.getNumCheckInTf();
+                    String stringCheckOut = (view.getNumCheckOutTf().isEmpty()) ? "0" :  view.getNumCheckOutTf();
+                    String stringPromoCode = (view.getPromoCodeTf().isEmpty()) ? "0" : view.getPromoCodeTf();
+                    String stringName = (view.getNameTf().isEmpty()) ? " " : view.getNameTf();
     
+                    int numRoomIndex = model.getPosNumValue(stringRoomIndex) - 1;
+                    int numCheckIn = model.getPosNumValue(stringCheckIn);
+                    int numCheckOut = model.getPosNumValue(stringCheckOut);
+                    int promoValidity = model.utility.isPromoValid(numCheckIn, numCheckOut, stringPromoCode);
+                    int days = numCheckOut - numCheckIn;
+    
+                    String[] breakdown = model.getPriceBreakdown(promoValidity, numCheckIn, numCheckOut, numRoomIndex);
+                    
+    
+                    if(model.utility.checkDateValidity(numCheckIn, numCheckOut)){
+                        model.addReservation(stringName, numCheckIn, numCheckOut, numRoomIndex);
+    
+                        view.reserveHotel(model.getRoomListNames(), breakdown, 2);
+                    }
+                    else view.setFeedbackLblText("Invalid check-in and check-out days");
+                }
+            });
+            
+            this.view.setFinalizeResListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e){
+                    view.renameHotel();
+                }
+            });
+        }
 
 }
 

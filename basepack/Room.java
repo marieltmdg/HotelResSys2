@@ -86,7 +86,7 @@ public abstract class Room {
         int checkIn = reservationList.get(index).getCheckIn();
         int checkOut = reservationList.get(index).getCheckOut();
 
-        return "(" +checkIn+checkOut +")";
+        return "(" +checkIn+"-"+checkOut +")";
     }
 
     /**
@@ -278,7 +278,7 @@ public abstract class Room {
 
     public String[] priceBreakdown(int promoValidity, int checkIn, int checkOut) {
         int numDays = checkOut - checkIn;
-        String[] breakdown = new String[numDays];
+        String[] breakdown = new String[numDays+1];
         double[] price = getPriceAfterDiscountBreakdown(promoValidity, checkIn, checkOut);
     
         for (int i = 0; i < numDays; i++) {
@@ -286,20 +286,22 @@ public abstract class Room {
             switch (promoValidity) {
                 case 1: // 10% discount
                 case 3: // 10% discount
-                    breakdown[i] = "Day " + currentDay + " : $" + price[i];
+                    breakdown[i] = "Day " + currentDay + " - " + (currentDay+1) + " : P" + price[i];
                     break;
                 case 2: // Free first day
                     if (i == 0) {
                         breakdown[i] = "Promo Redeemed. Free";
                     } else {
-                        breakdown[i] = "Day " + currentDay + " : $" + price[i];
+                        breakdown[i] = "Day " + currentDay + " - " + (currentDay+1) + " : P" + price[i];
                     }
                     break;
                 default: // No discount
-                    breakdown[i] = "Day " + currentDay + " : $" + price[i];
+                    breakdown[i] = "Day " + currentDay + " - " + (currentDay+1) + " : P" + price[i];
                     break;
             }
         }
+
+        breakdown[breakdown.length-1] = "The Total Price is P" + getTotalPriceAfterDiscount(promoValidity, checkIn, checkOut);
     
         return breakdown;
     }

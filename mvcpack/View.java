@@ -810,9 +810,6 @@ public class View extends JFrame {
         }
         
         if(state == 2){
-
-            for(int i = 0; i< 4; i++)
-                System.out.println(priceBreakdown[i]);
             headerPnl.add(breakdownLbl);
             centerRightPnl.add(headerPnl);
             centerRightPnl.add(printReserveConfirmation(priceBreakdown, 350));
