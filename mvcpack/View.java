@@ -248,7 +248,6 @@ public class View extends JFrame {
 
         headerPnl.setPreferredSize(new Dimension(230, TF_HEIGHT));
 
-        addRoomPnl.add(new CLabel(""));
         addRoomPnl.add(roomAddLbl);
 
         addRoomPnl.add(standardAddLbl);
@@ -300,6 +299,7 @@ public class View extends JFrame {
 
         this.hotelNameTf = new JTextField();
         this.hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
+        centerLeftPnl.add(new CLabel("Hotels in the System: ", SUBTITLE_HEIGHT, Font.BOLD));
         centerLeftPnl.add(printHotels(hotelNames, 230));
 
         centerRightPnl.add(selectHotelLbl);
@@ -862,7 +862,7 @@ public class View extends JFrame {
         CLabel checkInLbl = new CLabel("Check In Date       ", SUBTITLE_HEIGHT, Font.PLAIN);
         CLabel checkOutLbl = new CLabel("Check Out Date     ", SUBTITLE_HEIGHT, Font.PLAIN);
         CLabel promoCodeLbl = new CLabel("Promo Code", SUBTITLE_HEIGHT -3, Font.ITALIC);
-        CLabel roomIndexLbl = new CLabel("Room [n]            ", SUBTITLE_HEIGHT, Font.PLAIN);
+        CLabel roomIndexLbl = new CLabel("Room [n]             ", SUBTITLE_HEIGHT, Font.PLAIN);
         CLabel breakdownLbl = new CLabel("Price Breakdown", SUBTITLE_HEIGHT, Font.BOLD);
 
         addResPnl.add(roomIndexLbl);
