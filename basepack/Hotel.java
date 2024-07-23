@@ -250,15 +250,16 @@ public class Hotel {
      * 
      * @param name The name of the person making the hotel reservation.
      * @param checkIn The checkIn parameter represents the check-in date for the hotel reservation.
-     * @param checkOut The checkOut parameter represents the check-out date for a hotel reservation. 
+     * @param checkOut The checkOut parameter represents the check-out date for a hotel reservation.
+     * @return String display feedback message
      */
-    public void addHotelReservation(String name, int checkIn, int checkOut, int roomIndex){
+    public String addHotelReservation(String name, int checkIn, int checkOut, int roomIndex){
             //add reservation if there are available rooms
             if(roomList.get(roomIndex).isAvailable(checkIn, checkOut)){
                 roomList.get(roomIndex).addReservation(name, checkIn, checkOut);
-                System.out.println("Reservation successful for " + name);
+                return "Reservation successful for " + name;
             } else {
-                System.out.println("Room is not available for selected dates");
+                return "Room is not available for selected dates";
             }
     }
 

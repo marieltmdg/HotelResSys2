@@ -814,6 +814,10 @@ public class View extends JFrame {
 
         for (String line : breakdown) {
             CLabel dayPrompt = new CLabel(line);
+            dayPrompt.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 12));
+            dayPrompt.setPreferredSize(new Dimension(BTN_WIDTH-10, 20));
+            dayPrompt.setMaximumSize(new Dimension(Short.MAX_VALUE, 20));
+
             mainBreakdownPnl.add(dayPrompt);
         }
 
@@ -833,13 +837,13 @@ public class View extends JFrame {
         JPanel headerPnl = new JPanel();
 
         centerPnl.setLayout(new BorderLayout());
-        centerRightPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
-        centerRightPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
+        centerRightPnl.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        centerRightPnl.setPreferredSize(new Dimension(245, CENTER_MAIN_HEIGHT));
         centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
-        centerLeftPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
-        addResPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 300));
-        addResPnl.setLayout(new FlowLayout(FlowLayout.CENTER)); 
-        headerPnl.setPreferredSize(new Dimension(BTN_WIDTH-50, 20));
+        centerLeftPnl.setPreferredSize(new Dimension(245, CENTER_MAIN_HEIGHT));
+        addResPnl.setPreferredSize(new Dimension(230, 300));
+        addResPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        headerPnl.setPreferredSize(new Dimension(BTN_WIDTH, TF_HEIGHT));
 
         this.nameTf = new JTextField();
         this.generalTf = new JTextField();
@@ -853,47 +857,45 @@ public class View extends JFrame {
         this.numCheckOutTf.setPreferredSize(new Dimension(SMALL_TF_WIDTH, TF_HEIGHT));
         this.promoCodeTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
 
+        CLabel nameLbl = new CLabel("Guest Name", SUBTITLE_HEIGHT, Font.BOLD);
+        CLabel roomReserveLbl = new CLabel("List of Rooms", SUBTITLE_HEIGHT, Font.BOLD);
+        CLabel checkInLbl = new CLabel("Check In Date       ", SUBTITLE_HEIGHT, Font.PLAIN);
+        CLabel checkOutLbl = new CLabel("Check Out Date     ", SUBTITLE_HEIGHT, Font.PLAIN);
+        CLabel promoCodeLbl = new CLabel("Promo Code", SUBTITLE_HEIGHT -3, Font.ITALIC);
+        CLabel roomIndexLbl = new CLabel("Room [n]            ", SUBTITLE_HEIGHT, Font.PLAIN);
+        CLabel breakdownLbl = new CLabel("Price Breakdown", SUBTITLE_HEIGHT, Font.BOLD);
 
-        CLabel nameLbl = new CLabel("Guest Name");
-        CLabel roomReserveLbl = new CLabel("List of Rooms");
-        CLabel checkInLbl = new CLabel("Check In Date "); 
-        CLabel checkOutLbl = new CLabel("Check Out Date");
-        CLabel promoCodeLbl = new CLabel("Promo Code");
-        CLabel roomIndexLbl = new CLabel("Room [Number] to Reserve");  
-        CLabel breakdownLbl = new CLabel("Price Breakdown");
+        addResPnl.add(roomIndexLbl);
+        addResPnl.add(generalTf);
 
-
-        centerLeftPnl.add(nameLbl);
-        centerLeftPnl.add(nameTf);
-
-        centerLeftPnl.add(roomIndexLbl);
-        centerLeftPnl.add(generalTf);
-
-        centerLeftPnl.add(addResPnl);
-        
         addResPnl.add(checkInLbl);
-        addResPnl.add(this.numCheckInTf);
+        addResPnl.add(numCheckInTf);
 
         addResPnl.add(checkOutLbl);
         addResPnl.add(numCheckOutTf);
 
+        addResPnl.add(new CLabel("                                  ", SUBTITLE_HEIGHT, Font.PLAIN));
         addResPnl.add(promoCodeLbl);
         addResPnl.add(promoCodeTf);
 
         addResPnl.add(this.confirmResBtn);
-        
-       
+
+        centerLeftPnl.add(nameLbl);
+        centerLeftPnl.add(nameTf);
+
+        centerLeftPnl.add(addResPnl);
+
 
         if(state == 1){
             headerPnl.add(roomReserveLbl);
             centerRightPnl.add(headerPnl);
-            centerRightPnl.add(printRooms(roomNames, 350));
+            centerRightPnl.add(printRooms(roomNames, 300));
         }
         
         if(state == 2){
             headerPnl.add(breakdownLbl);
             centerRightPnl.add(headerPnl);
-            centerRightPnl.add(printReserveConfirmation(priceBreakdown, 350));
+            centerRightPnl.add(printReserveConfirmation(priceBreakdown, 300));
         }
 
         setCenterTitleLblText("Create a Booking");

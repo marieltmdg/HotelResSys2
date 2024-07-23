@@ -123,7 +123,7 @@ public abstract class Room {
             return "There are no reservations for the selected room";
         }
 
-        if (!(index >= 0 && index < getReservationListCount())) {
+        if (index >= 0 && index < getReservationListCount()) {
             reservationList.remove(reservationList.get(index));
             return "Reservation removal successful";
         }
@@ -224,7 +224,7 @@ public abstract class Room {
         double price = 0;
 
         for(int i = checkIn; i < checkOut; i++){
-            price += getPriceAfterMultiplier(i);
+            price += getPriceAfterMultiplier(i); 
         }
 
         switch(promoValidity){

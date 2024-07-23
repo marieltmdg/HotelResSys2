@@ -119,9 +119,6 @@ public class Controller {
         this.view.setReserveListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                System.out.println("PRESSED RESERVE");
-                // TODO add reserve stuff
-
                 view.reserveHotel(model.getRoomListNames(), null, 1);
             }
         });
@@ -346,14 +343,16 @@ public class Controller {
                     int days = numCheckOut - numCheckIn;
     
                     String[] breakdown = model.getPriceBreakdown(promoValidity, numCheckIn, numCheckOut, numRoomIndex);
-                    
-    
-                    if(model.utility.checkDateValidity(numCheckIn, numCheckOut)){
-                        model.addReservation(stringName, numCheckIn, numCheckOut, numRoomIndex);
-    
-                        view.reserveHotel(model.getRoomListNames(), breakdown, 2);
+                    String result = "Please input a positive number";
+
+                    if (numRoomIndex != -1 && numCheckIn != -1 && numCheckOut != -1) {
+                        if (model.utility.checkDateValidity(numCheckIn, numCheckOut)) {
+                            result = model.addReservation(stringName, numCheckIn, numCheckOut, numRoomIndex);
+                        } else result = "Invalid check-in and check-out days";
                     }
-                    else view.setFeedbackLblText("Invalid check-in and check-out days");
+
+                    view.setFeedbackLblText(result);
+                    view.reserveHotel(model.getRoomListNames(), breakdown, 2);
                 }
             });
             

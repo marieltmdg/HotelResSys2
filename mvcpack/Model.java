@@ -125,8 +125,8 @@ public class Model {
         hotelList.remove(hotelList.get(selectedHotelIndex));
     }
 
-    public void addReservation(String name, int checkIn, int checkOut, int roomIndex){
-        hotelList.get(selectedHotelIndex).addHotelReservation(name, checkIn, checkOut, roomIndex);
+    public String addReservation(String name, int checkIn, int checkOut, int roomIndex){
+        return hotelList.get(selectedHotelIndex).addHotelReservation(name, checkIn, checkOut, roomIndex);
     }
 
     public int getPosNumValue(String x){
