@@ -237,7 +237,7 @@ public class Controller {
                 String result = "Please input a positive number";
 
                 if (date != -1 && price != -1)
-                    result = model.updateDatePrice(date - 1, price);
+                    result = model.updateDatePrice(date, price);
 
                 view.setFeedbackLblText(result);
                 view.datePrice(model.getDatePrice());
