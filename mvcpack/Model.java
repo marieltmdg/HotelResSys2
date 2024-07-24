@@ -56,6 +56,27 @@ public class Model {
         return cont;
     }
 
+    public String openHotel(int hotelIndex) {
+        //checker for invalid hotel indices
+        if (hotelIndex >= 0 && hotelIndex < hotelList.size()) {
+            //TESTING
+            this.selectedHotelIndex = hotelIndex;
+            return hotelList.get(hotelIndex).getHotelName();
+        } else {
+            return "\0";
+        }
+    }
+
+    public boolean renameHotel(String newName){
+        for (Hotel h : hotelList){
+            if (h.getHotelName().equals(newName)){
+                return false;
+            }
+        }
+
+        hotelList.get(selectedHotelIndex).setHotelName(newName);
+        return true;
+    }
 
     public void addRoom(int roomType, int hotelIndex) {
         System.out.println("Room addition");
@@ -78,28 +99,6 @@ public class Model {
         if (index >= 0 && index < hotelList.get(selectedHotelIndex).getRoomCount())
             return hotelList.get(selectedHotelIndex).removeRoom(index);
         else return "Input out of bounds";
-    }
-
-    public String openHotel(int hotelIndex) {
-        //checker for invalid hotel indices
-        if (hotelIndex >= 0 && hotelIndex < hotelList.size()) {
-            //TESTING
-            this.selectedHotelIndex = hotelIndex;
-            return hotelList.get(hotelIndex).getHotelName();
-        } else {
-            return "\0";
-        }
-    }
-
-    public boolean renameHotel(String newName){
-        for (Hotel h : hotelList){
-            if (h.getHotelName().equals(newName)){
-                return false;
-            }
-        }
-
-        hotelList.get(selectedHotelIndex).setHotelName(newName);
-        return true;
     }
 
     public String updatePrice(double price){

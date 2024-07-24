@@ -115,8 +115,8 @@ public class Hotel {
      * The generateRoomName() method generates a room name based on the room count, with a leading number calculated
      * from the room count divided by 10 plus 1, followed by a hyphen and the room count modulo 10.
      *
-     * @param type is the room type of the room
-     * @return The generateRoomName method returns a String with a unique room name
+     * @param type is the room type of the room.
+     * @return The generateRoomName method returns a String with a unique room name.
      */
     private String generateRoomName(String type){
         int leadingNum = (roomCount / 10) + 1;
@@ -156,7 +156,6 @@ public class Hotel {
      */
     public void setHotelName(String newName) {
         this.hotelName = newName;
-        
     }
 
     /**

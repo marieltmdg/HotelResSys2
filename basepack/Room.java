@@ -46,10 +46,6 @@ public abstract class Room {
         return basePrice;
     }
 
-    public void setDatePrice(int date, double percent){
-        datePricePercentMultiplier[date-1] = percent;
-    }
-
     public double getDatePricePercent(int index){
         return datePricePercentMultiplier[index];
     }
@@ -61,17 +57,6 @@ public abstract class Room {
     */
     public String getRoomName() {
         return roomName;
-    }
-
-    /**
-    * The getReservation() method in Java returns a Reservation attribute.
-    * 
-    * @param resIndex index of a reservation in reservationList.
-    * @return The method getReservation() is returning the matching instance of Reservation in the 
-    * reservationList.
-    */
-    public Reservation getReservation(int resIndex) {
-        return reservationList.get(resIndex);
     }
 
     public int getReservationListCount() {
@@ -97,6 +82,10 @@ public abstract class Room {
      */
     public void setBasePrice(double newPrice) {
         this.basePrice = newPrice;
+    }
+
+    public void setDatePrice(int date, double percent){
+        datePricePercentMultiplier[date-1] = percent;
     }
 
     /**
