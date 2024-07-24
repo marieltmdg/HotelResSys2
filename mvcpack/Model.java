@@ -129,32 +129,6 @@ public class Model {
         return hotelList.get(selectedHotelIndex).addHotelReservation(name, checkIn, checkOut, roomIndex);
     }
 
-    public int getPosNumValue(String x){
-        int temp = -1;
-        try {
-            temp = Integer.parseInt(x);
-            if (temp < 0){
-                return -1;
-            }
-        } catch (Exception e) {
-            return -1;
-        }
-        return temp;
-    }
-
-    public double getPosDoubleValue(String x){
-        double temp = -1;
-        try {
-            temp = Double.parseDouble(x);
-            if (temp < 0){
-                return -1;
-            }
-        } catch (Exception e) {
-            return -1;
-        }
-        return temp;
-    }
-
     public String[] getHotelListNames(){
         String[] names = new String[hotelList.size()];
 

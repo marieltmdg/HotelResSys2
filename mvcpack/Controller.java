@@ -41,7 +41,7 @@ public class Controller {
         this.view.setSelectListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                int index = (model.getPosNumValue(view.getHotelNameTfText()));
+                int index = (model.utility.getPosNumValue(view.getHotelNameTfText()));
                 String result = "Please input a positive number";
 
                 if(index != -1) {
@@ -73,9 +73,9 @@ public class Controller {
                 String stringDeluxe = (view.getNumDeluxeTf().isEmpty()) ? "0" :  view.getNumDeluxeTf();
                 String stringExecutive = (view.getNumExecutiveTf().isEmpty()) ? "0" : view.getNumExecutiveTf();
 
-                int numStandard = model.getPosNumValue(stringStandard);
-                int numDeluxe = model.getPosNumValue(stringDeluxe);
-                int numExecutive = model.getPosNumValue(stringExecutive);
+                int numStandard = model.utility.getPosNumValue(stringStandard);
+                int numDeluxe = model.utility.getPosNumValue(stringDeluxe);
+                int numExecutive = model.utility.getPosNumValue(stringExecutive);
 
                 if(!(numStandard == -1 || numDeluxe == -1 || numExecutive == -1)){
                     int result = model.addHotel(hotelName, numStandard, numDeluxe, numExecutive);
@@ -174,9 +174,9 @@ public class Controller {
                 String stringDeluxe = (view.getNumDeluxeTf().isEmpty()) ? "0" : view.getNumDeluxeTf();
                 String stringExecutive = (view.getNumExecutiveTf().isEmpty()) ? "0" : view.getNumExecutiveTf();
 
-                int numStandard = model.getPosNumValue(stringStandard);
-                int numDeluxe = model.getPosNumValue(stringDeluxe);
-                int numExecutive = model.getPosNumValue(stringExecutive);
+                int numStandard = model.utility.getPosNumValue(stringStandard);
+                int numDeluxe = model.utility.getPosNumValue(stringDeluxe);
+                int numExecutive = model.utility.getPosNumValue(stringExecutive);
 
                 if(!(numStandard == -1 || numDeluxe == -1 || numExecutive == -1)){
                     if(model.getRoomCount() + numStandard + numDeluxe + numExecutive >= 51){
@@ -201,7 +201,7 @@ public class Controller {
         this.view.setConfirmRemoveRmListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int index = (model.getPosNumValue(view.getGeneralTf()));
+                int index = (model.utility.getPosNumValue(view.getGeneralTf()));
                 String result = "Please input a positive number";
 
                 if(index != -1)
@@ -215,7 +215,7 @@ public class Controller {
         this.view.setConfirmUpdatePriceListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double price = model.getPosDoubleValue(view.getGeneralTf());
+                double price = model.utility.getPosDoubleValue(view.getGeneralTf());
                 String result = "Please input a positive number";
 
                 if (price != -1)
@@ -229,8 +229,8 @@ public class Controller {
         this.view.setConfirmDatePriceListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int date = model.getPosNumValue(view.getGeneralTf());
-                double price = model.getPosDoubleValue(view.getGeneral2TfText());
+                int date = model.utility.getPosNumValue(view.getGeneralTf());
+                double price = model.utility.getPosDoubleValue(view.getGeneral2TfText());
                 String result = "Please input a positive number";
 
                 if (date != -1 && price != -1)
@@ -244,8 +244,8 @@ public class Controller {
         this.view.setConfirmRemoveResListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int roomIndex = model.getPosNumValue(view.getGeneralTf());
-                int resIndex = model.getPosNumValue(view.getGeneral2TfText());
+                int roomIndex = model.utility.getPosNumValue(view.getGeneralTf());
+                int resIndex = model.utility.getPosNumValue(view.getGeneral2TfText());
                 String result = "Please input a positive number";
 
                 if (roomIndex != -1 && resIndex != -1)
@@ -336,9 +336,9 @@ public class Controller {
                     String stringPromoCode = (view.getPromoCodeTf().isEmpty()) ? "0" : view.getPromoCodeTf();
                     String stringName = (view.getNameTf().isEmpty()) ? " " : view.getNameTf();
     
-                    int numRoomIndex = model.getPosNumValue(stringRoomIndex) - 1;
-                    int numCheckIn = model.getPosNumValue(stringCheckIn);
-                    int numCheckOut = model.getPosNumValue(stringCheckOut);
+                    int numRoomIndex = model.utility.getPosNumValue(stringRoomIndex) - 1;
+                    int numCheckIn = model.utility.getPosNumValue(stringCheckIn);
+                    int numCheckOut = model.utility.getPosNumValue(stringCheckOut);
                     int promoValidity = model.utility.isPromoValid(numCheckIn, numCheckOut, stringPromoCode);
                     int days = numCheckOut - numCheckIn;
     

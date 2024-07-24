@@ -20,18 +20,31 @@ public class Utility {
         }
         return true;
     }
-    
-    public int hotelIndexLocator(ArrayList<Hotel> hotelList, String hotelName) {
-        int selection = -1;
 
-        //prompt user to select
-        for (int i = 0 ; i < hotelList.size(); i++){
-            if(hotelList.get(i).getHotelName().equals(hotelName)){
-                selection = i;
+    public int getPosNumValue(String x){
+        int temp = -1;
+        try {
+            temp = Integer.parseInt(x);
+            if (temp < 0){
+                return -1;
             }
+        } catch (Exception e) {
+            return -1;
         }
+        return temp;
+    }
 
-        return selection;
+    public double getPosDoubleValue(String x){
+        double temp = -1;
+        try {
+            temp = Double.parseDouble(x);
+            if (temp < 0){
+                return -1;
+            }
+        } catch (Exception e) {
+            return -1;
+        }
+        return temp;
     }
 
     public boolean isEmpty(String x){
