@@ -232,6 +232,15 @@ public abstract class Room {
         return price;
     }
 
+    /**
+     * the getPriceAfterDiscountBreakdown() method gets the price per night, given the discount,
+     * and the date price modifier.
+     *
+     * @param promoValidity The promo validity.
+     * @param checkIn The check-in date.
+     * @param checkOut The check-out date.
+     * @return The double[] that lists down the price after discount per night.
+     */
     public double[] getPriceAfterDiscountBreakdown(int promoValidity, int checkIn, int checkOut) {
         int numDays = checkOut - checkIn;
         double[] price = new double[numDays];
@@ -263,6 +272,15 @@ public abstract class Room {
         return price;
     }
 
+    /**
+     * the priceBreakdown() method constructs the String[] that will be printed,
+     * corresponding to the price breakdown of the entire stay, including the total price.
+     *
+     * @param promoValidity The promo validity.
+     * @param checkIn The check-in date.
+     * @param checkOut The check-out date.
+     * @return The String[] that lists down the price breakdown per night and its total.
+     */
     public String[] priceBreakdown(int promoValidity, int checkIn, int checkOut) {
         int numDays = checkOut - checkIn;
         String[] breakdown = new String[numDays+1];

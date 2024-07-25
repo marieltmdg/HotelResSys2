@@ -16,7 +16,14 @@ public class Standard extends Room {
         super(roomName);
     }
 
+    /**
+     * The getPriceAfterMultiplier() method gets the price per night, given the
+     * price multiplier.
+     *
+     * @return The price after multiplier of a standard room.
+     */
     public double getPriceAfterMultiplier(int date){
+        //date - 1 since its an index
         return this.getBasePrice() * (super.getDatePricePercent(date-1)/100);
     }
 }

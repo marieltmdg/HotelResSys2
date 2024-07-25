@@ -20,7 +20,7 @@ public class Deluxe extends Room {
     }
 
     /**
-     * Gets the price of a deluxe room per night.
+     * The getDPrice() method gets the price of a deluxe room per night.
      *
      * @return The price of a deluxe room.
      */
@@ -28,6 +28,12 @@ public class Deluxe extends Room {
         return dPrice;
     }
 
+    /**
+     * The getPriceAfterMultiplier() method gets the price per night, given the
+     * price multiplier.
+     *
+     * @return The price after multiplier of a deluxe room.
+     */
     public double getPriceAfterMultiplier(int date) {
         return dPrice * (super.getDatePricePercent(date-1) / 100);
     }

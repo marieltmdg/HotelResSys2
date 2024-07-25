@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Utility {
 
     /**
-     * Checks the validity of the check-in and check-out dates.
+     * The checkDateValidity() method checks the validity of the check-in and check-out dates.
      * 
      * @param checkIn The check-in date.
      * @param checkOut The check-out date.
@@ -21,6 +21,12 @@ public class Utility {
         return true;
     }
 
+    /**
+     * The getPosNumValue() method gets the positive integer value of a string.
+     *
+     * @param x The string to evaluate.
+     * @return The integer, -1 if invalid input.
+     */
     public int getPosNumValue(String x){
         int temp = -1;
         try {
@@ -34,6 +40,12 @@ public class Utility {
         return temp;
     }
 
+    /**
+     * The getPosDoubleValue() method gets the positive double value of a string.
+     *
+     * @param x The string to evaluate.
+     * @return The double, -1 if invalid input.
+     */
     public double getPosDoubleValue(String x){
         double temp = -1;
         try {
@@ -47,12 +59,27 @@ public class Utility {
         return temp;
     }
 
+    /**
+     * The isEmpty() method checks if a given string is empty.
+     *
+     * @param x The string to evaluate.
+     * @return The boolean value. True if null, false otherwise.
+     */
     public boolean isEmpty(String x){
         if (x == null){
             return true;
         } else return false;
     }
 
+    /**
+     * The isPromoValid() method checks if a given promo code is applicable,
+     * given the conditions of the stay.
+     *
+     * @param checkIn The check-in date.
+     * @param checkOut The check-out date.
+     * @param promoCode The promo code to evaluate.
+     * @return The integer corresponding to the type of promo applied, 0 if there is no applicable promo.
+     */
     public int isPromoValid(int checkIn, int checkOut, String promoCode){
         switch(promoCode){
             case "I_WORK_HERE":

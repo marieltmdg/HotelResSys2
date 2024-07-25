@@ -20,14 +20,20 @@ public class Executive extends Room {
     }
 
     /**
-     * Get the price of an executive room.
+     * The getEPrice() method gets the price of an executive room.
      *
-     * @return The price of a deluxe room.
+     * @return The price of an executive room.
      */
     public double getEPrice(){
         return ePrice;
     }
 
+    /**
+     * The getPriceAfterMultiplier() method gets the price per night, given the
+     * price multiplier.
+     *
+     * @return The price after multiplier of an executive room.
+     */
     public double getPriceAfterMultiplier(int date) {
         return ePrice * (super.getDatePricePercent(date-1) / 100);
     }
