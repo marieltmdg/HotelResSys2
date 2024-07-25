@@ -39,7 +39,7 @@ public class View extends JFrame {
     private final int MAINFRAME_WIDTH = 700;
     private final int MAINFRAME_HEIGHT = 500;
     private final int CENTER_MAIN_WIDTH = MAINFRAME_WIDTH-(BTN_WIDTH+10 + SMALL_BTN_WIDTH+20)-10;
-    private final int CENTER_MAIN_HEIGHT = 400;
+    private final int CENTER_MAIN_HEIGHT = 405;
     private final String DEFAULT_FONT = "Verdana";
     private final int SUBTITLE_HEIGHT = 15;
 
@@ -102,7 +102,7 @@ public class View extends JFrame {
         
         westPnl = new JPanel();
         westPnl.setLayout(new FlowLayout());
-        westPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 200));
+        westPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, CENTER_MAIN_HEIGHT));
         westPnl.setBackground(Color.decode("#1B384B"));
         westPnl.add(createBtn);
         westPnl.add(openBtn);
@@ -119,7 +119,7 @@ public class View extends JFrame {
         setTitleLblText("Main Menu");
 
         this.centerTitleLbl = new CLabel();
-        this.centerTitleLbl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, TF_HEIGHT-5));
+        this.centerTitleLbl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, TF_HEIGHT));
         this.centerTitleLbl.setFont(new Font(DEFAULT_FONT, Font.BOLD, 20));
         this.centerTitleLbl.setBackground(Color.lightGray);
         this.centerTitleLbl.setOpaque(true);
@@ -129,19 +129,21 @@ public class View extends JFrame {
         northPnl = new JPanel();
         northPnl.setLayout(new FlowLayout());
         northPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH,TF_HEIGHT+15));
-        northPnl.setBackground(Color.decode("#1B384B"));
         northPnl.add(titleLbl);
 
         //SOUTH PANEL
         this.feedbackLbl = new CLabel();
-        this.feedbackLbl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, TF_HEIGHT));
+        this.feedbackLbl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, TF_HEIGHT-5));
         this.feedbackLbl.setFont(new Font(DEFAULT_FONT, Font.BOLD, 15));
         this.feedbackLbl.setHorizontalAlignment(SwingConstants.CENTER);
-        this.feedbackLbl.setVerticalAlignment(SwingConstants.CENTER);
+        this.feedbackLbl.setVerticalAlignment(SwingConstants.NORTH);
+        feedbackLbl.setBackground(Color.lightGray);
+        feedbackLbl.setOpaque(true);
         
         southPnl = new JPanel();
         southPnl.setLayout(new FlowLayout());
-        southPnl.setPreferredSize(new Dimension(400,TF_HEIGHT));
+        southPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH,TF_HEIGHT-5));
+        southPnl.setBackground(Color.lightGray);
         southPnl.add(feedbackLbl);
         
         //ADD EVERYTHING
