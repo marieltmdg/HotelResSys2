@@ -29,6 +29,9 @@ public class Utility {
      */
     public int getPosNumValue(String x){
         int temp = -1;
+        if(x.equalsIgnoreCase("N/A")){
+            return -2;
+        }
         try {
             temp = Integer.parseInt(x);
             if (temp < 0){
@@ -68,7 +71,9 @@ public class Utility {
     public boolean isEmpty(String x){
         if (x == null){
             return true;
-        } else return false;
+        } else if (x.isEmpty()) {
+            return true;
+        }else return false;
     }
 
     /**
@@ -81,18 +86,19 @@ public class Utility {
      * @return The integer corresponding to the type of promo applied, 0 if there is no applicable promo.
      */
     public int isPromoValid(int checkIn, int checkOut, String promoCode){
-        switch(promoCode){
+        switch(promoCode) {
             case "I_WORK_HERE":
-                return 1; 
+                return 1;
             case "STAY4_GET1":
-                if(checkOut - checkIn + 1 >= 5)
+                if (checkOut - checkIn + 1 >= 5)
                     return 2;
                 else return 0;
             case "PAYDAY":
-                if((checkIn <= 15 && checkOut > 15) || (checkIn <= 30 && checkOut > 30))
+                if ((checkIn <= 15 && checkOut > 15) || (checkIn <= 30 && checkOut > 30))
                     return 3;
                 else return 0;
-            default: return 0;
+            default:
+                return 0;
         }
     }
 }

@@ -813,10 +813,13 @@ public class View extends JFrame {
         return printRoomsScrPane;
     }
 
-    public void printReserveBreakdown(String[] breakdown, int height){
+    public JPanel printReserveBreakdown(String[] breakdown, int height){
         JPanel mainBreakdownPnl = new JPanel();
+        JPanel btnPnl = new JPanel();
         mainBreakdownPnl.setLayout(new BoxLayout(mainBreakdownPnl, BoxLayout.Y_AXIS));
         mainBreakdownPnl.setMaximumSize(new Dimension(Short.MAX_VALUE, height));
+        btnPnl.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        btnPnl.setPreferredSize(new Dimension(245, CENTER_MAIN_HEIGHT-TF_HEIGHT));
 
         for (String line : breakdown) {
             CLabel dayPrompt = new CLabel(line);
@@ -829,12 +832,14 @@ public class View extends JFrame {
         
         JScrollPane printBreakdownScrPane = new JScrollPane(mainBreakdownPnl);
         printBreakdownScrPane.setPreferredSize(new Dimension(BTN_WIDTH+5, height));
-        resRightPnl.add(printBreakdownScrPane);
-        resRightPnl.add(finalizeResButton);
-        resRightPnl.add(cancelResButton);
+        btnPnl.add(printBreakdownScrPane);
+        btnPnl.add(finalizeResButton);
+        btnPnl.add(cancelResButton);
+
+        return btnPnl;
     }
 
-    public void reserveHotel(String[] priceBreakdown){
+    public void reserveHotel(String[] priceBreakdown, int state){
         this.remove(centerPnl);
 
         this.centerPnl = new JPanel();
@@ -869,7 +874,7 @@ public class View extends JFrame {
         CLabel checkInLbl = new CLabel("Check In Date       ", SUBTITLE_HEIGHT, Font.PLAIN);
         CLabel checkOutLbl = new CLabel("Check Out Date     ", SUBTITLE_HEIGHT, Font.PLAIN);
         CLabel promoCodeLbl = new CLabel("Promo Code", SUBTITLE_HEIGHT -3, Font.ITALIC);
-        CLabel roomIndexLbl = new CLabel("Room [n]             ", SUBTITLE_HEIGHT, Font.PLAIN);
+        CLabel roomIndexLbl = new CLabel("Room Type             ", SUBTITLE_HEIGHT, Font.PLAIN);
         CLabel breakdownLbl = new CLabel("Price Breakdown", SUBTITLE_HEIGHT, Font.BOLD);
 
         addResPnl.add(checkInLbl);
@@ -898,8 +903,10 @@ public class View extends JFrame {
         headerPnl.add(breakdownLbl);
 
         resRightPnl.add(headerPnl);
-        
-    
+
+        if (state == 1) {
+            resRightPnl.add(printReserveBreakdown(priceBreakdown, 300));
+        }
 
         setCenterTitleLblText("Create a Booking");
 
@@ -907,7 +914,6 @@ public class View extends JFrame {
         centerPnl.add(this.resLeftPnl, BorderLayout.WEST);
         centerPnl.add(this.resRightPnl, BorderLayout.EAST);
         this.add(centerPnl);
-
 
         this.revalidate();
         this.repaint();
@@ -1101,14 +1107,6 @@ public class View extends JFrame {
 
     public void setGeneralTf(String text){
         this.generalTf.setText(text);
-    }
-
-    public void setResRightPnl(JScrollPane breakdown){
-        this.resRightPnl.add(breakdown);
-    }
-
-    public void deleteResRightPnl(){
-        this.remove(resRightPnl);
     }
 
     public void setConfirmResClickable(Boolean b){

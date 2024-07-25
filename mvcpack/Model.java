@@ -1,7 +1,6 @@
 package mvcpack;
 import basepack.*;
-import basepack.roompack.Deluxe;
-import basepack.roompack.Standard;
+import basepack.roompack.*;
 
 import java.util.ArrayList;
 
@@ -229,7 +228,7 @@ public class Model {
                             return (i+1)+"";
                         break;
                     case 3://Executive
-                        if(hotelList.get(selectedHotelIndex).getRoomList().get(i) instanceof Deluxe)
+                        if(hotelList.get(selectedHotelIndex).getRoomList().get(i) instanceof Executive)
                             return (i+1)+"";
                         break;
                     default:
