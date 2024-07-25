@@ -91,25 +91,7 @@ public class Hotel {
         return total;
     }
 
-    /**
-     * The method getAvailableRoom() iterates through a list of rooms to find an available room for a
-     * given check-in and check-out date range.
-     * 
-     * @param checkIn The checkIn parameter represents the check-in date for a room reservation. 
-     * @param checkOut The checkOut parameter in the getAvailableRoom method represents the
-     * check-out date for a room reservation.
-     * @return The method getAvailableRoom returns the index of the first available room in the
-     * roomList that is available for the specified check-in and check-out dates. If no available
-     * room is found, it returns -1.
-     */
-    private int getAvailableRoom(int checkIn, int checkOut){
-        for(int i=0; i<roomList.size(); i++){
-            if(roomList.get(i).isAvailable(checkIn, checkOut)){
-                return i;
-            }
-        }
-        return -1;
-    }
+    
 
     /**
      * The generateRoomName() method generates a room name based on the room count, with a leading number calculated
@@ -426,6 +408,7 @@ public class Hotel {
     public String getRoomName(int roomIndex){
         return roomList.get(roomIndex).getRoomName();
     }
+
 }
 
- 
+

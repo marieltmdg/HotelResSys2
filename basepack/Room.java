@@ -227,6 +227,7 @@ public abstract class Room {
                 price *= 0.93;
                 break;
             default: price *= 1;
+                    break;
 
         }
         return price;
@@ -283,9 +284,9 @@ public abstract class Room {
      */
     public String[] priceBreakdown(int promoValidity, int checkIn, int checkOut) {
         int numDays = checkOut - checkIn;
-        String[] breakdown = new String[numDays+1];
+        String[] breakdown = new String[numDays + 1];
         double[] price = getPriceAfterDiscountBreakdown(promoValidity, checkIn, checkOut);
-
+        
         for (int i = 0; i < numDays; i++) {
             int currentDay = checkIn + i;
             switch (promoValidity) {
@@ -305,9 +306,12 @@ public abstract class Room {
                     break;
             }
         }
-
         breakdown[breakdown.length-1] = "The Total Price is P" + getTotalPriceAfterDiscount(promoValidity, checkIn, checkOut);
 
         return breakdown;
+    }
+
+    public void setResTotalPrice(int promoValidity, int checkIn, int checkOut){
+        reservationList.get(reservationList.size()-1).setTotalPrice(promoValidity, checkIn, checkOut);
     }
 }

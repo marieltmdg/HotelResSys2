@@ -1,5 +1,8 @@
 package mvcpack;
 import basepack.*;
+import basepack.roompack.Deluxe;
+import basepack.roompack.Standard;
+
 import java.util.ArrayList;
 
 /**
@@ -93,6 +96,10 @@ public class Model {
                 break;
             default:
         }
+    }
+
+    public void setResTotalPrice(int promoValidity, int checkIn, int checkOut, int roomIndex){
+        hotelList.get(selectedHotelIndex).getRoom(roomIndex).setResTotalPrice(promoValidity, checkIn, checkOut);
     }
 
     public String removeRoom(int index){
@@ -197,6 +204,40 @@ public class Model {
     }
 
 
-   
+   /**
+     * The method getAvailableRoom() iterates through a list of rooms to find an available room for a
+     * given check-in and check-out date range.
+     * 
+     * @param checkIn The checkIn parameter represents the check-in date for a room reservation. 
+     * @param checkOut The checkOut parameter represents the
+     * check-out date for a room reservation.
+     * @param type The type parameter represents the wanted type of room
+     * @return The method getAvailableRoom returns the index of the first available room in the
+     * roomList that is available for the specified check-in and check-out dates. If no available
+     * room is found, it returns -1.
+     */
+    public String getAvailableRoom(int checkIn, int checkOut, int type){
+        for(int i=0; i<hotelList.get(selectedHotelIndex).getRoomList().size(); i++){
+            if(hotelList.get(selectedHotelIndex).getRoomList().get(i).isAvailable(checkIn, checkOut)){
+                switch(type){
+                    case 1://Standard
+                        if(hotelList.get(selectedHotelIndex).getRoomList().get(i) instanceof Standard)
+                            return (i+1)+"";
+                        break;
+                    case 2://Deluxe
+                        if(hotelList.get(selectedHotelIndex).getRoomList().get(i) instanceof Deluxe)
+                            return (i+1)+"";
+                        break;
+                    case 3://Executive
+                        if(hotelList.get(selectedHotelIndex).getRoomList().get(i) instanceof Deluxe)
+                            return (i+1)+"";
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        return "N/A";
+    }
 }
 

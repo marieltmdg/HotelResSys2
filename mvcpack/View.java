@@ -11,7 +11,7 @@ public class View extends JFrame {
     private JTextField hotelNameTf, numStandardTf, numDeluxeTf, numExecutiveTf,
                         numCheckInTf, numCheckOutTf, generalTf, promoCodeTf, nameTf;
     private CButton createBtn, openBtn, confirmBtn, selectBtn;
-    private JPanel northPnl, southPnl, westPnl, eastPnl, centerPnl;
+    private JPanel northPnl, southPnl, westPnl, eastPnl, centerPnl, resLeftPnl, resRightPnl;
 
     //open hotel
     private CButton inquireBtn, manageBtn, reserveBtn;
@@ -26,7 +26,7 @@ public class View extends JFrame {
             ,confirmRemoveResBtn, confirmRemoveHotelBtn, confirmDatePriceBtn;
     private JTextField newNameTf, general2Tf;
 
-    private CButton confirmResBtn, finalizeResButton, cancelResButton;
+    private CButton confirmResBtn, finalizeResButton, cancelResButton, standardRoomBtn, deluxeRoomBtn, executiveRoomBtn;
     
     private final int SMALL_TF_WIDTH = 50;
     private final int TF_WIDTH = 200;
@@ -34,12 +34,13 @@ public class View extends JFrame {
     private final int BTN_HEIGHT = 60;
     private final int SMALL_BTN_HEIGHT = BTN_HEIGHT - 15;
     private final int SMALL_BTN_WIDTH = BTN_WIDTH - 30;
+    private final int SMALLEST_BTN_WIDTH = (BTN_WIDTH-10) / 3;
     private final int TF_HEIGHT = 35;
 
     private final int MAINFRAME_WIDTH = 700;
-    private final int MAINFRAME_HEIGHT = 500;
+    private final int MAINFRAME_HEIGHT = 600;
     private final int CENTER_MAIN_WIDTH = MAINFRAME_WIDTH-(BTN_WIDTH+10 + SMALL_BTN_WIDTH+20)-10;
-    private final int CENTER_MAIN_HEIGHT = 405;
+    private final int CENTER_MAIN_HEIGHT = 505;
     private final String DEFAULT_FONT = "Verdana";
     private final int SUBTITLE_HEIGHT = 15;
 
@@ -91,8 +92,11 @@ public class View extends JFrame {
 
         //res pnl
         confirmResBtn = new CButton("Add Reservation", BTN_WIDTH, BTN_HEIGHT, 14);
-        finalizeResButton = new CButton("Confirm", BTN_WIDTH, BTN_HEIGHT, 14);
-        cancelResButton = new CButton("Cancel", BTN_WIDTH, BTN_HEIGHT, 14);
+        finalizeResButton = new CButton("Confirm", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        cancelResButton = new CButton("Cancel", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        standardRoomBtn = new CButton("Std", SMALLEST_BTN_WIDTH, SMALL_BTN_HEIGHT, 10);
+        deluxeRoomBtn = new CButton("Dlx", SMALLEST_BTN_WIDTH, SMALL_BTN_HEIGHT, 10);
+        executiveRoomBtn = new CButton("Exe", SMALLEST_BTN_WIDTH, SMALL_BTN_HEIGHT, 10);
 
         centerPnl = new JPanel();
 
@@ -809,7 +813,7 @@ public class View extends JFrame {
         return printRoomsScrPane;
     }
 
-    public JScrollPane printReserveConfirmation(String[] breakdown, int height){
+    public void printReserveBreakdown(String[] breakdown, int height){
         JPanel mainBreakdownPnl = new JPanel();
         mainBreakdownPnl.setLayout(new BoxLayout(mainBreakdownPnl, BoxLayout.Y_AXIS));
         mainBreakdownPnl.setMaximumSize(new Dimension(Short.MAX_VALUE, height));
@@ -822,27 +826,28 @@ public class View extends JFrame {
 
             mainBreakdownPnl.add(dayPrompt);
         }
-
+        
         JScrollPane printBreakdownScrPane = new JScrollPane(mainBreakdownPnl);
         printBreakdownScrPane.setPreferredSize(new Dimension(BTN_WIDTH+5, height));
-
-        return printBreakdownScrPane;
+        resRightPnl.add(printBreakdownScrPane);
+        resRightPnl.add(finalizeResButton);
+        resRightPnl.add(cancelResButton);
     }
 
-    public void reserveHotel(String[] roomNames, String[] priceBreakdown, int state){
+    public void reserveHotel(String[] priceBreakdown){
         this.remove(centerPnl);
 
         this.centerPnl = new JPanel();
-        JPanel centerRightPnl = new JPanel();
-        JPanel centerLeftPnl = new JPanel();
+        this.resRightPnl = new JPanel();
+        this.resLeftPnl = new JPanel();
         JPanel addResPnl = new JPanel();
         JPanel headerPnl = new JPanel();
 
         centerPnl.setLayout(new BorderLayout());
-        centerRightPnl.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        centerRightPnl.setPreferredSize(new Dimension(245, CENTER_MAIN_HEIGHT));
-        centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
-        centerLeftPnl.setPreferredSize(new Dimension(245, CENTER_MAIN_HEIGHT));
+        this.resRightPnl.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        this.resRightPnl.setPreferredSize(new Dimension(245, CENTER_MAIN_HEIGHT));
+        this.resLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        this.resLeftPnl.setPreferredSize(new Dimension(245, CENTER_MAIN_HEIGHT));
         addResPnl.setPreferredSize(new Dimension(230, 300));
         addResPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         headerPnl.setPreferredSize(new Dimension(BTN_WIDTH, TF_HEIGHT));
@@ -867,44 +872,40 @@ public class View extends JFrame {
         CLabel roomIndexLbl = new CLabel("Room [n]             ", SUBTITLE_HEIGHT, Font.PLAIN);
         CLabel breakdownLbl = new CLabel("Price Breakdown", SUBTITLE_HEIGHT, Font.BOLD);
 
-        addResPnl.add(roomIndexLbl);
-        addResPnl.add(generalTf);
-
         addResPnl.add(checkInLbl);
         addResPnl.add(numCheckInTf);
 
         addResPnl.add(checkOutLbl);
         addResPnl.add(numCheckOutTf);
 
-        addResPnl.add(new CLabel("                                  ", SUBTITLE_HEIGHT, Font.PLAIN));
+        addResPnl.add(roomIndexLbl);
+        addResPnl.add(generalTf);
+
+        addResPnl.add(standardRoomBtn);
+        addResPnl.add(deluxeRoomBtn);
+        addResPnl.add(executiveRoomBtn);
+
         addResPnl.add(promoCodeLbl);
         addResPnl.add(promoCodeTf);
 
         addResPnl.add(this.confirmResBtn);
 
-        centerLeftPnl.add(nameLbl);
-        centerLeftPnl.add(nameTf);
+        resLeftPnl.add(nameLbl);
+        resLeftPnl.add(nameTf);
 
-        centerLeftPnl.add(addResPnl);
+        resLeftPnl.add(addResPnl);
 
+        headerPnl.add(breakdownLbl);
 
-        if(state == 1){
-            headerPnl.add(roomReserveLbl);
-            centerRightPnl.add(headerPnl);
-            centerRightPnl.add(printRooms(roomNames, 300));
-        }
+        resRightPnl.add(headerPnl);
         
-        if(state == 2){
-            headerPnl.add(breakdownLbl);
-            centerRightPnl.add(headerPnl);
-            centerRightPnl.add(printReserveConfirmation(priceBreakdown, 300));
-        }
+    
 
         setCenterTitleLblText("Create a Booking");
 
         centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
-        centerPnl.add(centerLeftPnl, BorderLayout.WEST);
-        centerPnl.add(centerRightPnl, BorderLayout.EAST);
+        centerPnl.add(this.resLeftPnl, BorderLayout.WEST);
+        centerPnl.add(this.resRightPnl, BorderLayout.EAST);
         this.add(centerPnl);
 
 
@@ -954,6 +955,18 @@ public class View extends JFrame {
 
     public void setCancelResListener(ActionListener actionListener){
         this.cancelResButton.addActionListener(actionListener);
+    }
+
+    public void setStandardRoomListener(ActionListener actionListener){
+        this.standardRoomBtn.addActionListener(actionListener);
+    }
+
+    public void setDeluxeRoomListener(ActionListener actionListener){
+        this.deluxeRoomBtn.addActionListener(actionListener);
+    }
+
+    public void setExecutiveRoomListener(ActionListener actionListener){
+        this.executiveRoomBtn.addActionListener(actionListener);
     }
 
     public void setInquireHotelListener(ActionListener actionListener){
@@ -1085,4 +1098,35 @@ public class View extends JFrame {
     public String getNameTf(){
         return this.nameTf.getText();
     }
+
+    public void setGeneralTf(String text){
+        this.generalTf.setText(text);
+    }
+
+    public void setResRightPnl(JScrollPane breakdown){
+        this.resRightPnl.add(breakdown);
+    }
+
+    public void deleteResRightPnl(){
+        this.remove(resRightPnl);
+    }
+
+    public void setConfirmResClickable(Boolean b){
+        this.confirmResBtn.setEnabled(b);
+    }
+
+    public void setStandardRoomBtnClickable(Boolean b){
+        this.standardRoomBtn.setEnabled(b);
+    }
+    public void setDeluxeRoomBtnClickable(Boolean b){
+        this.deluxeRoomBtn.setEnabled(b);
+    }
+    public void setExecutiveRoomBtnClickable(Boolean b){
+        this.executiveRoomBtn.setEnabled(b);
+    }
+
+    public void setGeneralTfEditable(Boolean b){
+        this.generalTf.setEditable(b);
+    }
+
 }
