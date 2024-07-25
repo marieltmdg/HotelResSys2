@@ -123,6 +123,10 @@ public class Controller {
                 breakdown[0] = "*breakdown*";
                 view.reserveHotel(breakdown);
                 view.setGeneralTfEditable(false);
+                view.setStandardRoomBtnClickable(true);
+                view.setDeluxeRoomBtnClickable(true);
+                view.setExecutiveRoomBtnClickable(true);
+                view.setConfirmResClickable(true);
             }
         });
     }
