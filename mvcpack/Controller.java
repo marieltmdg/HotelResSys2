@@ -337,6 +337,7 @@ public class Controller {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     System.out.println("Confirm");
+                    String stringGuestName = view.getNameTf();
                     String stringRoomIndex = (view.getGeneralTf());
                     String stringCheckIn = (view.getNumCheckInTf());
                     String stringCheckOut = (view.getNumCheckOutTf());
@@ -353,7 +354,7 @@ public class Controller {
 
                     if (numRoomIndex == -2){
                         result = "There is no available room for that type";
-                    }else if (numRoomIndex != -1 && numCheckIn != -1 && numCheckOut != -1) {
+                    } else if (numRoomIndex != -1 && numCheckIn != -1 && numCheckOut != -1 && !stringGuestName.isEmpty()) {
                         if(!(model.utility.isEmpty(stringPromoCode))) {
                             switch (promoValidity) {
                                 case 0:
@@ -371,12 +372,14 @@ public class Controller {
                                     result = "Code not Redeemed. Invalid";
                                     break;
                             }
-                        }
+                        } else result = ""; //no promo inputted, but valid indices
 
-                        String[] breakdown = model.getPriceBreakdown(promoValidity, numCheckIn, numCheckOut, numRoomIndex-1);
                         if (model.utility.checkDateValidity(numCheckIn, numCheckOut)) {
+
+                            // if everything is valid
+                            String[] breakdown = model.getPriceBreakdown(promoValidity, numCheckIn, numCheckOut, numRoomIndex-1);
+                            view.setReserveDetailsEditable(false);
                             view.printReserveBreakdown(breakdown, 300);
-                            result = "Valid details";
                             click = false;
                         } else result = "Invalid check-in and check-out days";
                     }

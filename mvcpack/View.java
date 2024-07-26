@@ -1131,6 +1131,17 @@ public class View extends JFrame {
         this.remove(resRightPnl);
     }
 
+    public void setReserveDetailsEditable(Boolean b){
+        this.nameTf.setEditable(b);
+        this.generalTf.setEditable(b);
+        this.numCheckInTf.setEditable(b);
+        this.numCheckOutTf.setEditable(b);
+        this.promoCodeTf.setEditable(b);
+        this.deluxeRoomBtn.setEnabled(b);
+        this.standardRoomBtn.setEnabled(b);
+        this.executiveRoomBtn.setEnabled(b);
+    }
+
     public void setGeneralTfEditable(Boolean b){
         this.generalTf.setEditable(b);
     }
