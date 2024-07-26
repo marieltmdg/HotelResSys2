@@ -121,7 +121,7 @@ public class Controller {
             public void actionPerformed(ActionEvent e){
                 String[] breakdown = new String[1];
                 breakdown[0] = "*breakdown*";
-                view.reserveHotel(breakdown, 0);
+                view.reserveHotel(breakdown);
                 view.setGeneralTfEditable(false);
                 view.setStandardRoomBtnClickable(true);
                 view.setDeluxeRoomBtnClickable(true);
@@ -375,15 +375,10 @@ public class Controller {
 
                         String[] breakdown = model.getPriceBreakdown(promoValidity, numCheckIn, numCheckOut, numRoomIndex-1);
                         if (model.utility.checkDateValidity(numCheckIn, numCheckOut)) {
-                            view.reserveHotel(breakdown, 1);
-                            result = "";
+                            view.printReserveBreakdown(breakdown, 300);
+                            result = "Valid details";
                             click = false;
                         } else result = "Invalid check-in and check-out days";
-                    } else {
-                        //not valid
-                        String[] breakdown = new String[1];
-                        breakdown[0] = "*breakdown*";
-                        view.reserveHotel(breakdown, 0);
                     }
 
                     view.setFeedbackLblText(result);
@@ -469,18 +464,13 @@ public class Controller {
                     String[] breakdown  = new String[1];
                     breakdown[0] = "*breakdown*";
 
-                    //BUG : all returning as -1
-                    System.out.println(numRoomIndex);
-                    System.out.println(numCheckIn);
-                    System.out.println(numCheckOut);
-
                     if (numRoomIndex != -1 && numCheckIn != -1 && numCheckOut != -1) {
                         if (numRoomIndex == -2){
                             result = "There is no available room for that type";
                         }
                          else if (model.utility.checkDateValidity(numCheckIn, numCheckOut)) {
                             result = model.addReservation(stringName, numCheckIn, numCheckOut, numRoomIndex-1);
-                            model.setResTotalPrice(promoValidity, numCheckIn, numCheckOut, numRoomIndex);
+                            model.setResTotalPrice(promoValidity, numCheckIn, numCheckOut, numRoomIndex-1);
                         } else result = "Invalid check-in and check-out days";
                     } else result = "Please fill out name, check in, check out, and select room type";
 
@@ -490,7 +480,7 @@ public class Controller {
                     view.setConfirmResClickable(true);
 
                     view.setFeedbackLblText(result);
-                    view.reserveHotel(breakdown, 0);
+                    view.reserveHotel(breakdown);
                     view.setGeneralTfEditable(false);
                 }
             });
@@ -500,14 +490,9 @@ public class Controller {
                 public void actionPerformed(ActionEvent e){
                     String[] breakdown = new String[1];
                     breakdown[0] = "*breakdown*";
-                    view.reserveHotel(breakdown, 0);
+                    view.reserveHotel(breakdown);
 
                     view.setFeedbackLblText("Reservation Cancelled");
-                    view.setGeneralTfEditable(false);
-                    view.setStandardRoomBtnClickable(true);
-                    view.setDeluxeRoomBtnClickable(true);
-                    view.setExecutiveRoomBtnClickable(true);
-                    view.setConfirmResClickable(true);
                 }
             });
         }

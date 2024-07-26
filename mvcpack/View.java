@@ -813,13 +813,10 @@ public class View extends JFrame {
         return printRoomsScrPane;
     }
 
-    public JPanel printReserveBreakdown(String[] breakdown, int height){
+    public void printReserveBreakdown(String[] breakdown, int height){
         JPanel mainBreakdownPnl = new JPanel();
-        JPanel btnPnl = new JPanel();
         mainBreakdownPnl.setLayout(new BoxLayout(mainBreakdownPnl, BoxLayout.Y_AXIS));
         mainBreakdownPnl.setMaximumSize(new Dimension(Short.MAX_VALUE, height));
-        btnPnl.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        btnPnl.setPreferredSize(new Dimension(245, CENTER_MAIN_HEIGHT-TF_HEIGHT));
 
         for (String line : breakdown) {
             CLabel dayPrompt = new CLabel(line);
@@ -832,14 +829,15 @@ public class View extends JFrame {
         
         JScrollPane printBreakdownScrPane = new JScrollPane(mainBreakdownPnl);
         printBreakdownScrPane.setPreferredSize(new Dimension(BTN_WIDTH+5, height));
-        btnPnl.add(printBreakdownScrPane);
-        btnPnl.add(finalizeResButton);
-        btnPnl.add(cancelResButton);
+        this.resRightPnl.add(printBreakdownScrPane);
+        this.resRightPnl.add(finalizeResButton);
+        this.resRightPnl.add(cancelResButton);
 
-        return btnPnl;
+        resRightPnl.revalidate();
+        resRightPnl.repaint();
     }
 
-    public void reserveHotel(String[] priceBreakdown, int state){
+    public void reserveHotel(String[] priceBreakdown){
         this.remove(centerPnl);
 
         this.centerPnl = new JPanel();
@@ -877,6 +875,12 @@ public class View extends JFrame {
         CLabel roomIndexLbl = new CLabel("Room Type             ", SUBTITLE_HEIGHT, Font.PLAIN);
         CLabel breakdownLbl = new CLabel("Price Breakdown", SUBTITLE_HEIGHT, Font.BOLD);
 
+        setGeneralTfEditable(false);
+        setStandardRoomBtnClickable(true);
+        setDeluxeRoomBtnClickable(true);
+        setExecutiveRoomBtnClickable(true);
+        setConfirmResClickable(true);
+
         addResPnl.add(checkInLbl);
         addResPnl.add(numCheckInTf);
 
@@ -903,10 +907,6 @@ public class View extends JFrame {
         headerPnl.add(breakdownLbl);
 
         resRightPnl.add(headerPnl);
-
-        if (state == 1) {
-            resRightPnl.add(printReserveBreakdown(priceBreakdown, 300));
-        }
 
         setCenterTitleLblText("Create a Booking");
 
@@ -1121,6 +1121,14 @@ public class View extends JFrame {
     }
     public void setExecutiveRoomBtnClickable(Boolean b){
         this.executiveRoomBtn.setEnabled(b);
+    }
+
+    public void setResRightPnl(JScrollPane breakdown){
+        this.resRightPnl.add(breakdown);
+    }
+
+    public void deleteResRightPnl(){
+        this.remove(resRightPnl);
     }
 
     public void setGeneralTfEditable(Boolean b){
