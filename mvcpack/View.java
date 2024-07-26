@@ -869,10 +869,10 @@ public class View extends JFrame {
 
         CLabel nameLbl = new CLabel("Guest Name", SUBTITLE_HEIGHT, Font.BOLD);
         CLabel roomReserveLbl = new CLabel("List of Rooms", SUBTITLE_HEIGHT, Font.BOLD);
-        CLabel checkInLbl = new CLabel("Check In Date       ", SUBTITLE_HEIGHT, Font.PLAIN);
+        CLabel checkInLbl = new CLabel("Check In Date        ", SUBTITLE_HEIGHT, Font.PLAIN);
         CLabel checkOutLbl = new CLabel("Check Out Date     ", SUBTITLE_HEIGHT, Font.PLAIN);
         CLabel promoCodeLbl = new CLabel("Promo Code", SUBTITLE_HEIGHT -3, Font.ITALIC);
-        CLabel roomIndexLbl = new CLabel("Room Type             ", SUBTITLE_HEIGHT, Font.PLAIN);
+        CLabel roomIndexLbl = new CLabel(" Room Type           ", SUBTITLE_HEIGHT, Font.PLAIN);
         CLabel breakdownLbl = new CLabel("Price Breakdown", SUBTITLE_HEIGHT, Font.BOLD);
 
         setGeneralTfEditable(false);

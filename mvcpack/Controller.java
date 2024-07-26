@@ -123,10 +123,20 @@ public class Controller {
                 breakdown[0] = "*breakdown*";
                 view.reserveHotel(breakdown);
                 view.setGeneralTfEditable(false);
-                view.setStandardRoomBtnClickable(true);
-                view.setDeluxeRoomBtnClickable(true);
-                view.setExecutiveRoomBtnClickable(true);
-                view.setConfirmResClickable(true);
+
+                int std = model.getStandardRoomCount();
+                int del = model.getDeluxeRoomCount();
+                int exe = model.getExecRoomCount();
+
+                if(std > 0) {
+                    view.setStandardRoomBtnClickable(true);
+                } else view.setStandardRoomBtnClickable(false);
+                if(del > 0) {
+                    view.setDeluxeRoomBtnClickable(true);
+                } else view.setDeluxeRoomBtnClickable(false);
+                if(exe > 0) {
+                    view.setExecutiveRoomBtnClickable(true);
+                } else view.setExecutiveRoomBtnClickable(false);
             }
         });
     }
@@ -353,7 +363,7 @@ public class Controller {
                     boolean click = true;
 
                     if (numRoomIndex == -2){
-                        result = "There is no available room for that type";
+                        result = "There is no available room for that type and date";
                     } else if (numRoomIndex != -1 && numCheckIn != -1 && numCheckOut != -1 && !stringGuestName.isEmpty()) {
                         if(!(model.utility.isEmpty(stringPromoCode))) {
                             switch (promoValidity) {
@@ -384,8 +394,24 @@ public class Controller {
                         } else result = "Invalid check-in and check-out days";
                     }
 
+                    // if invalid input
+                    if (!click) {
+                        int std = model.getStandardRoomCount();
+                        int del = model.getDeluxeRoomCount();
+                        int exe = model.getExecRoomCount();
+
+                        if (std > 0) {
+                            view.setStandardRoomBtnClickable(true);
+                        } else view.setStandardRoomBtnClickable(false);
+                        if (del > 0) {
+                            view.setDeluxeRoomBtnClickable(true);
+                        } else view.setDeluxeRoomBtnClickable(false);
+                        if (exe > 0) {
+                            view.setExecutiveRoomBtnClickable(true);
+                        } else view.setExecutiveRoomBtnClickable(false);
+                    }
                     view.setFeedbackLblText(result);
-                    view.setConfirmResClickable(click);
+                    view.setConfirmResClickable(click); //lock details
                     view.setGeneralTfEditable(false);
 
                 }
@@ -404,9 +430,17 @@ public class Controller {
 
                     view.setGeneralTf(temp);
 
+                    int del = model.getDeluxeRoomCount();
+                    int exe = model.getExecRoomCount();
+
                     view.setStandardRoomBtnClickable(false);
-                    view.setDeluxeRoomBtnClickable(true);
-                    view.setExecutiveRoomBtnClickable(true);
+
+                    if(del > 0) {
+                        view.setDeluxeRoomBtnClickable(true);
+                    } else view.setDeluxeRoomBtnClickable(false);
+                    if(exe > 0) {
+                        view.setExecutiveRoomBtnClickable(true);
+                    } else view.setExecutiveRoomBtnClickable(false);
                 }
             });
 
@@ -422,9 +456,18 @@ public class Controller {
                     String temp =  model.getAvailableRoom(numCheckIn, numCheckOut, 2);
 
                     view.setGeneralTf(temp);
-                    view.setStandardRoomBtnClickable(true);
+                    int std = model.getStandardRoomCount();
+                    int exe = model.getExecRoomCount();
+
+                    if(std > 0) {
+                        view.setStandardRoomBtnClickable(true);
+                    } else view.setStandardRoomBtnClickable(false);
+
                     view.setDeluxeRoomBtnClickable(false);
-                    view.setExecutiveRoomBtnClickable(true);
+
+                    if(exe > 0) {
+                        view.setExecutiveRoomBtnClickable(true);
+                    } else view.setExecutiveRoomBtnClickable(false);
                 }
             });
 
@@ -441,10 +484,16 @@ public class Controller {
 
                     view.setGeneralTf(temp);
 
-                    view.setStandardRoomBtnClickable(true);
-                    view.setDeluxeRoomBtnClickable(true);
+                    int std = model.getStandardRoomCount();
+                    int del = model.getDeluxeRoomCount();
+                    if(std > 0) {
+                        view.setStandardRoomBtnClickable(true);
+                    } else view.setStandardRoomBtnClickable(false);
+                    if(del > 0) {
+                        view.setDeluxeRoomBtnClickable(true);
+                    } else view.setDeluxeRoomBtnClickable(false);
+
                     view.setExecutiveRoomBtnClickable(false);
-                    
                 }
             });
 
@@ -469,7 +518,7 @@ public class Controller {
 
                     if (numRoomIndex != -1 && numCheckIn != -1 && numCheckOut != -1) {
                         if (numRoomIndex == -2){
-                            result = "There is no available room for that type";
+                            result = "There is no available room of that type for those dates";
                         }
                          else if (model.utility.checkDateValidity(numCheckIn, numCheckOut)) {
                             result = model.addReservation(stringName, numCheckIn, numCheckOut, numRoomIndex-1);
@@ -477,14 +526,25 @@ public class Controller {
                         } else result = "Invalid check-in and check-out days";
                     } else result = "Please fill out name, check in, check out, and select room type";
 
-                    view.setStandardRoomBtnClickable(true);
-                    view.setDeluxeRoomBtnClickable(true);
-                    view.setExecutiveRoomBtnClickable(true);
+                    view.reserveHotel(breakdown);
+
+                    int std = model.getStandardRoomCount();
+                    int del = model.getDeluxeRoomCount();
+                    int exe = model.getExecRoomCount();
+
+                    if(std > 0) {
+                        view.setStandardRoomBtnClickable(true);
+                    } else view.setStandardRoomBtnClickable(false);
+                    if(del > 0) {
+                        view.setDeluxeRoomBtnClickable(true);
+                    } else view.setDeluxeRoomBtnClickable(false);
+                    if(exe > 0) {
+                        view.setExecutiveRoomBtnClickable(true);
+                    } else view.setExecutiveRoomBtnClickable(false);
+
                     view.setConfirmResClickable(true);
 
                     view.setFeedbackLblText(result);
-                    view.reserveHotel(breakdown);
-                    view.setGeneralTfEditable(false);
                 }
             });
 
@@ -494,8 +554,21 @@ public class Controller {
                     String[] breakdown = new String[1];
                     breakdown[0] = "*breakdown*";
                     view.reserveHotel(breakdown);
+                    view.setGeneralTfEditable(false);
 
-                    view.setFeedbackLblText("Reservation Cancelled");
+                    int std = model.getStandardRoomCount();
+                    int del = model.getDeluxeRoomCount();
+                    int exe = model.getExecRoomCount();
+
+                    if(std > 0) {
+                        view.setStandardRoomBtnClickable(true);
+                    } else view.setStandardRoomBtnClickable(false);
+                    if(del > 0) {
+                        view.setDeluxeRoomBtnClickable(true);
+                    } else view.setDeluxeRoomBtnClickable(false);
+                    if(exe > 0) {
+                        view.setExecutiveRoomBtnClickable(true);
+                    } else view.setExecutiveRoomBtnClickable(false);
                 }
             });
         }
