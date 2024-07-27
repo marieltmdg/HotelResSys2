@@ -25,10 +25,15 @@ public class View extends JFrame {
         removeReservationBtn, removeHotelBtn, datePriceBtn,
             confirmRenameBtn, confirmAddRmBtn, confirmRemoveRmBtn, confirmUpdatePriceBtn
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             ,confirmRemoveResBtn, confirmRemoveHotelBtn, confirmDatePriceBtn;
     private JTextField newNameTf, general2Tf;
 =======
             ,confirmRemoveResBtn, confirmRemoveHotelBtn, confirmDatePriceBtn;
+=======
+            ,confirmRemoveResBtn, confirmRemoveHotelBtn, confirmDatePriceBtn;
+    private JTextField newNameTf, resIndexTf;
+>>>>>>> Stashed changes
 
     private CButton saveBtn, loadBtn, confirmLoadBtn;
     private JTextField newNameTf, general2Tf;
@@ -44,9 +49,13 @@ public class View extends JFrame {
     private final int TF_WIDTH = 200;
     private final int BTN_WIDTH = 200;
     private final int BTN_HEIGHT = 50;
+<<<<<<< Updated upstream
     private final int SMALL_BTN_HEIGHT = BTN_HEIGHT - 15;
     private final int SMALL_BTN_WIDTH = BTN_WIDTH - 30;
     private final int SMALLEST_BTN_WIDTH = (BTN_WIDTH-10) / 3;
+=======
+    private final int SMALL_BTN_HEIGHT = BTN_HEIGHT -10;
+>>>>>>> Stashed changes
     private final int TF_HEIGHT = 35;
 
     private final int MAINFRAME_WIDTH = 700;
@@ -90,6 +99,7 @@ public class View extends JFrame {
         selectRoomBtn = new CButton("Select Room", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
 
         //manage pnl
+<<<<<<< Updated upstream
         renameBtn = new CButton("Rename Hotel", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
         addRoomBtn = new CButton("Add Room", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
         removeRoomBtn = new CButton("Remove Room", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
@@ -97,6 +107,15 @@ public class View extends JFrame {
         datePriceBtn = new CButton("Price/Date", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
         removeReservationBtn = new CButton("Remove Booking", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
         removeHotelBtn = new CButton("Remove Hotel", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+=======
+        renameBtn = new CButton("Rename Hotel", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        addRoomBtn = new CButton("Add Room", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        removeRoomBtn = new CButton("Remove Room", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        updatePriceBtn = new CButton("Update Price", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        removeReservationBtn = new CButton("Remove Reservation", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        removeHotelBtn = new CButton("Remove Hotel", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        datePriceBtn = new CButton("Modify Date Price", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+>>>>>>> Stashed changes
 
         confirmRenameBtn = new CButton("Confirm Rename", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
         confirmAddRmBtn = new CButton("Confirm Add Rooms", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
@@ -105,6 +124,8 @@ public class View extends JFrame {
         confirmDatePriceBtn = new CButton("Confirm Update", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
         confirmRemoveResBtn = new CButton("Confirm Removal", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
         confirmRemoveHotelBtn = new CButton("Confirm Removal", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+        confirmDatePriceBtn = new CButton("Confirm Date Price", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+
 
         //res pnl
         confirmResBtn = new CButton("Add Reservation", BTN_WIDTH, BTN_HEIGHT, 14);
