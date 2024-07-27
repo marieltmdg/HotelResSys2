@@ -27,6 +27,7 @@ public class Controller {
                 System.out.println("pressed create"); // CHECKER
                 String[] hotelListNames= model.getHotelListNames();
                 view.createHotel(hotelListNames);
+                view.setFeedbackLblText("");
             }
         });
 
@@ -35,6 +36,7 @@ public class Controller {
             public void actionPerformed(ActionEvent e) {
                 String[] hotelListNames= model.getHotelListNames();
                 view.selectHotel(hotelListNames);
+                view.setFeedbackLblText("");
             }
         });
 
@@ -58,6 +60,7 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 view.home();
+                view.setFeedbackLblText("");
             }
         });
     }
@@ -106,6 +109,7 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 view.inquireHotel();
+                view.setFeedbackLblText("");
             }
         });
 
@@ -113,12 +117,14 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 view.manageHotel();
+                view.setFeedbackLblText("");
             }
         });
 
         this.view.setReserveListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                view.setFeedbackLblText("");
                 String[] breakdown = new String[1];
                 breakdown[0] = "*breakdown*";
                 view.reserveHotel(breakdown);
@@ -147,6 +153,7 @@ public class Controller {
             public void actionPerformed(ActionEvent e){
                 view.inquireHotelInfo(model.getCurrentHotel(), model.getRoomCount(), model.getStandardRoomCount(),
                         model.getDeluxeRoomCount(), model.getExecRoomCount(), model.getEarnings());
+                view.setFeedbackLblText("");
             }
         });
     
@@ -165,6 +172,33 @@ public class Controller {
         this.view.setInquireDateListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                view.setFeedbackLblText("");
+                view.inquireDatesPanel();
+                
+            }
+        });
+
+        this.view.setDateButtonsListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+               
+               
+                int date = view.getDateButtonsClickedIndex(e.getSource())+1;
+                String[] roomName = new String[model.getTotalAvailableRooms(date)];
+
+                view.displayDateInfo(date, model.getTotalReservedRooms(date), 
+                                    model.getTotalAvailableRooms(date), model.getAvailableRoomList(date));
+                view.setFeedbackLblText("");
+                    
+            }
+        });
+
+        this.view.setDateBackButtonListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.setFeedbackLblText("");
+                view.inquireDatesPanel();
+                
             }
         });
     }

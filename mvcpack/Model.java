@@ -154,6 +154,28 @@ public class Model {
         return names;
     }
 
+    public String[] getAvailableRoomNames(int checkIn, int checkOut){
+        String[] names = new String[hotelList.get(selectedHotelIndex).getRoomList().size()];
+        int j = 0;
+        for(int i = 0; i <hotelList.get(selectedHotelIndex).getRoomList().size(); i++){
+            if(hotelList.get(selectedHotelIndex).getRoomList().get(i).isAvailable(checkIn, checkOut)){
+                names[j] = hotelList.get(selectedHotelIndex).getRoomName(i);
+                j++;
+            }
+        }
+
+        return names;
+    }
+
+    public int getTotalAvailableRooms(int date){
+        return hotelList.get(selectedHotelIndex).checkNumAvailableRooms(date);
+    }
+
+    public int getTotalReservedRooms(int date){
+        return hotelList.get(selectedHotelIndex).checkNumBookedRooms(date);
+    }
+
+
     public String[][] getReservationListDetailed(){
         return hotelList.get(selectedHotelIndex).getReservationListDetailed();
     }
@@ -200,6 +222,16 @@ public class Model {
 
     public String[] getPriceBreakdown(int promoValidity, int checkIn, int checkOut, int roomIndex){
         return hotelList.get(selectedHotelIndex).getRoom(roomIndex).priceBreakdown(promoValidity, checkIn, checkOut);
+    }
+
+    public String[] getAvailableRoomList(int date){
+        String[] roomList = new String[getTotalAvailableRooms(date)];
+        for(int i=0; i<hotelList.get(selectedHotelIndex).getRoomList().size(); i++){
+            if(hotelList.get(selectedHotelIndex).getRoomList().get(i).isAvailable(date, date+1)){
+                roomList[i] = hotelList.get(selectedHotelIndex).getRoomList().get(i).getRoomName();
+            }
+        }
+        return roomList;
     }
 
 
