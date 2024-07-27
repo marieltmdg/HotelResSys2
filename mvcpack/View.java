@@ -458,7 +458,7 @@ public class View extends JFrame {
         centerRightPnl.setLayout(new FlowLayout());
         centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
         JPanel datePnl = new JPanel();
-        datePnl.setLayout(new FlowLayout());
+        datePnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         datePnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
 
         centerRightPnl.add(new CLabel("                                 ", SUBTITLE_HEIGHT, Font.BOLD));
@@ -466,10 +466,12 @@ public class View extends JFrame {
         centerRightPnl.add(new CLabel(roomName, SUBTITLE_HEIGHT, Font.PLAIN));
         centerRightPnl.add(new CLabel("Price per night: ", SUBTITLE_HEIGHT, Font.BOLD));
         centerRightPnl.add(new CLabel(""+price, SUBTITLE_HEIGHT, Font.PLAIN));
+        centerRightPnl.add(new CLabel("                                 ", SUBTITLE_HEIGHT, Font.BOLD));
         centerRightPnl.add(new CLabel("Availability: ", SUBTITLE_HEIGHT, Font.BOLD));
 
-        for(int i = 0; i < 4; i++) {
-            datePnl.add(new CLabel(availableDates[i], SUBTITLE_HEIGHT-2,Font.PLAIN));
+        for(int i = 0; i < 5; i++) {
+            datePnl.add(new CLabel("                                                  ", SUBTITLE_HEIGHT, Font.BOLD));
+            datePnl.add(new CLabel("<html>" + availableDates[i] + "<html>", SUBTITLE_HEIGHT-2,Font.PLAIN));
         }
 
         centerRightPnl.add(datePnl);
@@ -619,7 +621,7 @@ public class View extends JFrame {
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
 
-        roomPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 300));
+        roomPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 315));
         roomPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         selectionPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 150));
         selectionPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -627,7 +629,8 @@ public class View extends JFrame {
         generalTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
 
         CLabel selectRoomLbl = new CLabel("Select Room [n]: ", SUBTITLE_HEIGHT, Font.BOLD);
-        roomPnl.add(printRooms(roomNames, CENTER_MAIN_WIDTH-10, 290));
+        roomPnl.add(new CLabel("Rooms in the hotel: ", SUBTITLE_HEIGHT, Font.BOLD));
+        roomPnl.add(printRooms(roomNames, CENTER_MAIN_WIDTH-10, 280));
         selectionPnl.add(selectRoomLbl, new FlowLayout(FlowLayout.CENTER));
         selectionPnl.add(generalTf, new FlowLayout(FlowLayout.CENTER));
         selectionPnl.add(confirmRemoveRmBtn, new FlowLayout(FlowLayout.CENTER));
@@ -692,15 +695,16 @@ public class View extends JFrame {
         centerPnl.setLayout(new BorderLayout());
 
         pricePnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 300));
-        pricePnl.setLayout(new FlowLayout(FlowLayout.LEFT));
+        pricePnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         selectionPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 150));
         selectionPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         generalTf.setPreferredSize(new Dimension(TF_WIDTH/2-2, TF_HEIGHT));
         general2Tf.setPreferredSize(new Dimension(TF_WIDTH/2-2, TF_HEIGHT));
 
-        CLabel datePriceLbl = new CLabel("      [Date]     [%Modifier]    ", SUBTITLE_HEIGHT, Font.BOLD);
-        pricePnl.add(printPricePerDate(prices, CENTER_MAIN_WIDTH -10, 290));
+        CLabel datePriceLbl = new CLabel("       [Date]    [%Modifier]    ", SUBTITLE_HEIGHT, Font.BOLD);
+        pricePnl.add(new CLabel("Price multiplier per date: ", SUBTITLE_HEIGHT, Font.BOLD));
+        pricePnl.add(printPricePerDate(prices, CENTER_MAIN_WIDTH -10, 270));
         selectionPnl.add(new CLabel("New % can range from 50% to 150%", SUBTITLE_HEIGHT-5, Font.ITALIC));
         selectionPnl.add(datePriceLbl, new FlowLayout(FlowLayout.CENTER));
         selectionPnl.add(generalTf, new FlowLayout(FlowLayout.CENTER));
@@ -733,7 +737,7 @@ public class View extends JFrame {
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
 
-        resPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 300));
+        resPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 315));
         resPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         selectionPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 150));
         selectionPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -744,7 +748,7 @@ public class View extends JFrame {
         CLabel selectRoomLbl = new CLabel("     [Room]  [Reservation]", SUBTITLE_HEIGHT, Font.BOLD);
 
         resPnl.add(new CLabel("Rooms in the hotel: ", SUBTITLE_HEIGHT, Font.BOLD));
-        resPnl.add(printReservation(roomCount, reservationNames, CENTER_MAIN_WIDTH -10, 290));
+        resPnl.add(printReservation(roomCount, reservationNames, CENTER_MAIN_WIDTH -10, 280));
         selectionPnl.add(selectRoomLbl, new FlowLayout(FlowLayout.CENTER));
         selectionPnl.add(generalTf, new FlowLayout(FlowLayout.CENTER));
         selectionPnl.add(general2Tf, new FlowLayout(FlowLayout.CENTER));
@@ -776,7 +780,7 @@ public class View extends JFrame {
 
         centerRightPnl.add(new CLabel("                                 ", SUBTITLE_HEIGHT, Font.BOLD));
         centerRightPnl.add(new CLabel("                                 ", SUBTITLE_HEIGHT, Font.BOLD));
-        centerRightPnl.add(new CLabel("You can only remove a hotel", 12, Font.ITALIC));
+        centerRightPnl.add(new CLabel("You can only remove a hotel ", 12, Font.ITALIC));
         centerRightPnl.add(new CLabel("that has no reservations", 12, Font.ITALIC));
         centerRightPnl.add(new CLabel("                                 ", SUBTITLE_HEIGHT, Font.BOLD));
         centerRightPnl.add(new CLabel("Are you sure?", 14, Font.PLAIN));
