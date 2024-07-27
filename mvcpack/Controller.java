@@ -27,6 +27,7 @@ public class Controller {
                 System.out.println("pressed create"); // CHECKER
                 String[] hotelListNames= model.getHotelListNames();
                 view.createHotel(hotelListNames);
+                view.setFeedbackLblText("");
             }
         });
 
@@ -35,13 +36,14 @@ public class Controller {
             public void actionPerformed(ActionEvent e) {
                 String[] hotelListNames= model.getHotelListNames();
                 view.selectHotel(hotelListNames);
+                view.setFeedbackLblText("");
             }
         });
 
         this.view.setSelectListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                int index = (model.getPosNumValue(view.getHotelNameTfText()));
+                int index = (model.utility.getPosNumValue(view.getHotelNameTfText()));
                 String result = "Please input a positive number";
 
                 if(index != -1) {
@@ -80,6 +82,7 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 view.home();
+                view.setFeedbackLblText("");
             }
         });
     }
@@ -88,6 +91,7 @@ public class Controller {
         this.view.setConfirmListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                System.out.println("confirm create");
                 view.getHotelNameTfText();
                 String hotelName = view.getHotelNameTfText();
 
@@ -95,9 +99,9 @@ public class Controller {
                 String stringDeluxe = (view.getNumDeluxeTf().isEmpty()) ? "0" :  view.getNumDeluxeTf();
                 String stringExecutive = (view.getNumExecutiveTf().isEmpty()) ? "0" : view.getNumExecutiveTf();
 
-                int numStandard = model.getPosNumValue(stringStandard);
-                int numDeluxe = model.getPosNumValue(stringDeluxe);
-                int numExecutive = model.getPosNumValue(stringExecutive);
+                int numStandard = model.utility.getPosNumValue(stringStandard);
+                int numDeluxe = model.utility.getPosNumValue(stringDeluxe);
+                int numExecutive = model.utility.getPosNumValue(stringExecutive);
 
                 if(!(numStandard == -1 || numDeluxe == -1 || numExecutive == -1)){
                     int result = model.addHotel(hotelName, numStandard, numDeluxe, numExecutive);
@@ -128,6 +132,7 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 view.inquireHotel();
+                view.setFeedbackLblText("");
             }
         });
 
@@ -135,16 +140,32 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 view.manageHotel();
+                view.setFeedbackLblText("");
             }
         });
 
         this.view.setReserveListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                System.out.println("PRESSED RESERVE");
-                // TODO add reserve stuff
+                view.setFeedbackLblText("");
+                String[] breakdown = new String[1];
+                breakdown[0] = "*breakdown*";
+                view.reserveHotel(breakdown);
+                view.setGeneralTfEditable(false);
 
-                view.reserveHotel(model.getRoomListNames());
+                int std = model.getStandardRoomCount();
+                int del = model.getDeluxeRoomCount();
+                int exe = model.getExecRoomCount();
+
+                if(std > 0) {
+                    view.setStandardRoomBtnClickable(true);
+                } else view.setStandardRoomBtnClickable(false);
+                if(del > 0) {
+                    view.setDeluxeRoomBtnClickable(true);
+                } else view.setDeluxeRoomBtnClickable(false);
+                if(exe > 0) {
+                    view.setExecutiveRoomBtnClickable(true);
+                } else view.setExecutiveRoomBtnClickable(false);
             }
         });
 
@@ -163,12 +184,34 @@ public class Controller {
             public void actionPerformed(ActionEvent e){
                 view.inquireHotelInfo(model.getCurrentHotel(), model.getRoomCount(), model.getStandardRoomCount(),
                         model.getDeluxeRoomCount(), model.getExecRoomCount(), model.getEarnings());
+                view.setFeedbackLblText("");
             }
         });
     
         this.view.setInquireRoomListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                view.inquireRoomInfo(model.getRoomListNames());
+            }
+        });
+
+        this.view.setInquireSelectRoomListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                String sRoomIndex = view.getGeneralTf();
+                int roomIndex = model.utility.getPosNumValue(sRoomIndex);
+                String result = "Please input a positive number";
+
+                if (roomIndex != -1 && roomIndex != 0) {
+                    String roomName = model.getRoomName(roomIndex-1);
+                    double price = model.getPricePerType(roomIndex-1);
+                    String[] availableDates = model.getAvailableDatesForRoom(roomIndex-1);
+
+                    view.inquireSelectedRoom(roomName, price, availableDates);
+                    result = "Showing results for " + roomName;
+                }
+
+                view.setFeedbackLblText(result);
             }
         });
     
@@ -181,6 +224,33 @@ public class Controller {
         this.view.setInquireDateListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                view.setFeedbackLblText("");
+                view.inquireDatesPanel();
+                
+            }
+        });
+
+        this.view.setDateButtonsListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+               
+               
+                int date = view.getDateButtonsClickedIndex(e.getSource())+1;
+                String[] roomName = new String[model.getTotalAvailableRooms(date)];
+
+                view.displayDateInfo(date, model.getTotalReservedRooms(date), 
+                                    model.getTotalAvailableRooms(date), model.getAvailableRoomList(date));
+                view.setFeedbackLblText("");
+                    
+            }
+        });
+
+        this.view.setDateBackButtonListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.setFeedbackLblText("");
+                view.inquireDatesPanel();
+                
             }
         });
     }
@@ -207,9 +277,9 @@ public class Controller {
                 String stringDeluxe = (view.getNumDeluxeTf().isEmpty()) ? "0" : view.getNumDeluxeTf();
                 String stringExecutive = (view.getNumExecutiveTf().isEmpty()) ? "0" : view.getNumExecutiveTf();
 
-                int numStandard = model.getPosNumValue(stringStandard);
-                int numDeluxe = model.getPosNumValue(stringDeluxe);
-                int numExecutive = model.getPosNumValue(stringExecutive);
+                int numStandard = model.utility.getPosNumValue(stringStandard);
+                int numDeluxe = model.utility.getPosNumValue(stringDeluxe);
+                int numExecutive = model.utility.getPosNumValue(stringExecutive);
 
                 if(!(numStandard == -1 || numDeluxe == -1 || numExecutive == -1)){
                     if(model.getRoomCount() + numStandard + numDeluxe + numExecutive >= 51){
@@ -234,7 +304,7 @@ public class Controller {
         this.view.setConfirmRemoveRmListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int index = (model.getPosNumValue(view.getRoomIndexTf()));
+                int index = (model.utility.getPosNumValue(view.getGeneralTf()));
                 String result = "Please input a positive number";
 
                 if(index != -1)
@@ -248,7 +318,7 @@ public class Controller {
         this.view.setConfirmUpdatePriceListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double price = model.getPosDoubleValue(view.getRoomIndexTf());
+                double price = model.utility.getPosDoubleValue(view.getGeneralTf());
                 String result = "Please input a positive number";
 
                 if (price != -1)
@@ -259,11 +329,26 @@ public class Controller {
             }
         });
 
-        this.view.setConfirmRemoveResBtnListener(new ActionListener() {
+        this.view.setConfirmDatePriceListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int roomIndex = model.getPosNumValue(view.getRoomIndexTf());
-                int resIndex = model.getPosNumValue(view.getResIndexTfText());
+                int date = model.utility.getPosNumValue(view.getGeneralTf());
+                double price = model.utility.getPosDoubleValue(view.getGeneral2TfText());
+                String result = "Please input a positive number";
+
+                if (date != -1 && price != -1)
+                    result = model.updateDatePrice(date, price);
+
+                view.setFeedbackLblText(result);
+                view.datePrice(model.getDatePrice());
+            }
+        });
+
+        this.view.setConfirmRemoveResListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int roomIndex = model.utility.getPosNumValue(view.getGeneralTf());
+                int resIndex = model.utility.getPosNumValue(view.getGeneral2TfText());
                 String result = "Please input a positive number";
 
                 if (roomIndex != -1 && resIndex != -1)
@@ -274,7 +359,7 @@ public class Controller {
             }
         });
 
-        this.view.setConfirmRemoveHotelBtnListener(new ActionListener() {
+        this.view.setConfirmRemoveHotelListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int count = model.getReservationCount();
@@ -321,6 +406,14 @@ public class Controller {
             }
         });
 
+        this.view.setDatePriceListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.datePrice(model.getDatePrice());
+            }
+        });
+
+
         this.view.setRemoveResListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -340,19 +433,229 @@ public class Controller {
             this.view.setConfirmResListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    System.out.println("Confirm");
+                    String stringGuestName = view.getNameTf();
+                    String stringRoomIndex = (view.getGeneralTf());
+                    String stringCheckIn = (view.getNumCheckInTf());
+                    String stringCheckOut = (view.getNumCheckOutTf());
+                    String stringPromoCode = (view.getPromoCodeTf());
+                    String stringName = (view.getNameTf());
+                    String result = "Please fill out name, check in, check out, and select room type";
+
+                    int numRoomIndex = model.utility.getPosNumValue(stringRoomIndex);
+                    int numCheckIn = model.utility.getPosNumValue(stringCheckIn);
+                    int numCheckOut = model.utility.getPosNumValue(stringCheckOut);
+                    int promoValidity = model.utility.isPromoValid(numCheckIn, numCheckOut, stringPromoCode);
+
+                    boolean click = true;
+
+                    if (numRoomIndex == -2){
+                        result = "There is no available room for that type and date";
+                    } else if (numRoomIndex != -1 && numCheckIn != -1 && numCheckOut != -1 && !stringGuestName.isEmpty()) {
+                        if(!(model.utility.isEmpty(stringPromoCode))) {
+                            switch (promoValidity) {
+                                case 0:
+                                    result = "Code not Redeemed. Invalid";
+                                    break;
+                                case 1:
+                                case 2:
+                                case 3:
+                                    result = "Code Redeemed";
+                                    break;
+                                case 4:
+                                    result = "";
+                                    break;
+                                default:
+                                    result = "Code not Redeemed. Invalid";
+                                    break;
+                            }
+                        } else result = ""; //no promo inputted, but valid indices
+
+                        if (model.utility.checkDateValidity(numCheckIn, numCheckOut)) {
+
+                            // if everything is valid
+                            String[] breakdown = model.getPriceBreakdown(promoValidity, numCheckIn, numCheckOut, numRoomIndex-1);
+                            view.setReserveDetailsEditable(false);
+                            view.printReserveBreakdown(breakdown, 300);
+                            click = false;
+                        } else result = "Invalid check-in and check-out days";
+                    }
+
+                    // if invalid input
+                    if (click) {
+                        int std = model.getStandardRoomCount();
+                        int del = model.getDeluxeRoomCount();
+                        int exe = model.getExecRoomCount();
+
+                        if (std > 0) {
+                            view.setStandardRoomBtnClickable(true);
+                        } else view.setStandardRoomBtnClickable(false);
+                        if (del > 0) {
+                            view.setDeluxeRoomBtnClickable(true);
+                        } else view.setDeluxeRoomBtnClickable(false);
+                        if (exe > 0) {
+                            view.setExecutiveRoomBtnClickable(true);
+                        } else view.setExecutiveRoomBtnClickable(false);
+                    }
+                    view.setFeedbackLblText(result);
+                    view.setConfirmResClickable(click); //lock details
+                    view.setGeneralTfEditable(false);
 
                 }
             });
 
-            this.view.setInquireReservationListener(new ActionListener() {
+            this.view.setStandardRoomListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent e){
+                    String stringCheckIn = (view.getNumCheckInTf().isEmpty()) ? "0" : view.getNumCheckInTf();
+                    String stringCheckOut = (view.getNumCheckOutTf().isEmpty()) ? "0" :  view.getNumCheckOutTf();
+                    
+                    int numCheckIn = model.utility.getPosNumValue(stringCheckIn);
+                    int numCheckOut = model.utility.getPosNumValue(stringCheckOut);
+
+                    String temp =  model.getAvailableRoom(numCheckIn, numCheckOut, 1);
+
+                    view.setGeneralTf(temp);
+
+                    int del = model.getDeluxeRoomCount();
+                    int exe = model.getExecRoomCount();
+
+                    view.setStandardRoomBtnClickable(false);
+
+                    if(del > 0) {
+                        view.setDeluxeRoomBtnClickable(true);
+                    } else view.setDeluxeRoomBtnClickable(false);
+                    if(exe > 0) {
+                        view.setExecutiveRoomBtnClickable(true);
+                    } else view.setExecutiveRoomBtnClickable(false);
                 }
             });
 
-            this.view.setInquireDateListener(new ActionListener() {
+            this.view.setDeluxeRoomListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent e){
+                    String stringCheckIn = (view.getNumCheckInTf().isEmpty()) ? "0" : view.getNumCheckInTf();
+                    String stringCheckOut = (view.getNumCheckOutTf().isEmpty()) ? "0" :  view.getNumCheckOutTf();
+                    
+                    int numCheckIn = model.utility.getPosNumValue(stringCheckIn);
+                    int numCheckOut = model.utility.getPosNumValue(stringCheckOut);
+
+                    String temp =  model.getAvailableRoom(numCheckIn, numCheckOut, 2);
+
+                    view.setGeneralTf(temp);
+                    int std = model.getStandardRoomCount();
+                    int exe = model.getExecRoomCount();
+
+                    if(std > 0) {
+                        view.setStandardRoomBtnClickable(true);
+                    } else view.setStandardRoomBtnClickable(false);
+
+                    view.setDeluxeRoomBtnClickable(false);
+
+                    if(exe > 0) {
+                        view.setExecutiveRoomBtnClickable(true);
+                    } else view.setExecutiveRoomBtnClickable(false);
+                }
+            });
+
+            this.view.setExecutiveRoomListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e){
+                    String stringCheckIn = (view.getNumCheckInTf().isEmpty()) ? "0" : view.getNumCheckInTf();
+                    String stringCheckOut = (view.getNumCheckOutTf().isEmpty()) ? "0" :  view.getNumCheckOutTf();
+                    
+                    int numCheckIn = model.utility.getPosNumValue(stringCheckIn);
+                    int numCheckOut = model.utility.getPosNumValue(stringCheckOut);
+
+                    String temp =  model.getAvailableRoom(numCheckIn, numCheckOut, 3);
+
+                    view.setGeneralTf(temp);
+
+                    int std = model.getStandardRoomCount();
+                    int del = model.getDeluxeRoomCount();
+                    if(std > 0) {
+                        view.setStandardRoomBtnClickable(true);
+                    } else view.setStandardRoomBtnClickable(false);
+                    if(del > 0) {
+                        view.setDeluxeRoomBtnClickable(true);
+                    } else view.setDeluxeRoomBtnClickable(false);
+
+                    view.setExecutiveRoomBtnClickable(false);
+                }
+            });
+
+            this.view.setFinalizeResListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e){
+                    String stringRoomIndex = (view.getGeneralTf());
+                    String stringCheckIn = (view.getNumCheckInTf());
+                    String stringCheckOut = (view.getNumCheckOutTf());
+                    String stringPromoCode = (view.getPromoCodeTf());
+                    String stringName = (view.getNameTf());
+    
+                    int numRoomIndex = model.utility.getPosNumValue(stringRoomIndex);
+                    int numCheckIn = model.utility.getPosNumValue(stringCheckIn);
+                    int numCheckOut = model.utility.getPosNumValue(stringCheckOut);
+                    int promoValidity = model.utility.isPromoValid(numCheckIn, numCheckOut, stringPromoCode);
+                    int days = numCheckOut - numCheckIn;
+
+                    String result = "";
+                    String[] breakdown  = new String[1];
+                    breakdown[0] = "*breakdown*";
+
+                    if (numRoomIndex != -1 && numCheckIn != -1 && numCheckOut != -1) {
+                        if (numRoomIndex == -2){
+                            result = "There is no available room of that type for those dates";
+                        }
+                         else if (model.utility.checkDateValidity(numCheckIn, numCheckOut)) {
+                            result = model.addReservation(stringName, numCheckIn, numCheckOut, numRoomIndex-1);
+                            model.setResTotalPrice(promoValidity, numCheckIn, numCheckOut, numRoomIndex-1);
+                        } else result = "Invalid check-in and check-out days";
+                    } else result = "Please fill out name, check in, check out, and select room type";
+
+                    view.reserveHotel(breakdown);
+
+                    int std = model.getStandardRoomCount();
+                    int del = model.getDeluxeRoomCount();
+                    int exe = model.getExecRoomCount();
+
+                    if(std > 0) {
+                        view.setStandardRoomBtnClickable(true);
+                    } else view.setStandardRoomBtnClickable(false);
+                    if(del > 0) {
+                        view.setDeluxeRoomBtnClickable(true);
+                    } else view.setDeluxeRoomBtnClickable(false);
+                    if(exe > 0) {
+                        view.setExecutiveRoomBtnClickable(true);
+                    } else view.setExecutiveRoomBtnClickable(false);
+
+                    view.setConfirmResClickable(true);
+
+                    view.setFeedbackLblText(result);
+                }
+            });
+
+            this.view.setCancelResListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e){
+                    String[] breakdown = new String[1];
+                    breakdown[0] = "*breakdown*";
+                    view.reserveHotel(breakdown);
+                    view.setGeneralTfEditable(false);
+
+                    int std = model.getStandardRoomCount();
+                    int del = model.getDeluxeRoomCount();
+                    int exe = model.getExecRoomCount();
+
+                    if(std > 0) {
+                        view.setStandardRoomBtnClickable(true);
+                    } else view.setStandardRoomBtnClickable(false);
+                    if(del > 0) {
+                        view.setDeluxeRoomBtnClickable(true);
+                    } else view.setDeluxeRoomBtnClickable(false);
+                    if(exe > 0) {
+                        view.setExecutiveRoomBtnClickable(true);
+                    } else view.setExecutiveRoomBtnClickable(false);
                 }
             });
         }

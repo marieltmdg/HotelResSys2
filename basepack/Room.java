@@ -22,10 +22,10 @@ public abstract class Room implements Serializable {
         this.roomName = roomName;
         this.basePrice = 1299;
         this.reservationList = new ArrayList<Reservation>();
-        this.datePricePercentMultiplier = new double[31];
+        this.datePricePercentMultiplier = new double[30];
 
-        for(int i = 0; i < 31; i++){
-            datePricePercentMultiplier[i] = 1;
+        for(int i = 0; i < 30; i++){
+            datePricePercentMultiplier[i] = 100;
         }
     }
 
@@ -47,12 +47,8 @@ public abstract class Room implements Serializable {
         return basePrice;
     }
 
-    public void setDatePrice(int date, double percent){
-        datePricePercentMultiplier[date-1] = percent;
-    }
-
-    public double getDatePricePercent(int date){
-        return datePricePercentMultiplier[date-1];
+    public double getDatePricePercent(int index){
+        return datePricePercentMultiplier[index];
     }
 
    /**
@@ -62,17 +58,6 @@ public abstract class Room implements Serializable {
     */
     public String getRoomName() {
         return roomName;
-    }
-
-    /**
-    * The getReservation() method in Java returns a Reservation attribute.
-    * 
-    * @param resIndex index of a reservation in reservationList.
-    * @return The method getReservation() is returning the matching instance of Reservation in the 
-    * reservationList.
-    */
-    public Reservation getReservation(int resIndex) {
-        return reservationList.get(resIndex);
     }
 
     public int getReservationListCount() {
@@ -87,7 +72,7 @@ public abstract class Room implements Serializable {
         int checkIn = reservationList.get(index).getCheckIn();
         int checkOut = reservationList.get(index).getCheckOut();
 
-        return "(" +checkIn+checkOut +")";
+        return "(" +checkIn+"-"+checkOut +")";
     }
 
     /**
@@ -98,6 +83,10 @@ public abstract class Room implements Serializable {
      */
     public void setBasePrice(double newPrice) {
         this.basePrice = newPrice;
+    }
+
+    public void setDatePrice(int date, double percent){
+        datePricePercentMultiplier[date-1] = percent;
     }
 
     /**
@@ -124,7 +113,7 @@ public abstract class Room implements Serializable {
             return "There are no reservations for the selected room";
         }
 
-        if (!(index >= 0 && index < getReservationListCount())) {
+        if (index >= 0 && index < getReservationListCount()) {
             reservationList.remove(reservationList.get(index));
             return "Reservation removal successful";
         }
@@ -172,32 +161,20 @@ public abstract class Room implements Serializable {
      * 
      * @return A formatted string representing the availability status for a range of days. 
      */
-    public String printAvailability(){
-        String s = "";
-        int ctr = 1;
+    public String[] printAvailability() {
+        String s[] = new String[]{"", "", "", "", ""};
 
-        //concatenate string to show available dates
-        for(int i=1; i<=30; i++){
-            if(isAvailable(i, i+1) && ctr % 7 != 0 && i<10){
-                 s = s.concat("[0" + i + "]");
-                 ctr++;
+        for (int i = 1; i <= 30; i++) {
+            if (isAvailable(i, i + 1)) {
+                String dayStr = (i < 10 ? "[0" + i + "]" : "[" + i + "]");
+                int weekIndex = (i - 1) / 7;  // determine which week the day belongs to
+                s[weekIndex] += dayStr;
             }
-            else if(isAvailable(i, i+1) && ctr % 7 != 0){
-                 s = s.concat("[" + i + "]");
-                 ctr++;
-            }
-            else if(isAvailable(i, i+1) && ctr % 7 == 0 && i < 10){
-                s = s.concat("[0" + i + "]\n"); 
-                ctr++;
-            }   
-            else if(isAvailable(i, i+1) && ctr % 7 == 0){
-                s = s.concat("[" + i + "]\n"); 
-                ctr++; 
-            }       
         }
         return s;
     }
-    
+
+
     /**
      * The method printRoomInfo() prints the room name, price per night, and available check-in dates
      * for a room.
@@ -217,5 +194,113 @@ public abstract class Room implements Serializable {
      */
     public void printReservation(int resIndex){
         reservationList.get(resIndex).printReservation();
+    }
+
+    public abstract double getPriceAfterMultiplier(int date);
+
+    public double getTotalPriceAfterDiscount(int promoValidity, int checkIn, int checkOut){
+        double price = 0;
+
+        for(int i = checkIn; i < checkOut; i++){
+            price += getPriceAfterMultiplier(i); 
+        }
+
+        switch(promoValidity){
+            case 1:
+                price *= 0.9;
+                break;
+            case 2:
+                price -= getPriceAfterMultiplier(checkIn);
+                break;
+            case 3:
+                price *= 0.93;
+                break;
+            default: price *= 1;
+                    break;
+
+        }
+        return price;
+    }
+
+    /**
+     * the getPriceAfterDiscountBreakdown() method gets the price per night, given the discount,
+     * and the date price modifier.
+     *
+     * @param promoValidity The promo validity.
+     * @param checkIn The check-in date.
+     * @param checkOut The check-out date.
+     * @return The double[] that lists down the price after discount per night.
+     */
+    public double[] getPriceAfterDiscountBreakdown(int promoValidity, int checkIn, int checkOut) {
+        int numDays = checkOut - checkIn;
+        double[] price = new double[numDays];
+
+        // Initialize price per day
+        for (int i = 0; i < numDays; i++) {
+            price[i] = getPriceAfterMultiplier(checkIn + i);
+        }
+
+        // Apply discounts based on promoValidity
+        switch (promoValidity) {
+            case 1: // 10% discount
+                for (int i = 0; i < numDays; i++) {
+                    price[i] *= 0.9;
+                }
+                break;
+            case 2: // Free first day
+                if (numDays > 0) {
+                    price[0] = 0.0;
+                }
+                break;
+            case 3: // 7% discount
+                for (int i = 0; i < numDays; i++) {
+                    price[i] *= 0.93;
+                }
+                break;
+        }
+
+        return price;
+    }
+
+    /**
+     * the priceBreakdown() method constructs the String[] that will be printed,
+     * corresponding to the price breakdown of the entire stay, including the total price.
+     *
+     * @param promoValidity The promo validity.
+     * @param checkIn The check-in date.
+     * @param checkOut The check-out date.
+     * @return The String[] that lists down the price breakdown per night and its total.
+     */
+    public String[] priceBreakdown(int promoValidity, int checkIn, int checkOut) {
+        int numDays = checkOut - checkIn;
+        String[] breakdown = new String[numDays + 1];
+        double[] price = getPriceAfterDiscountBreakdown(promoValidity, checkIn, checkOut);
+        
+        for (int i = 0; i < numDays; i++) {
+            int currentDay = checkIn + i;
+            switch (promoValidity) {
+                case 1: // 10% discount
+                case 3: // 10% discount
+                    breakdown[i] = "Day " + currentDay + " - " + (currentDay+1) + " : P" + price[i];
+                    break;
+                case 2: // Free first day
+                    if (i == 0) {
+                        breakdown[i] = "Promo Redeemed. Free";
+                    } else {
+                        breakdown[i] = "Day " + currentDay + " - " + (currentDay+1) + " : P" + price[i];
+                    }
+                    break;
+                default: // No discount
+                    breakdown[i] = "Day " + currentDay + " - " + (currentDay+1) + " : P" + price[i];
+                    break;
+            }
+        }
+        breakdown[breakdown.length-1] = "The Total Price is P" + getTotalPriceAfterDiscount(promoValidity, checkIn, checkOut);
+
+        return breakdown;
+    }
+
+    public void setResTotalPrice(int promoValidity, int checkIn, int checkOut){
+        reservationList.get(reservationList.size()-1).setTotalPrice(promoValidity, checkIn, checkOut);
     }
 }

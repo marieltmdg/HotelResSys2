@@ -92,32 +92,14 @@ public class Hotel implements Serializable {
         return total;
     }
 
-    /**
-     * The method getAvailableRoom() iterates through a list of rooms to find an available room for a
-     * given check-in and check-out date range.
-     * 
-     * @param checkIn The checkIn parameter represents the check-in date for a room reservation. 
-     * @param checkOut The checkOut parameter in the getAvailableRoom method represents the
-     * check-out date for a room reservation.
-     * @return The method getAvailableRoom returns the index of the first available room in the
-     * roomList that is available for the specified check-in and check-out dates. If no available
-     * room is found, it returns -1.
-     */
-    private int getAvailableRoom(int checkIn, int checkOut){
-        for(int i=0; i<roomList.size(); i++){
-            if(roomList.get(i).isAvailable(checkIn, checkOut)){
-                return i;
-            }
-        }
-        return -1;
-    }
+    
 
     /**
      * The generateRoomName() method generates a room name based on the room count, with a leading number calculated
      * from the room count divided by 10 plus 1, followed by a hyphen and the room count modulo 10.
      *
-     * @param type is the room type of the room
-     * @return The generateRoomName method returns a String with a unique room name
+     * @param type is the room type of the room.
+     * @return The generateRoomName method returns a String with a unique room name.
      */
     private String generateRoomName(String type){
         int leadingNum = (roomCount / 10) + 1;
@@ -157,9 +139,12 @@ public class Hotel implements Serializable {
      */
     public void setHotelName(String newName) {
         this.hotelName = newName;
-        
     }
 
+    /**
+     * The method addStandardRoom() adds a new standard room object, provided the room count is less than 50,
+     * and gives it a unique name.
+     */
     public void addStandardRoom(){
         String roomName = generateRoomName("Standard");
         Standard newRoom = new Standard(roomName);
@@ -168,12 +153,13 @@ public class Hotel implements Serializable {
         if(roomList.size() < 50){
             roomList.add(newRoom);
             roomCount++;
-            System.out.println("Room " + newRoom.getRoomName() + " added");
         }
-        else 
-            System.out.println("Hotel capacity at maximum (50 Rooms)");
     }
 
+    /**
+     * The method addDeluxeRoom() adds a new deluxe room object, provided the room count is less than 50,
+     * and gives it a unique name.
+     */
     public void addDeluxeRoom(){
         String roomName = generateRoomName("Deluxe");
         Deluxe newRoom = new Deluxe(roomName);
@@ -182,12 +168,13 @@ public class Hotel implements Serializable {
         if(roomList.size() < 50){
             roomList.add(newRoom);
             roomCount++;
-            System.out.println("Room " + newRoom.getRoomName() + " added");
         }
-        else 
-            System.out.println("Hotel capacity at maximum (50 Rooms)");
     }
 
+    /**
+     * The method addExecRoom() adds a new executive room object, provided the room count is less than 50,
+     * and gives it a unique name.
+     */
     public void addExecRoom(){
         String roomName = generateRoomName("Executive");
         Executive newRoom = new Executive(roomName);
@@ -196,7 +183,6 @@ public class Hotel implements Serializable {
         if(roomList.size() < 50){
             roomList.add(newRoom);
             roomCount++;
-            System.out.println("Room " + newRoom.getRoomName() + " added");
         }
     }
 
@@ -228,7 +214,7 @@ public class Hotel implements Serializable {
      * prints a confirmation message.
      * 
      * @param price The price represents the new base price that will be set for all rooms in the roomList.
-     * @return String success message
+     * @return String feedback message.
      */
     public String updatePrice(double price){
         //set the base price for all rooms to the new price
@@ -238,10 +224,16 @@ public class Hotel implements Serializable {
         return "Room price set to "+ price;
     }
 
-    public void updateDatePrice(int date, double percent){
+    /**
+     * The updateDatePrice() method sets the date price modifier for a specific date.
+     *
+     * @param index is the date the price would be set.
+     * @param percent is the percent modifier that will be set.
+     */
+    public void updateDatePrice(int index, double percent){
         //set the base price for all rooms to the new price
         for(int i=0; i<roomList.size(); i++)
-            roomList.get(i).setDatePrice(date, percent);
+            roomList.get(i).setDatePrice(index, percent);
 
     }
 
@@ -251,15 +243,16 @@ public class Hotel implements Serializable {
      * 
      * @param name The name of the person making the hotel reservation.
      * @param checkIn The checkIn parameter represents the check-in date for the hotel reservation.
-     * @param checkOut The checkOut parameter represents the check-out date for a hotel reservation. 
+     * @param checkOut The checkOut parameter represents the check-out date for a hotel reservation.
+     * @return String display feedback message.
      */
-    public void addHotelReservation(String name, int checkIn, int checkOut, int roomIndex){
+    public String addHotelReservation(String name, int checkIn, int checkOut, int roomIndex){
             //add reservation if there are available rooms
             if(roomList.get(roomIndex).isAvailable(checkIn, checkOut)){
                 roomList.get(roomIndex).addReservation(name, checkIn, checkOut);
-                System.out.println("Reservation successful for " + name);
+                return "Reservation successful for " + name;
             } else {
-                System.out.println("Room is not available for selected dates");
+                return "Room is not available for selected dates";
             }
     }
 
@@ -280,7 +273,7 @@ public class Hotel implements Serializable {
      * The getHotelIncome() method calculates the total income generated from all room reservations
      * in a hotel.
      * 
-     * @return The total income generated by all reservations.
+     * @return String display feedback message.
      */
     public double getHotelIncome(){
         double sum = 0;
@@ -293,20 +286,60 @@ public class Hotel implements Serializable {
         return sum;
     }
 
+    /**
+     * The method getBasePrice() gets the base price of the hotel.
+     *
+     * @return The base price of the hotel.
+     */
     public double getBasePrice(){
         return roomList.get(0).getBasePrice();
     }
 
+    public double getPricePerType(int index) {
+        if (roomList.get(index) instanceof Standard) {
+            return ((Standard) roomList.get(index)).getBasePrice();
+        } else if (roomList.get(index) instanceof Deluxe) {
+            return ((Deluxe) roomList.get(index)).getDPrice();
+        } else if (roomList.get(index) instanceof Executive) {
+            return ((Executive) roomList.get(index)).getEPrice();
+        }
+        return roomList.getFirst().getBasePrice();
+    }
+
+    /**
+     * The method getAllDatePrice() gets the complete date price multiplier per date.
+     *
+     * @return The list of the price multiplier per date.
+     */
+    public double[] getAllDatePrice(){
+        double ret[] = new double[30];
+
+        for(int i = 0 ; i < 30; i++){
+            ret[i] = roomList.get(0).getDatePricePercent(i);
+        }
+
+        return ret;
+    }
+
+    /**
+     * The method getReservationListDetailed() gets reservation details for all rooms.
+     *
+     * @return The detailed list of the reservation details per room.
+     */
     public String[][] getReservationListDetailed(){
 
         String[][] ret = new String[getRoomCount()][30];
 
         for(int i = 0 ; i < roomList.size() ; i++)
             for(int j = 0; j < roomList.get(i).getReservationListCount(); j++)
-                ret[i][j] = "Room " + roomList.get(i).getRoomName() +
-                        " " + roomList.get(i).getReservationName(j) + roomList.get(i).getResDates(j);
+                ret[i][j] = roomList.get(i).getRoomName() +
+                        " " + roomList.get(i).getReservationName(j) + " Date:" + roomList.get(i).getResDates(j);
 
         return ret;
+    }
+
+    public String[] getAvailableDatesForRoom(int index){
+        return roomList.get(index).printAvailability();
     }
 
     /**
@@ -349,7 +382,6 @@ public class Hotel implements Serializable {
      * 
      * @return The method is returning whether there is any reservation in a hotel.
      */
-
     public boolean checkForReservations(){
         //iterate through all dates and check if available
         for(int date = 1; date < 31; date++){
@@ -360,17 +392,6 @@ public class Hotel implements Serializable {
         
         }
         return false; 
-    }
-
-    /**
-     * The method printHotelInformation() prints the hotel name, number of rooms, and estimated
-     * earnings for the month.
-     */
-    public void printHotelInformation(){
-        //high level
-        System.out.println("Hotel Name: " + this.hotelName);
-        System.out.println("No. of Rooms: " + this.roomCount);
-        System.out.println("Estimate earnings for this month: " + getHotelIncome());
     }
 
     /**
@@ -394,9 +415,16 @@ public class Hotel implements Serializable {
         roomList.get(roomIndex).printReservation(resIndex);
     }
 
+    /**
+     * The method getRoomName() gets the room name, given an index.
+     *
+     * @param roomIndex The index from which the room name will be retrieved.
+     * @return The room name.
+     */
     public String getRoomName(int roomIndex){
         return roomList.get(roomIndex).getRoomName();
     }
+
 }
 
- 
+

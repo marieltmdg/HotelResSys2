@@ -1,5 +1,7 @@
 package mvcpack;
 import basepack.*;
+import basepack.roompack.*;
+
 import java.util.ArrayList;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -66,30 +68,6 @@ public class Model {
         return cont;
     }
 
-
-    public void addRoom(int roomType, int hotelIndex) {
-        System.out.println("Room addition");
-         
-        switch(roomType){
-            case 1: 
-                hotelList.get(hotelIndex).addStandardRoom();
-                break;
-            case 2: 
-                hotelList.get(hotelIndex).addDeluxeRoom();
-                break;
-            case 3: 
-                hotelList.get(hotelIndex).addExecRoom();
-                break;
-            default:
-        }
-    }
-
-    public String removeRoom(int index){
-        if (index >= 0 && index < hotelList.get(selectedHotelIndex).getRoomCount())
-            return hotelList.get(selectedHotelIndex).removeRoom(index);
-        else return "Input out of bounds";
-    }
-
     public String openHotel(int hotelIndex) {
         //checker for invalid hotel indices
         if (hotelIndex >= 0 && hotelIndex < hotelList.size()) {
@@ -110,13 +88,48 @@ public class Model {
 
         hotelList.get(selectedHotelIndex).setHotelName(newName);
         return true;
+    }
 
+    public void addRoom(int roomType, int hotelIndex) {
+        System.out.println("Room addition");
+         
+        switch(roomType){
+            case 1: 
+                hotelList.get(hotelIndex).addStandardRoom();
+                break;
+            case 2: 
+                hotelList.get(hotelIndex).addDeluxeRoom();
+                break;
+            case 3: 
+                hotelList.get(hotelIndex).addExecRoom();
+                break;
+            default:
+        }
+    }
+
+    public void setResTotalPrice(int promoValidity, int checkIn, int checkOut, int roomIndex){
+        hotelList.get(selectedHotelIndex).getRoom(roomIndex).setResTotalPrice(promoValidity, checkIn, checkOut);
+    }
+
+    public String removeRoom(int index){
+        if (index >= 0 && index < hotelList.get(selectedHotelIndex).getRoomCount())
+            return hotelList.get(selectedHotelIndex).removeRoom(index);
+        else return "Input out of bounds";
     }
 
     public String updatePrice(double price){
         if(price >= 150){
             return hotelList.get(selectedHotelIndex).updatePrice(price);
         } else return "New price must be equal to or greater than 150";
+    }
+
+    public String updateDatePrice(int date, double multiplier){
+        if (date >= 1 && date <= 30){
+            if(multiplier >= 50 && multiplier <= 150) {
+                hotelList.get(selectedHotelIndex).updateDatePrice(date, multiplier);
+                return "Date price modifier for Day " + date + " to " + multiplier + "% successful";
+            } else return "New % modifier must range 50% to 150%";
+        } else return "Please select valid dates to modify price (1-30)";
     }
 
     public String removeReservation(int roomIndex, int resIndex){
@@ -143,26 +156,8 @@ public class Model {
         } return "";
     }
 
-    public int getPosNumValue(String x){
-        int temp = -1;
-        try {
-            temp = Integer.parseInt(x);
-            if (temp >= 0){
-            }
-        } catch (Exception e) {
-            return -1;
-        }
-        return temp;
-    }
-
-    public double getPosDoubleValue(String x){
-        double temp = -1;
-        try {
-            temp = Double.parseDouble(x);
-        } catch (Exception e) {
-            return -1;
-        }
-        return temp;
+    public String addReservation(String name, int checkIn, int checkOut, int roomIndex){
+        return hotelList.get(selectedHotelIndex).addHotelReservation(name, checkIn, checkOut, roomIndex);
     }
 
     public String[] getHotelListNames(){
@@ -185,6 +180,28 @@ public class Model {
         return names;
     }
 
+    public String[] getAvailableRoomNames(int checkIn, int checkOut){
+        String[] names = new String[hotelList.get(selectedHotelIndex).getRoomList().size()];
+        int j = 0;
+        for(int i = 0; i <hotelList.get(selectedHotelIndex).getRoomList().size(); i++){
+            if(hotelList.get(selectedHotelIndex).getRoomList().get(i).isAvailable(checkIn, checkOut)){
+                names[j] = hotelList.get(selectedHotelIndex).getRoomName(i);
+                j++;
+            }
+        }
+
+        return names;
+    }
+
+    public int getTotalAvailableRooms(int date){
+        return hotelList.get(selectedHotelIndex).checkNumAvailableRooms(date);
+    }
+
+    public int getTotalReservedRooms(int date){
+        return hotelList.get(selectedHotelIndex).checkNumBookedRooms(date);
+    }
+
+
     public String[][] getReservationListDetailed(){
         return hotelList.get(selectedHotelIndex).getReservationListDetailed();
     }
@@ -199,6 +216,10 @@ public class Model {
 
     public int getCurrentHotelIndex(){
         return selectedHotelIndex;
+    }
+
+    public String getRoomName(int index){
+        return this.hotelList.get(selectedHotelIndex).getRoomName(index);
     }
 
     public int getRoomCount(){
@@ -221,23 +242,44 @@ public class Model {
         return this.hotelList.get(selectedHotelIndex).getBasePrice();
     }
 
+    public double getPricePerType(int index){
+        return this.hotelList.get(selectedHotelIndex).getPricePerType(index);
+    }
+
+    public double[] getDatePrice(){
+        return this.hotelList.get(selectedHotelIndex).getAllDatePrice();
+    }
+
+    public String[] getAvailableDatesForRoom(int index){
+        return this.hotelList.get(selectedHotelIndex).getAvailableDatesForRoom(index);
+    }
+
     public double getEarnings(){
         return this.hotelList.get(selectedHotelIndex).getHotelIncome();
     }
 <<<<<<< Updated upstream
-   
+
 =======
 
     public String[] getPriceBreakdown(int promoValidity, int checkIn, int checkOut, int roomIndex){
         return hotelList.get(selectedHotelIndex).getRoom(roomIndex).priceBreakdown(promoValidity, checkIn, checkOut);
     }
 
+    public String[] getAvailableRoomList(int date){
+        String[] roomList = new String[getTotalAvailableRooms(date)];
+        for(int i=0; i<hotelList.get(selectedHotelIndex).getRoomList().size(); i++){
+            if(hotelList.get(selectedHotelIndex).getRoomList().get(i).isAvailable(date, date+1)){
+                roomList[i] = hotelList.get(selectedHotelIndex).getRoomList().get(i).getRoomName();
+            }
+        }
+        return roomList;
+    }
 
    /**
      * The method getAvailableRoom() iterates through a list of rooms to find an available room for a
      * given check-in and check-out date range.
-     * 
-     * @param checkIn The checkIn parameter represents the check-in date for a room reservation. 
+     *
+     * @param checkIn The checkIn parameter represents the check-in date for a room reservation.
      * @param checkOut The checkOut parameter represents the
      * check-out date for a room reservation.
      * @param type The type parameter represents the wanted type of room

@@ -12,6 +12,7 @@ public class Reservation implements Serializable {
     private int checkIn;
     private int checkOut;
     private Room room;
+    private double totalPrice;
 
     /**
      * Constructs a Reservation instance with the specified guest name, check-in and check-out dates, and room.
@@ -26,6 +27,7 @@ public class Reservation implements Serializable {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.room = room;
+        this.totalPrice = 0;
     }
 
     /**
@@ -35,21 +37,7 @@ public class Reservation implements Serializable {
      * @return The total price for the room for the duration of the stay.
      */
     public double getTotalPrice(){
-        double total = 0.0;
-        
-        if (this.room instanceof Standard){
-            for(int i=checkIn; i<checkOut; i++)
-                total += ((Standard) room).getBasePrice() * room.getDatePricePercent(i);
-        }
-        else if (this.room instanceof Deluxe){
-            for(int i=checkIn; i<checkOut; i++)
-                total += ((Deluxe)room).getDPrice() * room.getDatePricePercent(i);
-        }
-        else if (this.room instanceof Executive){
-            for(int i=checkIn; i<checkOut; i++)
-                total += ((Executive) room).getEPrice() * room.getDatePricePercent(i);
-        }
-        return total;
+        return this.totalPrice;
     }
 
     /**
@@ -103,4 +91,10 @@ public class Reservation implements Serializable {
         System.out.println("Breakdown of Price: " + room.getBasePrice() + "/day for " + (checkOut-checkIn) + " day/s");
 
     }
+
+    public void setTotalPrice(int promoValidity, int checkIn, int checkOut){
+        this.totalPrice = room.getTotalPriceAfterDiscount(promoValidity, checkIn, checkOut);
+    }
+
+
 }
