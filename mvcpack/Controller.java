@@ -366,7 +366,6 @@ public class Controller {
                 String result;
 
                 if(count == 0){
-                    model.removeHotel();
                     result = "Remove hotel successful" + model.removeHotel();
                     view.setFeedbackLblText(result);
                     view.home();

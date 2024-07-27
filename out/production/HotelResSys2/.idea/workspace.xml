@@ -4,7 +4,55 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1a3c063-36ad-42a4-9cf8-b9bfbf30ed1b" name="Changes" comment="" />
+    <list default="true" id="c1a3c063-36ad-42a4-9cf8-b9bfbf30ed1b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/basepack/Hotel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/basepack/Reservation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/basepack/Room.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/basepack/Utility.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/basepack/roompack/Deluxe.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/basepack/roompack/Executive.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/basepack/roompack/Standard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$10.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$11.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$12.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$13.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$14.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$15.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$16.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$17.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$18.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$19.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$20.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$21.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$22.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$23.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$24.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$25.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$26.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$27.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$28.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$29.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$30.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$31.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$32.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$33.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$34.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$9.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Model.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/View.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/custompack/CButton.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/custompack/CLabel.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +74,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -105,5 +153,15 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
