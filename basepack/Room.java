@@ -160,32 +160,20 @@ public abstract class Room {
      * 
      * @return A formatted string representing the availability status for a range of days. 
      */
-    public String printAvailability(){
-        String s = "";
-        int ctr = 1;
+    public String[] printAvailability() {
+        String s[] = new String[]{"", "", "", "", ""};
 
-        //concatenate string to show available dates
-        for(int i=1; i<=30; i++){
-            if(isAvailable(i, i+1) && ctr % 7 != 0 && i<10){
-                 s = s.concat("[0" + i + "]");
-                 ctr++;
+        for (int i = 1; i <= 30; i++) {
+            if (isAvailable(i, i + 1)) {
+                String dayStr = (i < 10 ? "[0" + i + "]" : "[" + i + "]");
+                int weekIndex = (i - 1) / 7;  // determine which week the day belongs to
+                s[weekIndex] += dayStr;
             }
-            else if(isAvailable(i, i+1) && ctr % 7 != 0){
-                 s = s.concat("[" + i + "]");
-                 ctr++;
-            }
-            else if(isAvailable(i, i+1) && ctr % 7 == 0 && i < 10){
-                s = s.concat("[0" + i + "]\n"); 
-                ctr++;
-            }   
-            else if(isAvailable(i, i+1) && ctr % 7 == 0){
-                s = s.concat("[" + i + "]\n"); 
-                ctr++; 
-            }       
         }
         return s;
     }
-    
+
+
     /**
      * The method printRoomInfo() prints the room name, price per night, and available check-in dates
      * for a room.

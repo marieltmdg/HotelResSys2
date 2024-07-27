@@ -69,6 +69,7 @@ public class Controller {
         this.view.setConfirmListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                System.out.println("confirm create");
                 view.getHotelNameTfText();
                 String hotelName = view.getHotelNameTfText();
 
@@ -160,6 +161,27 @@ public class Controller {
         this.view.setInquireRoomListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                view.inquireRoomInfo(model.getRoomListNames());
+            }
+        });
+
+        this.view.setInquireSelectRoomListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                String sRoomIndex = view.getGeneralTf();
+                int roomIndex = model.utility.getPosNumValue(sRoomIndex);
+                String result = "Please input a positive number";
+
+                if (roomIndex != -1 && roomIndex != 0) {
+                    String roomName = model.getRoomName(roomIndex-1);
+                    double price = model.getPricePerType(roomIndex-1);
+                    String[] availableDates = model.getAvailableDatesForRoom(roomIndex-1);
+
+                    view.inquireSelectedRoom(roomName, price, availableDates);
+                    result = "Showing results for " + roomName;
+                }
+
+                view.setFeedbackLblText(result);
             }
         });
     
@@ -429,7 +451,7 @@ public class Controller {
                     }
 
                     // if invalid input
-                    if (!click) {
+                    if (click) {
                         int std = model.getStandardRoomCount();
                         int del = model.getDeluxeRoomCount();
                         int exe = model.getExecRoomCount();

@@ -192,6 +192,10 @@ public class Model {
         return selectedHotelIndex;
     }
 
+    public String getRoomName(int index){
+        return this.hotelList.get(selectedHotelIndex).getRoomName(index);
+    }
+
     public int getRoomCount(){
         return this.hotelList.get(selectedHotelIndex).getRoomCount();
     }
@@ -212,8 +216,16 @@ public class Model {
         return this.hotelList.get(selectedHotelIndex).getBasePrice();
     }
 
+    public double getPricePerType(int index){
+        return this.hotelList.get(selectedHotelIndex).getPricePerType(index);
+    }
+
     public double[] getDatePrice(){
         return this.hotelList.get(selectedHotelIndex).getAllDatePrice();
+    }
+
+    public String[] getAvailableDatesForRoom(int index){
+        return this.hotelList.get(selectedHotelIndex).getAvailableDatesForRoom(index);
     }
 
     public double getEarnings(){

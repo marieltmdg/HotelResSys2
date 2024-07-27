@@ -294,6 +294,17 @@ public class Hotel {
         return roomList.get(0).getBasePrice();
     }
 
+    public double getPricePerType(int index) {
+        if (roomList.get(index) instanceof Standard) {
+            return ((Standard) roomList.get(index)).getBasePrice();
+        } else if (roomList.get(index) instanceof Deluxe) {
+            return ((Deluxe) roomList.get(index)).getDPrice();
+        } else if (roomList.get(index) instanceof Executive) {
+            return ((Executive) roomList.get(index)).getEPrice();
+        }
+        return roomList.getFirst().getBasePrice();
+    }
+
     /**
      * The method getAllDatePrice() gets the complete date price multiplier per date.
      *
@@ -324,6 +335,10 @@ public class Hotel {
                         " " + roomList.get(i).getReservationName(j) + " Date:" + roomList.get(i).getResDates(j);
 
         return ret;
+    }
+
+    public String[] getAvailableDatesForRoom(int index){
+        return roomList.get(index).printAvailability();
     }
 
     /**
