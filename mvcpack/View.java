@@ -10,7 +10,7 @@ public class View extends JFrame {
     private CLabel createLbl, openLbl, feedbackLbl, titleLbl, centerTitleLbl;
     private JTextField hotelNameTf, numStandardTf, numDeluxeTf, numExecutiveTf,
                         numCheckInTf, numCheckOutTf, generalTf, promoCodeTf, nameTf, infoDateTf;
-    private CButton createBtn, openBtn, confirmBtn, selectBtn;
+    private CButton loginBtn, guestBtn, createBtn, openBtn, confirmBtn, selectBtn;
     private JPanel northPnl, southPnl, westPnl, eastPnl, centerPnl, resLeftPnl, resRightPnl, infoRightPnl;
 
     //open hotel
@@ -28,7 +28,7 @@ public class View extends JFrame {
     private JTextField newNameTf, general2Tf;
 
     private CButton confirmResBtn, finalizeResButton, cancelResButton, standardRoomBtn, deluxeRoomBtn, executiveRoomBtn;
-    private CButton saveBtn, loadBtn, confirmLoadBtn;
+    private CButton saveBtn, loadBtn, confirmSaveBtn, confirmLoadBtn;
 
     //date inquiry
     private CButton[] dateButtons = new CButton[30];
@@ -66,14 +66,20 @@ public class View extends JFrame {
     private void init() {
 
         //BUTTONS
+        this.loginBtn = new CButton("Log-in", BTN_WIDTH, BTN_HEIGHT);
+        this.guestBtn = new CButton("Guest mode", BTN_WIDTH, BTN_HEIGHT);
+        this.createBtn = new CButton("Create a Hotel", BTN_WIDTH, BTN_HEIGHT);
+        this.openBtn = new CButton("Open a Hotel", BTN_WIDTH, BTN_HEIGHT);
+        loadBtn = new CButton("Load Hotels", BTN_WIDTH, BTN_HEIGHT);
         this.confirmBtn = new CButton("Confirm", BTN_WIDTH, BTN_HEIGHT);
         this.selectBtn = new CButton("Select", BTN_WIDTH, BTN_HEIGHT);
         inquireBtn = new CButton("Inquire", BTN_WIDTH, BTN_HEIGHT);
         manageBtn = new CButton("Manage", BTN_WIDTH, BTN_HEIGHT);
         reserveBtn = new CButton("Reserve", BTN_WIDTH, BTN_HEIGHT);
         backBtn = new CButton("Back", BTN_WIDTH, BTN_HEIGHT);
-        saveBtn = new CButton("Save", BTN_WIDTH, BTN_HEIGHT);
-        confirmLoadBtn = new CButton("Load Hotel", BTN_WIDTH, BTN_HEIGHT);
+        saveBtn = new CButton("Save Hotels", BTN_WIDTH, BTN_HEIGHT);
+        confirmLoadBtn = new CButton("Load Hotels", BTN_WIDTH, BTN_HEIGHT);
+        confirmSaveBtn = new CButton("Save Hotels", BTN_WIDTH, BTN_HEIGHT);
 
         //inquire panel
         iDateBtn = new CButton("Dates", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
@@ -115,31 +121,12 @@ public class View extends JFrame {
         dateBackBtn = new CButton("Back", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
 
 
-        centerPnl = new JPanel();
-
-        //WEST PANEL
-        this.createBtn = new CButton("Create a Hotel", BTN_WIDTH, BTN_HEIGHT);
-        this.openBtn = new CButton("Open a Hotel", BTN_WIDTH, BTN_HEIGHT);
-        loadBtn = new CButton("Load a Hotel", BTN_WIDTH, BTN_HEIGHT);
-        
-        westPnl = new JPanel();
-        westPnl.setLayout(new FlowLayout());
-        westPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, CENTER_MAIN_HEIGHT));
-        westPnl.setBackground(Color.decode("#1B384B"));
-        westPnl.add(createBtn);
-        westPnl.add(openBtn);
-        westPnl.add(loadBtn);
-
-        //EAST PANEL
-        
         //NORTH PANEL
         this.titleLbl = new CLabel();
         this.titleLbl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, TF_HEIGHT + 10));
         this.titleLbl.setFont(new Font(DEFAULT_FONT, Font.BOLD, 30));
         this.titleLbl.setHorizontalAlignment(SwingConstants.CENTER);
         this.titleLbl.setVerticalAlignment(SwingConstants.CENTER);
-
-        setTitleLblText("Main Menu");
 
         this.centerTitleLbl = new CLabel();
         this.centerTitleLbl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, TF_HEIGHT));
@@ -154,6 +141,61 @@ public class View extends JFrame {
         northPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH,TF_HEIGHT+15));
         northPnl.add(titleLbl);
 
+        generalTf = new JTextField();
+        generalTf.setPreferredSize(new Dimension(TF_WIDTH,TF_HEIGHT));
+        general2Tf = new JTextField();
+        general2Tf.setPreferredSize(new Dimension(TF_WIDTH,TF_HEIGHT));
+        hotelNameTf = new JTextField();
+        hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH,TF_HEIGHT));
+
+        centerPnl = new JPanel(new BorderLayout());
+        JPanel loginPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH,MAINFRAME_HEIGHT-100));
+        loginPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, MAINFRAME_HEIGHT-200));
+
+        loginPnl.add(new CLabel("Manager Log-In", 30, Font.BOLD));
+        loginPnl.add(new CLabel("Username: ", SUBTITLE_HEIGHT, Font.BOLD));
+        loginPnl.add(generalTf);
+        loginPnl.add(new CLabel("Password: ", SUBTITLE_HEIGHT, Font.BOLD));
+        loginPnl.add(general2Tf);
+        loginPnl.add(new CLabel("List of Hotels to Load: ", SUBTITLE_HEIGHT, Font.BOLD));
+        loginPnl.add(hotelNameTf);
+        loginPnl.add(loginBtn);
+
+        JPanel guestPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        guestPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, 100));
+        guestPnl.add(new CLabel("Experience the system even without being a manager!", SUBTITLE_HEIGHT-2, Font.BOLD));
+        guestPnl.add(guestBtn);
+
+        centerPnl.add(loginPnl, BorderLayout.NORTH);
+        centerPnl.add(guestPnl, BorderLayout.SOUTH);
+
+        westPnl = new JPanel();
+        westPnl.setPreferredSize(new Dimension( 0,0));
+
+        setTitleLblText("LOGIN PAGE");
+
+        this.add(northPnl, BorderLayout.NORTH);
+        this.add(centerPnl, BorderLayout.CENTER);
+        this.add(westPnl, BorderLayout.WEST);
+        this.revalidate();
+        this.repaint();
+
+    }
+
+    public void home(){
+        this.remove(this.centerPnl);
+        this.remove(westPnl);
+
+        centerPnl = new JPanel();
+        westPnl = new JPanel();
+        westPnl.setLayout(new FlowLayout());
+        westPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, CENTER_MAIN_HEIGHT));
+        westPnl.setBackground(Color.decode("#1B384B"));
+        westPnl.add(createBtn);
+        westPnl.add(openBtn);
+        this.westPnl.add(saveBtn);
+
         //SOUTH PANEL
         this.feedbackLbl = new CLabel();
         this.feedbackLbl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, TF_HEIGHT-5));
@@ -162,47 +204,59 @@ public class View extends JFrame {
         this.feedbackLbl.setVerticalAlignment(SwingConstants.NORTH);
         feedbackLbl.setBackground(Color.lightGray);
         feedbackLbl.setOpaque(true);
-        
+
         southPnl = new JPanel();
         southPnl.setLayout(new FlowLayout());
         southPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH,TF_HEIGHT-5));
         southPnl.setBackground(Color.lightGray);
         southPnl.add(feedbackLbl);
-        
+
         //ADD EVERYTHING
         this.add(titleLbl, BorderLayout.NORTH);
         this.add(centerPnl, BorderLayout.CENTER);
         this.add(westPnl, BorderLayout.WEST);
         this.add(southPnl, BorderLayout.SOUTH);
 
-        this.revalidate();
-        this.repaint();
-
-    }
-
-    public void home(){
-        this.remove(centerPnl);
-        this.remove(westPnl);
-
-        centerPnl = new JPanel();
-
-        //WEST PANEL
-        westPnl = new JPanel();
-        westPnl.setLayout(new FlowLayout());
-        westPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, 200));
-        westPnl.setBackground(Color.decode("#1B384B"));
-        westPnl.add(createBtn);
-        westPnl.add(openBtn);
-        westPnl.add(loadBtn);
-
         setTitleLblText("Main Menu");
 
         //ADD EVERYTHING
+        this.add(northPnl, BorderLayout.NORTH);
         this.add(centerPnl, BorderLayout.CENTER);
         this.add(westPnl, BorderLayout.WEST);
+        this.add(southPnl, BorderLayout.SOUTH);
 
         this.revalidate();
         this.repaint();
+    }
+
+    public void saveHotels(){
+        this.remove(centerPnl);
+
+        centerPnl = new JPanel();
+        centerPnl.setLayout(new BorderLayout());
+
+        JPanel centerLeftPnl = new JPanel();
+
+        CLabel selectHotelLbl = new CLabel("Input name: ", SUBTITLE_HEIGHT, Font.BOLD);
+
+        centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        centerLeftPnl.setPreferredSize(new Dimension(245, CENTER_MAIN_HEIGHT));
+
+        this.hotelNameTf = new JTextField();
+        this.hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
+
+        centerLeftPnl.add(selectHotelLbl);
+        centerLeftPnl.add(hotelNameTf);
+        centerLeftPnl.add(confirmSaveBtn);
+
+        setCenterTitleLblText("Save Hotels");
+
+        centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
+
+        centerPnl.add(centerLeftPnl, BorderLayout.WEST);
+        this.add(centerPnl);
+        centerPnl.revalidate();
+        centerPnl.repaint();
     }
 
     
@@ -399,12 +453,12 @@ public class View extends JFrame {
         this.westPnl.remove(this.createBtn);
         this.westPnl.remove(this.openBtn);
         this.westPnl.remove(this.loadBtn);
+        this.westPnl.remove(this.saveBtn);
 
         westPnl.add(backBtn);
         this.westPnl.add(inquireBtn);
         this.westPnl.add(manageBtn);
         this.westPnl.add(reserveBtn);
-        this.westPnl.add(saveBtn);
         this.revalidate();
         this.repaint();
     }
@@ -1168,6 +1222,14 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    public void setLoginListener(ActionListener actionListener){
+        this.loginBtn.addActionListener(actionListener);
+    }
+
+    public void setGuestListener(ActionListener actionListener){
+        this.guestBtn.addActionListener(actionListener);
+    }
+
     public void setCreateListener(ActionListener actionListener){
         this.createBtn.addActionListener(actionListener);
     }
@@ -1190,6 +1252,10 @@ public class View extends JFrame {
 
     public void setSaveListener(ActionListener actionListener){
         this.saveBtn.addActionListener(actionListener);
+    }
+
+    public void setConfirmSaveListener(ActionListener actionListener){
+        this.confirmSaveBtn.addActionListener(actionListener);
     }
 
     public void setLoadListener(ActionListener actionListener){

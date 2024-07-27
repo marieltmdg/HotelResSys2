@@ -1,4 +1,5 @@
 package mvcpack;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,6 +11,7 @@ public class Controller {
         this.model = model;
         this.view = view;
 
+        loginListeners();
         mainMenuListeners();
         openHotelListeners();
         inquireHotelListeners();
@@ -18,6 +20,24 @@ public class Controller {
 
         confirmCreateListener();
         confirmManageListeners();
+    }
+
+    public void loginListeners(){
+        this.view.setLoginListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                String name = view.getHotelNameTfText();
+                model.deserializeHotelList(name);
+                view.home();
+            }
+        });
+
+        this.view.setGuestListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.home();
+            }
+        });
     }
 
     public void mainMenuListeners(){
@@ -56,6 +76,7 @@ public class Controller {
             }
         });
 
+        /*
         this.view.setLoadListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -67,14 +88,30 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 String name = view.getHotelNameTfText();
-                String[] result = model.deserializeHotel(name);
+                String result = model.deserializeHotelList(name);
 
-                if (result.length == 1) {
-                    view.setFeedbackLblText(result[0]);
-                } else {
-                    view.loadHotel();
-                    view.loadHotelDetails(result);
+                view.setFeedbackLblText(result);
+            }
+        });
+        */
+
+        this.view.setSaveListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.saveHotels();
+            }
+        });
+
+        this.view.setConfirmSaveListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = view.getHotelNameTfText();
+                String result = "Please input a name";
+
+                if(!name.isEmpty()) {
+                    result = model.serializeHotelList(name);
                 }
+                view.setFeedbackLblText(result);
             }
         });
 
@@ -169,13 +206,7 @@ public class Controller {
             }
         });
 
-        this.view.setSaveListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String result = model.serializeHotel();
-                view.setFeedbackLblText(result);
-            }
-        });
+
     }
 
     public void inquireHotelListeners(){
