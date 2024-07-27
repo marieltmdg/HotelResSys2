@@ -54,6 +54,28 @@ public class Controller {
             }
         });
 
+        this.view.setLoadListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.loadHotel();
+            }
+        });
+
+        this.view.setConfirmLoadListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                String name = view.getHotelNameTfText();
+                String[] result = model.deserializeHotel(name);
+
+                if (result.length == 1) {
+                    view.setFeedbackLblText(result[0]);
+                } else {
+                    view.loadHotel();
+                    view.loadHotelDetails(result);
+                }
+            }
+        });
+
         this.view.setBackListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -123,6 +145,14 @@ public class Controller {
                 // TODO add reserve stuff
 
                 view.reserveHotel(model.getRoomListNames());
+            }
+        });
+
+        this.view.setSaveListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String result = model.serializeHotel();
+                view.setFeedbackLblText(result);
             }
         });
     }
@@ -195,7 +225,7 @@ public class Controller {
                         for (int i = 0; i < numExecutive; i++) {
                             model.addRoom(3, model.getCurrentHotelIndex());
                         }
-                        view.setFeedbackLblText("Room Addition Successful");
+                        view.setFeedbackLblText("Room addition successful");
                     }
                 } else view.setFeedbackLblText("Please input a positive number");
             }
@@ -248,10 +278,11 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int count = model.getReservationCount();
+                String result;
 
                 if(count == 0){
-                    model.removeHotel();
-                    view.setFeedbackLblText("Remove hotel successful");
+                    result = "Remove hotel successful" + model.removeHotel();
+                    view.setFeedbackLblText(result);
                     view.home();
                 } else {
                     view.setFeedbackLblText("Remove hotel unsuccessful. There are current reservations");

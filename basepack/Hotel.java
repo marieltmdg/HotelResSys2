@@ -2,12 +2,13 @@ package basepack;
 
 import basepack.roompack.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * The Hotel class represents a hotel with a name, a room count, and a list of rooms.
  */
-public class Hotel {
+public class Hotel implements Serializable {
     private String hotelName;
     private int roomCount;
     private ArrayList<Room> roomList;
