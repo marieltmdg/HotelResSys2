@@ -2,10 +2,12 @@ package basepack.roompack;
 
 import basepack.Room;
 
+import java.io.Serializable;
+
 /**
  * The room type Standard, extending from the abstract class: Room.
  */
-public class Standard extends Room {
+public class Standard extends Room implements Serializable {
 
     /**
      * Constructs a Standard instance with the specified room name.

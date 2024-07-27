@@ -2,10 +2,12 @@ package basepack.roompack;
 
 import basepack.Room;
 
+import java.io.Serializable;
+
 /**
  * The room type Deluxe, extending from the abstract class: Room.
  */
-public class Deluxe extends Room {
+public class Deluxe extends Room implements Serializable {
     private double dPrice;
 
     /**

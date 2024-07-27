@@ -3,6 +3,14 @@ import basepack.*;
 import basepack.roompack.*;
 
 import java.util.ArrayList;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The Model class is responsible for managing the overall operations involving hotels, rooms, and reservations.
@@ -11,6 +19,8 @@ public class Model {
     public Utility utility;
     private ArrayList<Hotel> hotelList;
     private int selectedHotelIndex;
+    private String hotelDirPath = "hotels" + File.separator;
+    private Map<String, Long> lastModifiedMap = new HashMap<>();
 
     /**
      * Constructs a Driver instance and initializes the necessary objects.
@@ -126,8 +136,24 @@ public class Model {
         return hotelList.get(selectedHotelIndex).removeHotelReservation(roomIndex, resIndex);
     }
 
-    public void removeHotel(){
+    public String removeHotel(){
+        String serName = hotelList.get(selectedHotelIndex).getHotelName() + ".ser";
         hotelList.remove(hotelList.get(selectedHotelIndex));
+
+        File file = new File(hotelDirPath+serName);
+        if (file.exists()) {
+            long lastModified = file.lastModified();
+            Long recordedLastModified = lastModifiedMap.get(hotelDirPath+serName);
+
+            //if it is the file that is being deleted
+            if (recordedLastModified != null && lastModified == recordedLastModified) {
+                if (file.delete()) {
+                    return ". File deleted successfully";
+                } else {
+                    return ". Failed to delete the file";
+                }
+            }
+        } return "";
     }
 
     public String addReservation(String name, int checkIn, int checkOut, int roomIndex){
@@ -281,6 +307,55 @@ public class Model {
             }
         }
         return "N/A";
+    }
+
+    public String serializeHotel() {
+        Hotel hotel = hotelList.get(selectedHotelIndex);
+        String serName = hotelList.get(selectedHotelIndex).getHotelName()+".ser";
+
+        try (FileOutputStream fileOut = new FileOutputStream(hotelDirPath+serName);
+             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+            out.writeObject(hotel);
+            System.out.println("Serialized data is saved in " + serName);
+            File file = new File(hotelDirPath+serName);
+            lastModifiedMap.put(hotelDirPath+serName, file.lastModified());
+            return "Save successful";
+        } catch (IOException i) {
+            return "Save unsuccessful";
+        }
+    }
+
+    public String[] deserializeHotel(String hotelName){
+        Hotel hotel = null;
+        String serName = hotelName+".ser";
+
+        try (FileInputStream fileIn = new FileInputStream(hotelDirPath+serName);
+             ObjectInputStream in = new ObjectInputStream(fileIn)) {
+            hotel = (Hotel) in.readObject();
+        } catch (IOException i) {
+            return new String[]{"Hotel not found. e1"};
+        } catch (ClassNotFoundException c) {
+            return new String[] {"Hotel not found. e2"};
+        }
+
+        if (hotel != null) {
+            String[] ret = new String[3];
+            ret[0] ="" + hotel.getHotelName();
+            ret[1] = "" + hotel.getRoomCount();
+            ret[2] = "" + hotel.getReservationCount();
+            boolean cont = true;
+
+            //loop to check hotel name similarity
+            for(int i = 0; i < hotelList.size() && cont; i++){
+                if (hotelName.equals(hotelList.get(i).getHotelName())){
+                    cont = false;
+                }
+            }
+            if (cont){
+                hotelList.add(hotel);
+                return ret;
+            } else return new String[]{"Hotel not loaded. There is another hotel with the same name"};
+        } else return new String[]{"Hotel not found. e3"};
     }
 }
 

@@ -1,11 +1,12 @@
 package basepack;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * The Room class represents a room in a hotel with a name, base price, and a list of reservations.
  */
-public abstract class Room {
+public abstract class Room implements Serializable {
     private String roomName;
     private double basePrice;
     private ArrayList<Reservation> reservationList;

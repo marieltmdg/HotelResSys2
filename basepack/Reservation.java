@@ -2,10 +2,12 @@ package basepack;
 
 import basepack.roompack.*;
 
+import java.io.Serializable;
+
 /**
  * The Reservation class represents a reservation made by a guest.
  */
-public class Reservation {
+public class Reservation implements Serializable {
     private String guestName;
     private int checkIn;
     private int checkOut;
