@@ -246,10 +246,10 @@ public class Hotel implements Serializable {
      * @param checkOut The checkOut parameter represents the check-out date for a hotel reservation.
      * @return String display feedback message.
      */
-    public String addHotelReservation(String name, int checkIn, int checkOut, int roomIndex){
+    public String addHotelReservation(String name, int checkIn, int checkOut, int roomIndex, String[] breakdown){
             //add reservation if there are available rooms
             if(roomList.get(roomIndex).isAvailable(checkIn, checkOut)){
-                roomList.get(roomIndex).addReservation(name, checkIn, checkOut);
+                roomList.get(roomIndex).addReservation(name, checkIn, checkOut, breakdown);
                 return "Reservation successful for " + name;
             } else {
                 return "Room is not available for selected dates";
@@ -411,8 +411,8 @@ public class Hotel implements Serializable {
      * @param roomIndex The index of the room.
      * @param resIndex The index of the reservation.
      */
-    public void printReservation(int roomIndex, int resIndex){
-        roomList.get(roomIndex).printReservation(resIndex);
+    public String[] printReservation(int roomIndex, int resIndex){
+        return roomList.get(roomIndex).printReservation(resIndex);
     }
 
     /**

@@ -75,6 +75,9 @@ public abstract class Room implements Serializable {
         return "(" +checkIn+"-"+checkOut +")";
     }
 
+    public String[] getResBreakdown(int index){
+        return reservationList.get(index).getReservationBreakdown();
+    }
     /**
      * The method setBasePrice() updates the base price with a new value.
      * 
@@ -97,8 +100,8 @@ public abstract class Room implements Serializable {
      * @param checkIn The check-in date for the reservation. 
      * @param checkOut The check-out represents the date when the reservation ends. 
      */
-    public void addReservation(String name, int checkIn, int checkOut){
-        reservationList.add(new Reservation(name, checkIn, checkOut, this));
+    public void addReservation(String name, int checkIn, int checkOut, String[] breakdown){
+        reservationList.add(new Reservation(name, checkIn, checkOut, this, breakdown));
     }
 
     /**
@@ -192,8 +195,8 @@ public abstract class Room implements Serializable {
      * 
      * @param resIndex The index of the reservation.
      */
-    public void printReservation(int resIndex){
-        reservationList.get(resIndex).printReservation();
+    public String[] printReservation(int resIndex){
+        return reservationList.get(resIndex).printReservation();
     }
 
     public abstract double getPriceAfterMultiplier(int date);

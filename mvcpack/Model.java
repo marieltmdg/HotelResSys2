@@ -156,9 +156,10 @@ public class Model {
         } return "";
     }
 
-    public String addReservation(String name, int checkIn, int checkOut, int roomIndex){
-        return hotelList.get(selectedHotelIndex).addHotelReservation(name, checkIn, checkOut, roomIndex);
+    public String addReservation(String name, int checkIn, int checkOut, int roomIndex, String[] breakdown){
+        return hotelList.get(selectedHotelIndex).addHotelReservation(name, checkIn, checkOut, roomIndex, breakdown);
     }
+
 
     public String[] getHotelListNames(){
         String[] names = new String[hotelList.size()];
@@ -191,6 +192,25 @@ public class Model {
         }
 
         return names;
+    }
+
+    public int checkValidReservation(int roomIndex, int resIndex){
+        int i = 0;
+        if(hotelList.get(selectedHotelIndex).getRoom(roomIndex).getReservationList().size() < resIndex)
+            i = 1;
+        
+        if(getRoomCount() < roomIndex)
+            i = 2;
+
+        return i;
+    }
+
+    public String[] getResBreakdown(int roomIndex, int resIndex){
+        return hotelList.get(selectedHotelIndex).getRoom(roomIndex).getResBreakdown(resIndex);
+    }
+
+    public String[] printReservationInfo(int roomIndex, int resIndex){
+        return hotelList.get(selectedHotelIndex).getRoom(roomIndex).getReservationList().get(resIndex).printReservation();
     }
 
     public int getTotalAvailableRooms(int date){
@@ -264,9 +284,11 @@ public class Model {
 
     public String[] getAvailableRoomList(int date){
         String[] roomList = new String[getTotalAvailableRooms(date)];
+        int j = 0;
         for(int i=0; i<hotelList.get(selectedHotelIndex).getRoomList().size(); i++){
             if(hotelList.get(selectedHotelIndex).getRoomList().get(i).isAvailable(date, date+1)){
-                roomList[i] = hotelList.get(selectedHotelIndex).getRoomList().get(i).getRoomName();
+                roomList[j] = hotelList.get(selectedHotelIndex).getRoomList().get(i).getRoomName();
+                j++;
             }
         }
         return roomList;
