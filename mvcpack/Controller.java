@@ -249,6 +249,8 @@ public class Controller {
         this.view.setInquireReservationListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                view.setFeedbackLblText("");
+                view.inquireReservation(model.getRoomCount(), model.getReservationListDetailed());
             }
         });
     
@@ -281,6 +283,34 @@ public class Controller {
             public void actionPerformed(ActionEvent e){
                 view.setFeedbackLblText("");
                 view.inquireDatesPanel();
+                
+            }
+        });
+
+        this.view.setInquireResButtonLstener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                int roomIndex = model.utility.getPosNumValue(view.getGeneralTf());
+                int resIndex = model.utility.getPosNumValue(view.getGeneral2TfText());
+                int validity = model.checkValidReservation(roomIndex-1, resIndex-1);
+                String result = "Input a positive number";
+
+                switch(validity){
+                    case 0:
+                        String resInfo[] = model.printReservationInfo(roomIndex-1, resIndex-1);
+                        String breakdownInfo[] =  model.getResBreakdown(roomIndex-1, resIndex-1);
+                        view.displaySelectedReservation(resInfo, breakdownInfo);
+                        result = "";
+                        break;
+                    case 1:
+                        result = "No existing reservation with the given index";
+                        break;
+                    case 2:
+                        result = "No existing room with the given index";
+                        break;
+                }
+                    
+                view.setFeedbackLblText(result);
                 
             }
         });
@@ -506,6 +536,7 @@ public class Controller {
 
                             // if everything is valid
                             String[] breakdown = model.getPriceBreakdown(promoValidity, numCheckIn, numCheckOut, numRoomIndex-1);
+                            
                             view.setReserveDetailsEditable(false);
                             view.printReserveBreakdown(breakdown, 300);
                             click = false;
@@ -639,8 +670,9 @@ public class Controller {
                             result = "There is no available room of that type for those dates";
                         }
                          else if (model.utility.checkDateValidity(numCheckIn, numCheckOut)) {
-                            result = model.addReservation(stringName, numCheckIn, numCheckOut, numRoomIndex-1);
-                            model.setResTotalPrice(promoValidity, numCheckIn, numCheckOut, numRoomIndex-1);
+                            String[] b = model.getPriceBreakdown(promoValidity, numCheckIn, numCheckOut, numRoomIndex-1);
+                            result = model.addReservation(stringName, numCheckIn, numCheckOut, numRoomIndex-1, b);
+                            model.setResTotalPrice(promoValidity, numCheckIn, numCheckOut, numRoomIndex-1);                   
                         } else result = "Invalid check-in and check-out days";
                     } else result = "Please fill out name, check in, check out, and select room type";
 
