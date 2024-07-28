@@ -33,6 +33,9 @@ public class View extends JFrame {
     //date inquiry
     private CButton[] dateButtons = new CButton[30];
     private CButton dateBackBtn;
+
+    //res inquiry
+    private CButton inquireResBtn;
     
     private final int SMALL_TF_WIDTH = 50;
     private final int TF_WIDTH = 200;
@@ -119,6 +122,9 @@ public class View extends JFrame {
             dateButtons[i].setMargin(new Insets(1,1,1,1));
         }
         dateBackBtn = new CButton("Back", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
+
+        //res info
+        inquireResBtn = new CButton("Inquire", BTN_WIDTH, BTN_HEIGHT, 14);
 
 
         //NORTH PANEL
@@ -708,7 +714,6 @@ public class View extends JFrame {
     }
         
 
-
     public JPanel manageHotelLeftPanel(){
         JPanel centerLeftPnl = new JPanel();
 
@@ -940,6 +945,103 @@ public class View extends JFrame {
 
         centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
         centerPnl.add(manageHotelLeftPanel(), BorderLayout.WEST);
+        centerPnl.add(centerRightPnl, BorderLayout.EAST);
+
+        this.add(centerPnl);
+        this.revalidate();
+        this.repaint();
+    }
+
+    public void displaySelectedReservation(String[] reservationDetails, String[] breakdown){
+        this.remove(centerPnl);
+
+        centerPnl = new JPanel();
+        centerPnl.setLayout(new BorderLayout());
+
+        JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
+
+        CLabel resInfoHeaderLbl = new CLabel("Reservation Information", SUBTITLE_HEIGHT, Font.BOLD);
+
+        centerRightPnl.add(resInfoHeaderLbl);
+
+        for(String r : reservationDetails){
+
+            CLabel resInfoLbl = new CLabel(r+"", SUBTITLE_HEIGHT, Font.PLAIN);
+            centerRightPnl.add(resInfoLbl);
+        }
+
+        CLabel spacerLbl = new CLabel("                                      ", SUBTITLE_HEIGHT, Font.PLAIN);
+        centerRightPnl.add(spacerLbl);
+        
+        JPanel mainBreakdownPnl = new JPanel();
+        mainBreakdownPnl.setLayout(new BoxLayout(mainBreakdownPnl, BoxLayout.Y_AXIS));
+        mainBreakdownPnl.setMaximumSize(new Dimension(Short.MAX_VALUE, 200));
+
+        for (String line : breakdown) {
+            CLabel dayPrompt = new CLabel(line);
+            dayPrompt.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 12));
+            dayPrompt.setPreferredSize(new Dimension(BTN_WIDTH-10, 20));
+            dayPrompt.setMaximumSize(new Dimension(Short.MAX_VALUE, 20));
+
+            mainBreakdownPnl.add(dayPrompt);
+        }
+        
+        JScrollPane printBreakdownScrPane = new JScrollPane(mainBreakdownPnl);
+        printBreakdownScrPane.setPreferredSize(new Dimension(BTN_WIDTH+5, 200));
+
+        CLabel breakdownHeader = new CLabel("Price Breakdown", SUBTITLE_HEIGHT, Font.BOLD);
+        centerRightPnl.add(breakdownHeader);
+        centerRightPnl.add(printBreakdownScrPane);
+
+        setCenterTitleLblText("Inquire Reservation");
+
+        centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
+        centerPnl.add(inquireHotelLeftPanel(), BorderLayout.WEST);
+        centerPnl.add(centerRightPnl, BorderLayout.EAST);
+
+        this.add(centerPnl);
+        this.revalidate();
+        this.repaint();
+
+    }
+
+    public void inquireReservation(int roomCount, String[][] reservationNames){
+        this.remove(centerPnl);
+
+        JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
+        JPanel selectionPnl = new JPanel(new FlowLayout());
+        JPanel resPnl = new JPanel();
+        this.generalTf = new JTextField();
+        this.general2Tf = new JTextField();
+        centerPnl = new JPanel();
+        centerPnl.setLayout(new BorderLayout());
+
+        resPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 315));
+        resPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        selectionPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 150));
+        selectionPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        generalTf.setPreferredSize(new Dimension(TF_WIDTH/2-3, TF_HEIGHT));
+        general2Tf.setPreferredSize(new Dimension(TF_WIDTH/2-1, TF_HEIGHT));
+
+        CLabel selectRoomLbl = new CLabel("     [Room]  [Reservation]", SUBTITLE_HEIGHT, Font.BOLD);
+
+        resPnl.add(new CLabel("Rooms in the hotel: ", SUBTITLE_HEIGHT, Font.BOLD));
+        resPnl.add(printReservation(roomCount, reservationNames, CENTER_MAIN_WIDTH -10, 280));
+        selectionPnl.add(selectRoomLbl, new FlowLayout(FlowLayout.CENTER));
+        selectionPnl.add(generalTf, new FlowLayout(FlowLayout.CENTER));
+        selectionPnl.add(general2Tf, new FlowLayout(FlowLayout.CENTER));
+        selectionPnl.add(inquireResBtn, new FlowLayout(FlowLayout.CENTER));
+
+        centerRightPnl.add(resPnl, BorderLayout.NORTH);
+        centerRightPnl.add(selectionPnl, BorderLayout.SOUTH);
+
+        setCenterTitleLblText("Inquire Reservation");
+
+        centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
+        centerPnl.add(inquireHotelLeftPanel(), BorderLayout.WEST);
         centerPnl.add(centerRightPnl, BorderLayout.EAST);
 
         this.add(centerPnl);
@@ -1387,6 +1489,11 @@ public class View extends JFrame {
     public void setDateBackButtonListener(ActionListener actionListener){
         this.dateBackBtn.addActionListener(actionListener);
     }
+
+    public void setInquireResButtonLstener(ActionListener actionListener){
+        this.inquireResBtn.addActionListener(actionListener);
+    }
+
 
     //return feedback
     public void setFeedbackLblText(String text) {
