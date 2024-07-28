@@ -11,13 +11,13 @@ public class Controller {
         this.model = model;
         this.view = view;
 
+        model.deserializeManagerList();
         loginListeners();
         mainMenuListeners();
         openHotelListeners();
         inquireHotelListeners();
         manageHotelListeners();
         reserveHotelListeners();
-
         confirmCreateListener();
         confirmManageListeners();
     }
@@ -26,16 +26,40 @@ public class Controller {
         this.view.setLoginListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                String name = view.getHotelNameTfText();
-                model.deserializeHotelList(name);
-                view.home();
+                String hotelList = view.getHotelNameTfText();
+
+                String username = view.getGeneralTf();
+                String password = view.getGeneral2TfText();
+
+                if (model.loadManager(username, password)) {
+                    model.deserializeHotelList(hotelList);
+                    view.home(model.getManagerPresence());
+                    view.setFeedbackLblText("Login successful");
+                } else {
+                    view.setFeedbackLblText("Wrong username or password");
+                }
+            }
+        });
+
+        this.view.setCreateManagerListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = view.getCreateManagerNameTfText();
+                String password = view.getCreateManagerPwTfText();
+
+                if (username.isEmpty() || password.isEmpty()) {
+                    view.setFeedbackLblText("Please complete all fields");
+                } else {
+                    String result = model.saveManager(username, password);
+                    view.setFeedbackLblText(result);
+                }
             }
         });
 
         this.view.setGuestListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                view.home();
+                view.home(model.getManagerPresence());
             }
         });
     }
@@ -76,7 +100,7 @@ public class Controller {
             }
         });
 
-        /*
+
         this.view.setLoadListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -93,7 +117,6 @@ public class Controller {
                 view.setFeedbackLblText(result);
             }
         });
-        */
 
         this.view.setSaveListener(new ActionListener() {
             @Override
@@ -118,8 +141,18 @@ public class Controller {
         this.view.setBackListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                view.home();
+                view.home(model.getManagerPresence());
                 view.setFeedbackLblText("");
+            }
+        });
+
+        this.view.setLogoutListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.loginPage();
+                model.resetHotelList();
+                model.setManagerPresence(false);
+                view.setFeedbackLblText("Logout successful");
             }
         });
     }
@@ -427,9 +460,10 @@ public class Controller {
                 String result;
 
                 if(count == 0){
-                    result = "Remove hotel successful" + model.removeHotel();
+                    model.removeHotel();
+                    result = "Remove hotel successful";
                     view.setFeedbackLblText(result);
-                    view.home();
+                    view.home(model.getManagerPresence());
                 } else {
                     view.setFeedbackLblText("Remove hotel unsuccessful. There are current reservations");
                 }

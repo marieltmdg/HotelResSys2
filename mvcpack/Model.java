@@ -19,8 +19,10 @@ public class Model {
     public Utility utility;
     private ArrayList<Hotel> hotelList;
     private int selectedHotelIndex;
-    private String hotelDirPath = "hotels" + File.separator;
+    private String savesDirPath = "saves" + File.separator;
+    private ArrayList<Manager> managerList;
     private Map<String, Long> lastModifiedMap = new HashMap<>();
+    private boolean managerPresence = false;
 
     /**
      * Constructs a Driver instance and initializes the necessary objects.
@@ -28,6 +30,7 @@ public class Model {
     public Model() {
         this.utility = new Utility();
         this.hotelList = new ArrayList<Hotel>();
+        this.managerList = new ArrayList<Manager>();
     }
 
     public int addHotel(String name, int standardRoomCount, int deluxeRoomCount, int execRoomCount) {
@@ -136,25 +139,8 @@ public class Model {
         return hotelList.get(selectedHotelIndex).removeHotelReservation(roomIndex, resIndex);
     }
 
-    public String removeHotel() {
-        String serName = hotelList.get(selectedHotelIndex).getHotelName() + ".ser";
+    public void removeHotel() {
         hotelList.remove(hotelList.get(selectedHotelIndex));
-
-        File file = new File(hotelDirPath + serName);
-        if (file.exists()) {
-            long lastModified = file.lastModified();
-            Long recordedLastModified = lastModifiedMap.get(hotelDirPath + serName);
-
-            //if it is the file that is being deleted
-            if (recordedLastModified != null && lastModified == recordedLastModified) {
-                if (file.delete()) {
-                    return ". File deleted successfully";
-                } else {
-                    return ". Failed to delete the file";
-                }
-            }
-        }
-        return "";
     }
 
     public String addReservation(String name, int checkIn, int checkOut, int roomIndex, String[] breakdown){
@@ -334,13 +320,21 @@ public class Model {
 
     public String serializeHotelList(String name) {
         String serName = name + ".ser";
+        File file = new File(savesDirPath + serName);
 
-        try (FileOutputStream fileOut = new FileOutputStream(hotelDirPath + serName);
+        if (file.exists()) {
+            long lastModified = file.lastModified();
+            Long recordedLastModified = lastModifiedMap.get(savesDirPath+serName);
+
+            if (recordedLastModified != null && lastModified == recordedLastModified) {
+            } else return "File already exists. Choose a different name or delete the existing file.";
+        }
+
+        try (FileOutputStream fileOut = new FileOutputStream(file);
              ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
             out.writeObject(hotelList);
-            System.out.println("Serialized data is saved in ");
-            File file = new File(hotelDirPath + "model.ser");
-            lastModifiedMap.put(hotelDirPath+ "model.ser", file.lastModified());
+            System.out.println("Serialized data is saved in " + serName);
+            lastModifiedMap.put(savesDirPath+serName, file.lastModified());
             return "Save successful";
         } catch (IOException i) {
             return "Save unsuccessful";
@@ -350,7 +344,7 @@ public class Model {
     public String deserializeHotelList(String name) {
         String serName = name + ".ser";
 
-        try (FileInputStream fileIn = new FileInputStream(hotelDirPath+ serName);
+        try (FileInputStream fileIn = new FileInputStream(savesDirPath+ serName);
              ObjectInputStream in = new ObjectInputStream(fileIn)) {
             hotelList = (ArrayList<Hotel>) in.readObject();
         } catch (IOException i) {
@@ -360,6 +354,69 @@ public class Model {
         }
 
         return "Successfully loaded hotels";
+    }
+
+    public String saveManager(String userName, String password){
+        for(Manager m : managerList){
+            if (m.getUsername().equals(userName)) {
+                return "Username already exists";
+            }
+        }
+        managerList.add(new Manager(userName, password));
+
+        try (FileOutputStream fileOut = new FileOutputStream(savesDirPath + "managers.ser");
+        ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+            out.writeObject(managerList);
+            System.out.println("Serialized data is saved in " + savesDirPath + "managers.ser");
+            File file = new File(savesDirPath + "managers.ser");
+            lastModifiedMap.put(savesDirPath+ "managers.ser", file.lastModified());
+
+            return "Manager added to list";
+        } catch (IOException i) {
+            return "Manager addition unsuccessful";
+        }
+
+    }
+
+    public void deserializeManagerList(){
+        try (FileInputStream fileIn = new FileInputStream(savesDirPath+ "managers.ser");
+             ObjectInputStream in = new ObjectInputStream(fileIn)) {
+            managerList = (ArrayList<Manager>) in.readObject();
+        } catch (IOException i) {
+            System.out.println("List not found. e1");
+        } catch (ClassNotFoundException c) {
+            System.out.println("List not found. e2");
+        }
+
+        System.out.println("Successfully loaded managers");
+
+        for(Manager m : managerList){
+            System.out.println(m.getUsername());
+        }
+    }
+
+    public boolean loadManager(String userName, String password){
+        for(Manager m : managerList){
+            if (m.getUsername().equals(userName)) {
+                if (m.getPassword().equals(password)){
+                    managerPresence = true;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void resetHotelList(){
+        this.hotelList = new ArrayList<Hotel>();
+    }
+
+    public boolean getManagerPresence(){
+        return this.managerPresence;
+    }
+
+    public void setManagerPresence(Boolean b){
+        this.managerPresence = b;
     }
 }
 

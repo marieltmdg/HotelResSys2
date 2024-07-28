@@ -5,121 +5,70 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1a3c063-36ad-42a4-9cf8-b9bfbf30ed1b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/basepack/Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/basepack/Hotel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/basepack/Reservation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/basepack/Room.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/basepack/Utility.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/basepack/roompack/Deluxe.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/basepack/roompack/Executive.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/basepack/roompack/Standard.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$10.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$11.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$12.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$13.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$14.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$15.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$16.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$17.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$18.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$19.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$20.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$21.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$22.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$23.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$24.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$25.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$26.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$27.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$28.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$29.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$30.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$31.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$32.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$33.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$34.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller$9.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Model.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotels/1.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvcpack/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvcpack/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvcpack/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/View.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/custompack/CButton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/custompack/CLabel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/.idea/intellij-javadocs-4.0.1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/CCPROG3 MCO2 Specifications - Extended Hotel Reservation System.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/HotelResSys2.drawio" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/HotelResSys2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Hotel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Reservation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Room.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Utility.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/roompack/Deluxe.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/roompack/Executive.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/roompack/Standard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvcpack/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Hotel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Hotel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Reservation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Reservation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Room.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/hotels/1.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$10.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$11.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$12.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$13.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$14.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$15.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$16.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$17.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$18.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$19.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$20.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$21.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$22.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$23.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$24.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$25.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$26.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$27.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$28.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$29.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$30.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$31.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$32.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$33.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$34.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$35.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$36.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$37.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$38.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$9.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Model.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/View.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/custompack/CButton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/custompack/CLabel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$15.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$16.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$17.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$17.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$18.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$18.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$19.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$19.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$20.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$20.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$21.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$21.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$22.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$22.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$23.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$23.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$24.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$24.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$25.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$25.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$26.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$26.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$27.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$27.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$28.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$28.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$29.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$29.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$30.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$30.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$31.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$31.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$32.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$32.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$33.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$33.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$34.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$34.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$35.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$35.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$36.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$36.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$37.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$37.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$38.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$38.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Model.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/View.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -137,7 +86,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -152,7 +101,7 @@
   &quot;keyToString&quot;: {
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;BonusFeatures&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/marie/OneDrive/Documents/GitHub/HotelResSys2&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
@@ -160,9 +109,17 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;module&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\marie\OneDrive\Documents\GitHub\HotelResSys2" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
@@ -195,6 +152,21 @@
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Paths">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="file:$PROJECT_DIR$/mvcpack/Model.java" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
