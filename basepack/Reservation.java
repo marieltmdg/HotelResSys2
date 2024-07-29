@@ -3,6 +3,7 @@ package basepack;
 import basepack.roompack.*;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 /**
  * The Reservation class represents a reservation made by a guest.
@@ -85,18 +86,16 @@ public class Reservation implements Serializable {
     public String[] printReservation(){
         int length = this.checkOut - this.checkIn;
 
-        System.out.println("Reservation Details:\n");
-        System.out.println("Guest Name: " + this.guestName);
-        System.out.println("Stay length: " + length + " days (" + this.checkIn + " - " + this.checkOut + ")");
-        System.out.println("Room Details: " + room.getRoomName());
-        System.out.println("Total Price: " + this.getTotalPrice());
-        System.out.println("Breakdown of Price: " + room.getBasePrice() + "/day for " + (checkOut-checkIn) + " day/s");
 
         String[] resInfo = new String[4];
         resInfo[0] = ("Guest Name: " + this.guestName);
         resInfo[1] = ("Stay length: " + length + " days (" + this.checkIn + " - " + this.checkOut + ")");
         resInfo[2] = ("Room Details: " + room.getRoomName());
-        resInfo[3] = ("Total Price: " + this.getTotalPrice());
+
+        double totalPrice = this.getTotalPrice() ;
+        DecimalFormat df = new DecimalFormat("#,##0.00");    
+        String totalPriceString = df.format(totalPrice);  
+        resInfo[3] = ("Total Price: " + totalPriceString);
 
         return resInfo;
     }
