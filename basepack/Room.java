@@ -1,6 +1,7 @@
 package basepack;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -222,6 +223,9 @@ public abstract class Room implements Serializable {
                     break;
 
         }
+
+        DecimalFormat df = new DecimalFormat("#0.00");      
+        price = Double.valueOf(df.format(price));
         return price;
     }
 
@@ -262,6 +266,10 @@ public abstract class Room implements Serializable {
                 break;
         }
 
+        for (int i = 0; i < numDays; i++) {
+            DecimalFormat df = new DecimalFormat("#0.00");      
+            price[i] = Double.valueOf(df.format(price[i]));
+        }
         return price;
     }
 
@@ -280,25 +288,31 @@ public abstract class Room implements Serializable {
         double[] price = getPriceAfterDiscountBreakdown(promoValidity, checkIn, checkOut);
         
         for (int i = 0; i < numDays; i++) {
+            DecimalFormat df = new DecimalFormat("#,##0.00");    
+            String priceString = df.format(price[i]);  
             int currentDay = checkIn + i;
             switch (promoValidity) {
                 case 1: // 10% discount
-                case 3: // 10% discount
-                    breakdown[i] = "Day " + currentDay + " - " + (currentDay+1) + " : P" + price[i];
+                case 3: // 7% discount
+                    breakdown[i] = "Day " + currentDay + " - " + (currentDay+1) + " : P" + priceString;
                     break;
                 case 2: // Free first day
                     if (i == 0) {
                         breakdown[i] = "Promo Redeemed. Free";
                     } else {
-                        breakdown[i] = "Day " + currentDay + " - " + (currentDay+1) + " : P" + price[i];
+                        breakdown[i] = "Day " + currentDay + " - " + (currentDay+1) + " : P" + priceString;
                     }
                     break;
                 default: // No discount
-                    breakdown[i] = "Day " + currentDay + " - " + (currentDay+1) + " : P" + price[i];
+                    breakdown[i] = "Day " + currentDay + " - " + (currentDay+1) + " : P" + priceString;
                     break;
             }
         }
-        breakdown[breakdown.length-1] = "The Total Price is P" + getTotalPriceAfterDiscount(promoValidity, checkIn, checkOut);
+
+        double totalPrice = getTotalPriceAfterDiscount(promoValidity, checkIn, checkOut);
+        DecimalFormat df = new DecimalFormat("#,##0.00");    
+        String totalPriceString = df.format(totalPrice);  
+        breakdown[breakdown.length-1] = "The Total Price is P" + totalPriceString;
 
         return breakdown;
     }

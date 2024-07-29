@@ -10,18 +10,27 @@ public class CButton extends JButton {
 
     public CButton(String x){
         super(x);
+        
+        setBackground(Color.decode("#0BA843"));
+        setForeground(Color.WHITE);
     }
 
     public CButton(String x ,int width, int height) {
         super(x);
         setFont(new Font("Verdana", Font.BOLD, 20));
         setPreferredSize(new Dimension(width, height));
+        
+        setBackground(Color.decode("#0BA843"));
+        setForeground(Color.WHITE);
    }
 
     public CButton(String x, int width, int height, int fontSize) {
         super(x);
         setFont(new Font("Verdana", Font.BOLD, fontSize));
         setPreferredSize(new Dimension(width, height));
+
+        setBackground(Color.decode("#0BA843"));
+        setForeground(Color.WHITE);
     }
 
     public CButton(String x, int width, int height, int fontSize, Color color) {

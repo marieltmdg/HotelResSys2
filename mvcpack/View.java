@@ -9,6 +9,7 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 public class View extends JFrame {
     private CLabel createLbl, openLbl, feedbackLbl, titleLbl, centerTitleLbl;
@@ -29,7 +30,8 @@ public class View extends JFrame {
         removeReservationBtn, removeHotelBtn, datePriceBtn,
             confirmRenameBtn, confirmAddRmBtn, confirmRemoveRmBtn, confirmUpdatePriceBtn
             ,confirmRemoveResBtn, confirmRemoveHotelBtn, confirmDatePriceBtn;
-    private JTextField newNameTf, general2Tf, createManagerTf, createManagerPwTf;
+    private JTextField newNameTf, general2Tf, createManagerTf;
+    private JPasswordField loginPwTf, createManagerPwTf;
 
     private CButton confirmResBtn, finalizeResButton, cancelResButton, standardRoomBtn, deluxeRoomBtn, executiveRoomBtn;
     private CButton saveBtn, loadBtn, confirmSaveBtn, confirmLoadBtn;
@@ -78,9 +80,9 @@ public class View extends JFrame {
     private void init() {
 
         //BUTTONS
-        this.loginBtn = new CButton("Log-in", BTN_WIDTH, SMALL_BTN_HEIGHT, 12, Color.WHITE);
-        this.createManagerBtn = new CButton("New Manager", BTN_WIDTH, SMALL_BTN_HEIGHT, 12, Color.WHITE);
-        this.guestBtn = new CButton("<html><u>Guest Mode</u></html>", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12, Color.decode("#1B384B"), Color.WHITE);
+        this.loginBtn = new CButton("Log-in", BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
+        this.createManagerBtn = new CButton("New Manager", BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
+        this.guestBtn = new CButton("<html><u>Guest Mode</u></html>", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12, Color.decode("#033013"), Color.WHITE);
         this.createBtn = new CButton("Create a Hotel", BTN_WIDTH, BTN_HEIGHT);
         this.openBtn = new CButton("Open a Hotel", BTN_WIDTH, BTN_HEIGHT);
         this.logoutBtn = new CButton("Log out", BTN_WIDTH, BTN_HEIGHT);
@@ -138,8 +140,8 @@ public class View extends JFrame {
         inquireResBtn = new CButton("Inquire", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
 
         //register
-        registerBtn = new CButton("Register", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12, Color.WHITE);
-        cancelRegisterBtn = new CButton("Cancel", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12, Color.WHITE);
+        registerBtn = new CButton("Register", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
+        cancelRegisterBtn = new CButton("Cancel", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
 
 
         //NORTH PANEL
@@ -152,7 +154,7 @@ public class View extends JFrame {
         this.centerTitleLbl = new CLabel();
         this.centerTitleLbl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, TF_HEIGHT));
         this.centerTitleLbl.setFont(new Font(DEFAULT_FONT, Font.BOLD, 20));
-        this.centerTitleLbl.setBackground(Color.lightGray);
+        this.centerTitleLbl.setBackground(Color.decode("#033013"));
         this.centerTitleLbl.setOpaque(true);
         this.centerTitleLbl.setHorizontalAlignment(SwingConstants.CENTER);
         this.centerTitleLbl.setVerticalAlignment(SwingConstants.CENTER);
@@ -163,13 +165,13 @@ public class View extends JFrame {
         this.feedbackLbl.setFont(new Font(DEFAULT_FONT, Font.BOLD, 15));
         this.feedbackLbl.setHorizontalAlignment(SwingConstants.CENTER);
         this.feedbackLbl.setVerticalAlignment(SwingConstants.NORTH);
-        feedbackLbl.setBackground(Color.lightGray);
+        feedbackLbl.setBackground(Color.decode("#033013"));
         feedbackLbl.setOpaque(true);
 
         southPnl = new JPanel();
         southPnl.setLayout(new FlowLayout());
         southPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH,TF_HEIGHT-5));
-        southPnl.setBackground(Color.lightGray);
+        southPnl.setBackground(Color.decode("#033013"));
         southPnl.add(feedbackLbl);
 
         northPnl = new JPanel();
@@ -178,6 +180,7 @@ public class View extends JFrame {
 
 
         centerPnl = new JPanel();
+        centerPnl.setBackground(Color.decode("#087830"));
         westPnl = new JPanel();
 
 
@@ -196,13 +199,13 @@ public class View extends JFrame {
         westPnl = new JPanel();
 
         JPanel centerMainPnl = new JPanel(new BorderLayout());
-        centerMainPnl.setMaximumSize(new Dimension(MAINFRAME_WIDTH/2, MAINFRAME_HEIGHT-180));
+        centerMainPnl.setMaximumSize(new Dimension(MAINFRAME_WIDTH/2, MAINFRAME_HEIGHT));
         
         JPanel newPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        newPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH/2, MAINFRAME_HEIGHT-200));
-        newPnl.setBackground(Color.decode("#ADCAD6"));
+        newPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH/2, MAINFRAME_HEIGHT));
+        newPnl.setBackground(Color.decode("#087830"));
         createManagerTf = new JTextField();
-        createManagerPwTf = new JTextField();
+        createManagerPwTf = new JPasswordField();
         createManagerTf.setPreferredSize(new Dimension(TF_WIDTH,TF_HEIGHT));
         createManagerPwTf.setPreferredSize(new Dimension(TF_WIDTH,TF_HEIGHT));
 
@@ -243,8 +246,8 @@ public class View extends JFrame {
 
         generalTf = new JTextField();
         generalTf.setPreferredSize(new Dimension(TF_WIDTH,TF_HEIGHT));
-        general2Tf = new JTextField();
-        general2Tf.setPreferredSize(new Dimension(TF_WIDTH,TF_HEIGHT));
+        loginPwTf = new JPasswordField();
+        loginPwTf.setPreferredSize(new Dimension(TF_WIDTH,TF_HEIGHT));
         hotelNameTf = new JTextField();
         hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH,TF_HEIGHT));
 
@@ -254,13 +257,13 @@ public class View extends JFrame {
         centerMainPnl.setMaximumSize(new Dimension(MAINFRAME_WIDTH/2, MAINFRAME_HEIGHT-180));
         centerPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH,MAINFRAME_HEIGHT-100));
         loginPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH/2, MAINFRAME_HEIGHT-180));
-        loginPnl.setBackground(Color.decode("#ADCAD6"));
+        loginPnl.setBackground(Color.decode("#087830"));
 
         loginPnl.add(new CLabel("              Manager Log-In              ", SUBTITLE_HEIGHT, Font.BOLD));
         loginPnl.add(new CLabel("Username: ", SUBTITLE_HEIGHT-2, Font.BOLD));
         loginPnl.add(generalTf);
         loginPnl.add(new CLabel("Password: ", SUBTITLE_HEIGHT-2, Font.BOLD));
-        loginPnl.add(general2Tf);
+        loginPnl.add(loginPwTf);
         loginPnl.add(new CLabel("List of Hotels to Load: ", SUBTITLE_HEIGHT, Font.BOLD));
         loginPnl.add(hotelNameTf);
         loginPnl.add(loginBtn);
@@ -282,7 +285,8 @@ public class View extends JFrame {
 
         JPanel guestPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
         guestPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, 70));
-        guestPnl.setBackground(Color.decode("#1B384B"));
+        guestPnl.setBackground(Color.decode("#033013"));
+
         CLabel guestLbl = new CLabel("Experience the system even without being a manager!", SUBTITLE_HEIGHT-2, Font.BOLD);
         guestLbl.setForeground(Color.white);
         guestPnl.add(guestLbl);
@@ -312,10 +316,11 @@ public class View extends JFrame {
         this.remove(westPnl);
 
         centerPnl = new JPanel();
+        centerPnl.setBackground(Color.decode("#087830"));
         westPnl = new JPanel();
         westPnl.setLayout(new FlowLayout());
         westPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, CENTER_MAIN_HEIGHT));
-        westPnl.setBackground(Color.decode("#1B384B"));
+        westPnl.setBackground(Color.decode("#d3f2de"));
         westPnl.add(createBtn);
         westPnl.add(openBtn);
 
@@ -348,6 +353,7 @@ public class View extends JFrame {
 
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
+        centerPnl.setBackground(Color.decode("#087830"));
 
         JPanel centerLeftPnl = new JPanel();
 
@@ -355,6 +361,7 @@ public class View extends JFrame {
 
         centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         centerLeftPnl.setPreferredSize(new Dimension(245, CENTER_MAIN_HEIGHT));
+        centerLeftPnl.setBackground(Color.decode("#087830"));
 
         this.hotelNameTf = new JTextField();
         this.hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
@@ -382,6 +389,7 @@ public class View extends JFrame {
         JPanel mainHotelPnl = new JPanel();
         mainHotelPnl.setLayout(new BoxLayout(mainHotelPnl, BoxLayout.Y_AXIS));
         mainHotelPnl.setMaximumSize(new Dimension(width, 300));
+        mainHotelPnl.setBackground(Color.decode("#d3f2de"));
         
         for(int i = 0; i < hotelNames.length; i++){
             num = i + 1;
@@ -391,6 +399,7 @@ public class View extends JFrame {
             hotel.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 12));
             hotel.setPreferredSize(new Dimension(width-10, 20));
             hotel.setMaximumSize(new Dimension(width, 20));
+            hotel.setForeground(Color.decode("#087830"));
             
  
             mainHotelPnl.add(hotel);
@@ -399,6 +408,9 @@ public class View extends JFrame {
 
         JScrollPane printHotelsScrPane = new JScrollPane(mainHotelPnl);
         printHotelsScrPane.setPreferredSize(new Dimension(width, 300));
+        printHotelsScrPane.setBackground(Color.decode("#d3f2de"));
+        printHotelsScrPane.setBorder(BorderFactory.createEmptyBorder());
+        printHotelsScrPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         return printHotelsScrPane;
     }
@@ -410,6 +422,8 @@ public class View extends JFrame {
 
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
+        centerPnl.setBackground(Color.decode("#087830"));
+        
 
         JPanel centerRightPnl = new JPanel();
         JPanel centerLeftPnl = new JPanel();
@@ -418,6 +432,7 @@ public class View extends JFrame {
 
         addRoomPnl.setPreferredSize(new Dimension(230, CENTER_MAIN_HEIGHT));
         addRoomPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        addRoomPnl.setBackground(Color.decode("#087830"));
 
         CLabel roomAddLbl = new CLabel("Add Rooms              ", SUBTITLE_HEIGHT, Font.BOLD);
         CLabel standardAddLbl = new CLabel("Standard Room         ", SUBTITLE_HEIGHT, Font.PLAIN);
@@ -437,10 +452,13 @@ public class View extends JFrame {
 
         centerRightPnl.setLayout(new FlowLayout(FlowLayout.RIGHT));
         centerRightPnl.setPreferredSize(new Dimension(245, 300));
+        centerRightPnl.setBackground(Color.decode("#087830"));
         centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         centerLeftPnl.setPreferredSize(new Dimension(245, 300));
+        centerLeftPnl.setBackground(Color.decode("#087830"));
 
         headerPnl.setPreferredSize(new Dimension(230, TF_HEIGHT));
+        headerPnl.setBackground(Color.decode("#087830"));
 
         addRoomPnl.add(roomAddLbl);
 
@@ -481,20 +499,23 @@ public class View extends JFrame {
 
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
+        centerPnl.setBackground(Color.decode("#087830"));
 
         JPanel centerLeftPnl = new JPanel();
 
-        CLabel selectHotelLbl = new CLabel("Input hotel list name: ", SUBTITLE_HEIGHT, Font.BOLD);
-
         centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         centerLeftPnl.setPreferredSize(new Dimension(245, CENTER_MAIN_HEIGHT));
+        centerLeftPnl.setBackground(Color.decode("#087830"));
 
         this.hotelNameTf = new JTextField();
         this.hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
 
+        CLabel selectHotelLbl = new CLabel("Input hotel list name: ", SUBTITLE_HEIGHT, Font.BOLD);
+
         centerLeftPnl.add(selectHotelLbl);
         centerLeftPnl.add(hotelNameTf);
         centerLeftPnl.add(confirmLoadBtn);
+        
 
         setCenterTitleLblText("Load a Hotel");
 
@@ -510,6 +531,7 @@ public class View extends JFrame {
         JPanel detPnl = new JPanel();
         detPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         detPnl.setPreferredSize(new Dimension(230, CENTER_MAIN_HEIGHT));
+        detPnl.setBackground(Color.decode("#087830"));
 
         detPnl.add(new CLabel("                                   ", SUBTITLE_HEIGHT, Font.BOLD));
         detPnl.add(new CLabel("Hotel name: ", SUBTITLE_HEIGHT, Font.BOLD));
@@ -530,6 +552,7 @@ public class View extends JFrame {
 
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
+        centerPnl.setBackground(Color.decode("#087830"));
 
         JPanel centerLeftPnl = new JPanel();
         JPanel centerRightPnl = new JPanel();
@@ -537,8 +560,10 @@ public class View extends JFrame {
 
         centerRightPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         centerRightPnl.setPreferredSize(new Dimension(245, 300));
+        centerRightPnl.setBackground(Color.decode("#087830"));
         centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         centerLeftPnl.setPreferredSize(new Dimension(245, 300));
+        centerLeftPnl.setBackground(Color.decode("#087830"));
 
         this.hotelNameTf = new JTextField();
         this.hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
@@ -564,6 +589,10 @@ public class View extends JFrame {
         setTitleLblText("Current Hotel: " + hotelName);
 
         this.remove(centerPnl);
+        centerPnl = new JPanel();
+        centerPnl.setBackground(Color.decode("#087830"));
+        this.add(centerPnl);
+
         this.westPnl.remove(this.createBtn);
         this.westPnl.remove(this.openBtn);
         this.westPnl.remove(this.loadBtn);
@@ -585,6 +614,7 @@ public class View extends JFrame {
 
         centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         centerLeftPnl.setPreferredSize(new Dimension(SMALL_BTN_WIDTH+10, CENTER_MAIN_HEIGHT));
+        centerLeftPnl.setBackground(Color.decode("#087830"));
 
         centerLeftPnl.add(iHotelBtn);
         centerLeftPnl.add(iRoomBtn);
@@ -606,6 +636,8 @@ public class View extends JFrame {
 
         this.centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
         this.centerPnl.add(inquireHotelLeftPanel(), BorderLayout.WEST);
+        centerLeftPnl.setBackground(Color.decode("#087830"));
+        centerPnl.setBackground(Color.decode("#087830"));
 
         this.add(westPnl, BorderLayout.WEST);
         this.add(centerPnl, BorderLayout.CENTER);
@@ -619,18 +651,22 @@ public class View extends JFrame {
                                  int delRmCt, int exRmCt,  double earnings){
         this.remove(centerPnl);
         centerPnl = new JPanel(new BorderLayout());
+        centerPnl.setBackground(Color.decode("#087830"));
 
         JPanel centerRightPnl = new JPanel();
         centerRightPnl.setLayout(new FlowLayout());
         centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
+        centerRightPnl.setBackground(Color.decode("#087830"));
 
         JPanel hotelNamePnl  = new JPanel();
         hotelNamePnl.setPreferredSize(new Dimension(BTN_WIDTH+10, TF_HEIGHT));
+        hotelNamePnl.setBackground(Color.decode("#087830"));
         CLabel hotelNameLbl = new CLabel("Hotel Name: " + hotelName, SUBTITLE_HEIGHT, Font.BOLD);
         hotelNamePnl.add(hotelNameLbl);
 
         JPanel roomCountPnl = new JPanel();
         roomCountPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, TF_HEIGHT*3));
+        roomCountPnl.setBackground(Color.decode("#087830"));
         CLabel roomCountLbl = new CLabel("Total Room Count: " + roomCount, SUBTITLE_HEIGHT, Font.BOLD);
         CLabel standardCountLbl = new CLabel("Standard Rooms: " + standardRmCt, SUBTITLE_HEIGHT, Font.PLAIN);
         CLabel deluxeCountLbl = new CLabel("Deluxe Rooms: " + delRmCt, SUBTITLE_HEIGHT, Font.PLAIN);
@@ -642,8 +678,13 @@ public class View extends JFrame {
 
         JPanel earningsPnl = new JPanel();
         earningsPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, TF_HEIGHT*2));
+        earningsPnl.setBackground(Color.decode("#087830"));
+        
+        DecimalFormat df = new DecimalFormat("###,###,##0.00");    
+        String earningsString = df.format(earnings);  
+
         CLabel earningsLbl = new CLabel(BTN_WIDTH, SUBTITLE_HEIGHT*2, "<html>"+"Est. earnings for the month:" + "<html>"
-                + "<html> " + earnings + "<html>", SUBTITLE_HEIGHT,Font.BOLD);
+                + "<html> " + earningsString + "<html>", SUBTITLE_HEIGHT,Font.BOLD);
         earningsPnl.add(earningsLbl);
 
         centerRightPnl.add(new CLabel("                                 ", SUBTITLE_HEIGHT, Font.BOLD));
@@ -669,6 +710,7 @@ public class View extends JFrame {
         JPanel mainRoomPnl = new JPanel();
         mainRoomPnl.setLayout(new BoxLayout(mainRoomPnl, BoxLayout.Y_AXIS));
         mainRoomPnl.setMaximumSize(new Dimension(Short.MAX_VALUE, height));
+        mainRoomPnl.setBackground(Color.decode("#d3f2de"));
 
         for(int i = 0; i < roomNames.length; i++){
             num = i + 1;
@@ -677,6 +719,7 @@ public class View extends JFrame {
             room.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 12));
             room.setPreferredSize(new Dimension(BTN_WIDTH-10, 20));
             room.setMaximumSize(new Dimension(Short.MAX_VALUE, 20));
+            room.setForeground(Color.decode("#087830"));
             
             mainRoomPnl.add(room);
          
@@ -684,6 +727,9 @@ public class View extends JFrame {
 
         JScrollPane printRoomsScrPane = new JScrollPane(mainRoomPnl);
         printRoomsScrPane.setPreferredSize(new Dimension(BTN_WIDTH+5, height));
+        printRoomsScrPane.setBackground(Color.decode("#d3f2de"));
+        printRoomsScrPane.setBorder(BorderFactory.createEmptyBorder());
+        printRoomsScrPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         return printRoomsScrPane;
     }
@@ -698,6 +744,7 @@ public class View extends JFrame {
         
         this.infoRightPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         infoRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 400));
+        infoRightPnl.setBackground(Color.decode("#087830"));
 
         CLabel iDateHeaderLbl = new CLabel("Inquire Date", SUBTITLE_HEIGHT, Font.BOLD);
 
@@ -718,6 +765,7 @@ public class View extends JFrame {
         centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
         centerPnl.add(inquireHotelLeftPanel(), BorderLayout.WEST);
         centerPnl.add(infoRightPnl, BorderLayout.EAST);
+        centerPnl.setBackground(Color.decode("#087830"));
 
         this.add(centerPnl, BorderLayout.CENTER);
         this.revalidate();
@@ -727,10 +775,13 @@ public class View extends JFrame {
     public void inquireRoomInfo(String[] roomNames){
         this.remove(centerPnl);
         centerPnl = new JPanel(new BorderLayout());
+        centerPnl.setBackground(Color.decode("#087830"));
 
         JPanel centerRightPnl = new JPanel();
         centerRightPnl.setLayout(new FlowLayout());
         centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
+        centerRightPnl.setBackground(Color.decode("#087830"));
+
         this.generalTf = new JTextField();
         generalTf.setPreferredSize(new Dimension(SMALL_TF_WIDTH, TF_HEIGHT));
 
@@ -759,9 +810,12 @@ public class View extends JFrame {
         JPanel centerRightPnl = new JPanel();
         centerRightPnl.setLayout(new FlowLayout());
         centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
+        centerRightPnl.setBackground(Color.decode("#087830"));
+
         JPanel datePnl = new JPanel();
         datePnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         datePnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
+        datePnl.setBackground(Color.decode("#087830"));
 
         centerRightPnl.add(new CLabel("                                 ", SUBTITLE_HEIGHT, Font.BOLD));
         centerRightPnl.add(new CLabel("Room name: ", SUBTITLE_HEIGHT, Font.BOLD));
@@ -792,11 +846,13 @@ public class View extends JFrame {
     public void inquireDatesPanel(){
         this.remove(centerPnl);
         centerPnl = new JPanel(new BorderLayout());
+        centerPnl.setBackground(Color.decode("#087830"));
 
         this.infoRightPnl = new JPanel();
 
         this.infoRightPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         infoRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 400));
+        infoRightPnl.setBackground(Color.decode("#087830"));
 
         CLabel iDateHeaderLbl = new CLabel();
         
@@ -805,6 +861,7 @@ public class View extends JFrame {
         JPanel dateHeaderPnl = new JPanel();
         dateHeaderPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         dateHeaderPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 30));
+        dateHeaderPnl.setBackground(Color.decode("#087830"));
         dateHeaderPnl.add(iDateHeaderLbl);
         
         infoRightPnl.add(dateHeaderPnl);
@@ -829,6 +886,7 @@ public class View extends JFrame {
 
         centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         centerLeftPnl.setPreferredSize(new Dimension(SMALL_BTN_WIDTH+10, 300));
+        centerLeftPnl.setBackground(Color.decode("#087830"));
 
         centerLeftPnl.add(renameBtn);
         centerLeftPnl.add(addRoomBtn);
@@ -845,11 +903,13 @@ public class View extends JFrame {
         this.remove(this.centerPnl);
 
         centerPnl = new JPanel();
-        JPanel centerLeftPnl = new JPanel();
-
+        centerPnl.setBackground(Color.decode("#087830"));
         centerPnl.setLayout(new BorderLayout());
+
+        JPanel centerLeftPnl = new JPanel();
         centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         centerLeftPnl.setPreferredSize(new Dimension(SMALL_BTN_WIDTH+10, 300));
+        centerLeftPnl.setBackground(Color.decode("#087830"));
 
         setCenterTitleLblText("Manage Hotel");
 
@@ -866,8 +926,11 @@ public class View extends JFrame {
 
         JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
         centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
+        centerRightPnl.setBackground(Color.decode("#087830"));
+
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
+        centerPnl.setBackground(Color.decode("#087830"));
 
         centerRightPnl.add(new CLabel("                                 ", SUBTITLE_HEIGHT, Font.BOLD));
         CLabel nameLbl = new CLabel("New Hotel Name:", SUBTITLE_HEIGHT, Font.BOLD);
@@ -894,12 +957,16 @@ public class View extends JFrame {
 
         JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
         centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
+        centerRightPnl.setBackground(Color.decode("#087830"));
+
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
+        centerPnl.setBackground(Color.decode("#087830"));
 
         JPanel addRoomPnl = new JPanel();
         addRoomPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
         addRoomPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        addRoomPnl.setBackground(Color.decode("#087830"));
 
         centerRightPnl.add(new CLabel("                                 ", SUBTITLE_HEIGHT, Font.BOLD));
         CLabel roomAddLbl = new CLabel("Room Amount       ", SUBTITLE_HEIGHT, Font.BOLD);
@@ -919,7 +986,6 @@ public class View extends JFrame {
         this.numExecutiveTf.setPreferredSize(new Dimension(SMALL_TF_WIDTH, TF_HEIGHT));
 
         centerRightPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
-        centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
 
         addRoomPnl.add(roomAddLbl);
 
@@ -952,17 +1018,23 @@ public class View extends JFrame {
 
         JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
         centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
-        JPanel selectionPnl = new JPanel(new FlowLayout());
-        JPanel roomPnl = new JPanel();
-        this.generalTf = new JTextField();
+        centerRightPnl.setBackground(Color.decode("#087830"));
+
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
-
+        centerPnl.setBackground(Color.decode("#087830"));
+        
+        JPanel roomPnl = new JPanel();
         roomPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 315));
         roomPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        roomPnl.setBackground(Color.decode("#087830"));
+
+        JPanel selectionPnl = new JPanel(new FlowLayout());
         selectionPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 150));
         selectionPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        selectionPnl.setBackground(Color.decode("#087830"));
 
+        this.generalTf = new JTextField();
         generalTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
 
         CLabel selectRoomLbl = new CLabel("Select Room [n]: ", SUBTITLE_HEIGHT, Font.BOLD);
@@ -989,10 +1061,13 @@ public class View extends JFrame {
     public void updatePrice(double basePrice){
         this.remove(centerPnl);
 
-        JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
+        centerPnl.setBackground(Color.decode("#087830"));
+
+        JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
+        centerRightPnl.setBackground(Color.decode("#087830"));
 
         centerRightPnl.add(new CLabel("                                 ", SUBTITLE_HEIGHT, Font.BOLD));
 
@@ -1022,20 +1097,28 @@ public class View extends JFrame {
     public void datePrice(double[] prices){
         this.remove(centerPnl);
 
-        JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
-        JPanel selectionPnl = new JPanel(new FlowLayout());
-        JPanel pricePnl = new JPanel();
-        this.generalTf = new JTextField();
-        this.general2Tf = new JTextField();
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
+        centerPnl.setBackground(Color.decode("#087830"));
+
+        JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
+        centerRightPnl.setBackground(Color.decode("#087830"));
+
+        JPanel selectionPnl = new JPanel(new FlowLayout());
+        JPanel pricePnl = new JPanel();
 
         pricePnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 300));
         pricePnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        pricePnl.setBackground(Color.decode("#087830"));
+
         selectionPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 150));
         selectionPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        selectionPnl.setBackground(Color.decode("#087830"));
 
+
+        this.generalTf = new JTextField();
+        this.general2Tf = new JTextField();
         generalTf.setPreferredSize(new Dimension(TF_WIDTH/2-2, TF_HEIGHT));
         general2Tf.setPreferredSize(new Dimension(TF_WIDTH/2-2, TF_HEIGHT));
 
@@ -1067,9 +1150,13 @@ public class View extends JFrame {
 
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
+        centerPnl.setBackground(Color.decode("#087830"));
+
 
         JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
         centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
+        centerRightPnl.setBackground(Color.decode("#087830"));
+
 
         CLabel resInfoHeaderLbl = new CLabel("Reservation Information", SUBTITLE_HEIGHT, Font.BOLD);
 
@@ -1087,18 +1174,22 @@ public class View extends JFrame {
         JPanel mainBreakdownPnl = new JPanel();
         mainBreakdownPnl.setLayout(new BoxLayout(mainBreakdownPnl, BoxLayout.Y_AXIS));
         mainBreakdownPnl.setMaximumSize(new Dimension(Short.MAX_VALUE, 200));
+        mainBreakdownPnl.setBackground(Color.decode("#d3f2de"));
+
 
         for (String line : breakdown) {
             CLabel dayPrompt = new CLabel(line);
             dayPrompt.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 12));
             dayPrompt.setPreferredSize(new Dimension(BTN_WIDTH-10, 20));
             dayPrompt.setMaximumSize(new Dimension(Short.MAX_VALUE, 20));
+            dayPrompt.setForeground(Color.decode("#087830"));
 
             mainBreakdownPnl.add(dayPrompt);
         }
         
         JScrollPane printBreakdownScrPane = new JScrollPane(mainBreakdownPnl);
         printBreakdownScrPane.setPreferredSize(new Dimension(BTN_WIDTH+5, 200));
+        printBreakdownScrPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         CLabel breakdownHeader = new CLabel("Price Breakdown", SUBTITLE_HEIGHT, Font.BOLD);
         centerRightPnl.add(breakdownHeader);
@@ -1121,18 +1212,24 @@ public class View extends JFrame {
 
         JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
         centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
-        JPanel selectionPnl = new JPanel(new FlowLayout());
-        JPanel resPnl = new JPanel();
-        this.generalTf = new JTextField();
-        this.general2Tf = new JTextField();
+        centerRightPnl.setBackground(Color.decode("#087830"));
+
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
+        centerPnl.setBackground(Color.decode("#087830"));
 
+        JPanel resPnl = new JPanel();
         resPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 315));
         resPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        resPnl.setBackground(Color.decode("#087830"));
+
+        JPanel selectionPnl = new JPanel(new FlowLayout());
         selectionPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 150));
         selectionPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        selectionPnl.setBackground(Color.decode("#087830"));
 
+        this.generalTf = new JTextField();
+        this.general2Tf = new JTextField();
         generalTf.setPreferredSize(new Dimension(TF_WIDTH/2-3, TF_HEIGHT));
         general2Tf.setPreferredSize(new Dimension(TF_WIDTH/2-1, TF_HEIGHT));
 
@@ -1164,18 +1261,23 @@ public class View extends JFrame {
 
         JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
         centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
-        JPanel selectionPnl = new JPanel(new FlowLayout());
-        JPanel resPnl = new JPanel();
-        this.generalTf = new JTextField();
-        this.general2Tf = new JTextField();
+        centerRightPnl.setBackground(Color.decode("#087830"));
+       
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
-
+        
+        JPanel resPnl = new JPanel();
         resPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 315));
         resPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        resPnl.setBackground(Color.decode("#087830"));
+
+        JPanel selectionPnl = new JPanel(new FlowLayout());
         selectionPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 150));
         selectionPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        selectionPnl.setBackground(Color.decode("#087830"));
 
+        this.generalTf = new JTextField();
+        this.general2Tf = new JTextField();
         generalTf.setPreferredSize(new Dimension(TF_WIDTH/2-3, TF_HEIGHT));
         general2Tf.setPreferredSize(new Dimension(TF_WIDTH/2-1, TF_HEIGHT));
 
@@ -1207,8 +1309,11 @@ public class View extends JFrame {
 
         JPanel centerRightPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
         centerRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
+        centerRightPnl.setBackground(Color.decode("#087830"));
+
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
+        centerPnl.setBackground(Color.decode("#087830"));
 
         setCenterTitleLblText("Remove Hotel");
 
@@ -1236,6 +1341,7 @@ public class View extends JFrame {
         JPanel mainPricePnl = new JPanel();
         mainPricePnl.setLayout(new BoxLayout(mainPricePnl, BoxLayout.Y_AXIS));
         mainPricePnl.setMaximumSize(new Dimension(width, height));
+        mainPricePnl.setBackground(Color.decode("#d3f2de"));
 
         for(int i = 0; i < prices.length; i++){
             num = i + 1;
@@ -1244,6 +1350,7 @@ public class View extends JFrame {
             room.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 12));
             room.setPreferredSize(new Dimension(BTN_WIDTH-10, 20));
             room.setMaximumSize(new Dimension(width, 20));
+            room.setForeground(Color.decode("#087830"));
 
             mainPricePnl.add(room);
 
@@ -1251,6 +1358,8 @@ public class View extends JFrame {
 
         JScrollPane printRoomsScrPane = new JScrollPane(mainPricePnl);
         printRoomsScrPane.setPreferredSize(new Dimension(width, height));
+        printRoomsScrPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        printRoomsScrPane.setBackground(Color.decode("#d3f2de"));
 
         return printRoomsScrPane;
     }
@@ -1262,6 +1371,7 @@ public class View extends JFrame {
         JPanel mainRoomPnl = new JPanel();
         mainRoomPnl.setLayout(new BoxLayout(mainRoomPnl, BoxLayout.Y_AXIS));
         mainRoomPnl.setMaximumSize(new Dimension(width, height));
+        mainRoomPnl.setBackground(Color.decode("#d3f2de"));
 
         for(int i = 0; i < roomNames.length; i++){
             num = i + 1;
@@ -1270,6 +1380,7 @@ public class View extends JFrame {
             room.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 12));
             room.setPreferredSize(new Dimension(BTN_WIDTH-10, 20));
             room.setMaximumSize(new Dimension(width, 20));
+            room.setForeground(Color.decode("#087830"));
             
             mainRoomPnl.add(room);
          
@@ -1277,6 +1388,8 @@ public class View extends JFrame {
 
         JScrollPane printRoomsScrPane = new JScrollPane(mainRoomPnl);
         printRoomsScrPane.setPreferredSize(new Dimension(width+5, height));
+        printRoomsScrPane.setBackground(Color.decode("#d3f2de"));
+        printRoomsScrPane.setBorder(BorderFactory.createEmptyBorder());
 
         return printRoomsScrPane;
     }
@@ -1289,6 +1402,7 @@ public class View extends JFrame {
         JPanel mainRoomPnl = new JPanel();
         mainRoomPnl.setLayout(new BoxLayout(mainRoomPnl, BoxLayout.Y_AXIS));
         mainRoomPnl.setMaximumSize(new Dimension(width, height));
+        mainRoomPnl.setBackground(Color.decode("#d3f2de"));
 
         for(int j = 0; j < roomCount; j++) {
             roomNum = j + 1;
@@ -1297,6 +1411,7 @@ public class View extends JFrame {
             room.setFont(new Font(DEFAULT_FONT, Font.BOLD, 12));
             room.setPreferredSize(new Dimension(BTN_WIDTH - 10, 20));
             room.setMaximumSize(new Dimension(width, 20));
+            room.setForeground(Color.decode("#087830"));
 
             mainRoomPnl.add(room);
 
@@ -1309,6 +1424,7 @@ public class View extends JFrame {
                     res.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 12));
                     res.setPreferredSize(new Dimension(BTN_WIDTH - 10, 20));
                     res.setMaximumSize(new Dimension(width, 20));
+                    res.setForeground(Color.decode("#087830"));
 
                     mainRoomPnl.add(res);
                 } else if (i == 0) {
@@ -1316,6 +1432,7 @@ public class View extends JFrame {
                     res.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 12));
                     res.setPreferredSize(new Dimension(BTN_WIDTH - 10, 20));
                     res.setMaximumSize(new Dimension(width, 20));
+                    res.setForeground(Color.decode("#087830"));
 
                     mainRoomPnl.add(res);
                 }
@@ -1324,6 +1441,9 @@ public class View extends JFrame {
 
         JScrollPane printRoomsScrPane = new JScrollPane(mainRoomPnl);
         printRoomsScrPane.setPreferredSize(new Dimension(width, height));
+        printRoomsScrPane.setBorder(BorderFactory.createEmptyBorder());
+        printRoomsScrPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        printRoomsScrPane.setBackground(Color.decode("#d3f2de"));
 
         return printRoomsScrPane;
     }
@@ -1332,18 +1452,22 @@ public class View extends JFrame {
         JPanel mainBreakdownPnl = new JPanel();
         mainBreakdownPnl.setLayout(new BoxLayout(mainBreakdownPnl, BoxLayout.Y_AXIS));
         mainBreakdownPnl.setMaximumSize(new Dimension(Short.MAX_VALUE, height));
+        mainBreakdownPnl.setBackground(Color.decode("#d3f2de"));
 
         for (String line : breakdown) {
             CLabel dayPrompt = new CLabel(line);
             dayPrompt.setFont(new Font(DEFAULT_FONT, Font.PLAIN, 12));
             dayPrompt.setPreferredSize(new Dimension(BTN_WIDTH-10, 20));
             dayPrompt.setMaximumSize(new Dimension(Short.MAX_VALUE, 20));
+            dayPrompt.setForeground(Color.decode("#087830"));
 
             mainBreakdownPnl.add(dayPrompt);
         }
         
         JScrollPane printBreakdownScrPane = new JScrollPane(mainBreakdownPnl);
         printBreakdownScrPane.setPreferredSize(new Dimension(BTN_WIDTH+5, height));
+        printBreakdownScrPane.setBackground(Color.decode("#d3f2de"));
+        printBreakdownScrPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         this.resRightPnl.add(printBreakdownScrPane);
         this.resRightPnl.add(finalizeResButton);
         this.resRightPnl.add(cancelResButton);
@@ -1362,13 +1486,22 @@ public class View extends JFrame {
         JPanel headerPnl = new JPanel();
 
         centerPnl.setLayout(new BorderLayout());
+        centerPnl.setBackground(Color.decode("#087830"));
+
         this.resRightPnl.setLayout(new FlowLayout(FlowLayout.RIGHT));
         this.resRightPnl.setPreferredSize(new Dimension(245, CENTER_MAIN_HEIGHT));
+        this.resRightPnl.setBackground(Color.decode("#087830"));
+
         this.resLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
         this.resLeftPnl.setPreferredSize(new Dimension(245, CENTER_MAIN_HEIGHT));
+        this.resLeftPnl.setBackground(Color.decode("#087830"));
+
         addResPnl.setPreferredSize(new Dimension(230, 300));
         addResPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        addResPnl.setBackground(Color.decode("#087830"));
+
         headerPnl.setPreferredSize(new Dimension(BTN_WIDTH, TF_HEIGHT));
+        headerPnl.setBackground(Color.decode("#087830"));
 
         this.nameTf = new JTextField();
         this.generalTf = new JTextField();
@@ -1383,7 +1516,6 @@ public class View extends JFrame {
         this.promoCodeTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
 
         CLabel nameLbl = new CLabel("Guest Name", SUBTITLE_HEIGHT, Font.BOLD);
-        CLabel roomReserveLbl = new CLabel("List of Rooms", SUBTITLE_HEIGHT, Font.BOLD);
         CLabel checkInLbl = new CLabel("Check In Date        ", SUBTITLE_HEIGHT, Font.PLAIN);
         CLabel checkOutLbl = new CLabel("Check Out Date     ", SUBTITLE_HEIGHT, Font.PLAIN);
         CLabel promoCodeLbl = new CLabel("Promo Code", SUBTITLE_HEIGHT -3, Font.ITALIC);
@@ -1652,7 +1784,13 @@ public class View extends JFrame {
     }
 
     public String getCreateManagerPwTfText() {
-        return this.createManagerPwTf.getText();
+        String password = new String(this.createManagerPwTf.getPassword());
+        return password;
+    }
+
+    public String getLoginPwTfText(){
+        String password = new String(this.loginPwTf.getPassword());
+        return password;
     }
 
     public String getNumStandardTf(){

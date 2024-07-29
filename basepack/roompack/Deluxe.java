@@ -3,6 +3,7 @@ package basepack.roompack;
 import basepack.Room;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 /**
  * The room type Deluxe, extending from the abstract class: Room.
@@ -37,6 +38,10 @@ public class Deluxe extends Room implements Serializable {
      * @return The price after multiplier of a deluxe room.
      */
     public double getPriceAfterMultiplier(int date) {
-        return dPrice * (super.getDatePricePercent(date-1) / 100);
+
+        double price = this.getBasePrice() * 1.2 * (super.getDatePricePercent(date-1) / 100);
+        DecimalFormat df = new DecimalFormat("#0.00");      
+        price = Double.valueOf(df.format(price));
+        return price;
     }
 }

@@ -3,6 +3,7 @@ package basepack;
 import basepack.roompack.*;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -283,6 +284,10 @@ public class Hotel implements Serializable {
             sum += r.getTotalReservationPrice();
             
         }
+
+        DecimalFormat df = new DecimalFormat("#0.00");      
+        sum = Double.valueOf(df.format(sum));
+        
         return sum;
     }
 

@@ -8,10 +8,12 @@ public class CLabel extends JLabel{
 
     public CLabel(){
         super();
+        this.setForeground(Color.WHITE);
     }
 
     public CLabel(String text){
         super(text);
+        this.setForeground(Color.WHITE);
     }
 
     public CLabel(String text, int fontSize, int fontType) {
@@ -20,6 +22,8 @@ public class CLabel extends JLabel{
         this.setFont(new Font(DEFAULT_FONT, fontType, fontSize));
         this.setHorizontalAlignment(SwingConstants.CENTER);
         this.setVerticalAlignment(SwingConstants.CENTER);
+
+        this.setForeground(Color.WHITE);
     }
 
     public CLabel(int width, int height, String text, int fontSize, int fontType) {
@@ -29,5 +33,8 @@ public class CLabel extends JLabel{
         this.setFont(new Font(DEFAULT_FONT, fontType, fontSize));
         this.setHorizontalAlignment(SwingConstants.CENTER);
         this.setVerticalAlignment(SwingConstants.CENTER);
+
+        this.setForeground(Color.WHITE);
+
     }
 }

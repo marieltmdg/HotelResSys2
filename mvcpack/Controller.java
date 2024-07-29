@@ -29,7 +29,7 @@ public class Controller {
                 String hotelList = view.getHotelNameTfText();
 
                 String username = view.getGeneralTf();
-                String password = view.getGeneral2TfText();
+                String password = view.getLoginPwTfText();
 
                 if (model.loadManager(username, password)) {
                     model.deserializeHotelList(hotelList);
@@ -44,6 +44,7 @@ public class Controller {
         this.view.setRegisterBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                view.setFeedbackLblText("");
                 view.registerPage();
             }
         });
@@ -51,6 +52,7 @@ public class Controller {
         this.view.setCancelRegisterBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                view.setFeedbackLblText("");
                 view.loginPage();
             }
         });
@@ -66,13 +68,16 @@ public class Controller {
                 } else {
                     String result = model.saveManager(username, password);
                     view.setFeedbackLblText(result);
+                    view.loginPage();
                 }
+                
             }
         });
 
         this.view.setGuestListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
+                view.setFeedbackLblText("");
                 view.home(model.getManagerPresence());
             }
         });
@@ -82,6 +87,7 @@ public class Controller {
         this.view.setCreateListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
                 System.out.println("pressed create"); // CHECKER
                 String[] hotelListNames= model.getHotelListNames();
                 view.createHotel(hotelListNames);
@@ -118,6 +124,7 @@ public class Controller {
         this.view.setLoadListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                view.setFeedbackLblText("");
                 view.loadHotel();
             }
         });
@@ -280,7 +287,9 @@ public class Controller {
                 int roomIndex = model.utility.getPosNumValue(sRoomIndex);
                 String result = "Please input a positive number";
 
-                if (roomIndex != -1 && roomIndex != 0) {
+                if(roomIndex > model.getRoomCount()|| roomIndex == 0){
+                    result = "No room corresponds with the input";
+                }else if (roomIndex != -1 && roomIndex != 0) {
                     String roomName = model.getRoomName(roomIndex-1);
                     double price = model.getPricePerType(roomIndex-1);
                     String[] availableDates = model.getAvailableDatesForRoom(roomIndex-1);
