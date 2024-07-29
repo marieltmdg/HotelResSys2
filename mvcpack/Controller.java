@@ -41,6 +41,20 @@ public class Controller {
             }
         });
 
+        this.view.setRegisterBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.registerPage();
+            }
+        });
+
+        this.view.setCancelRegisterBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.loginPage();
+            }
+        });
+
         this.view.setCreateManagerListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

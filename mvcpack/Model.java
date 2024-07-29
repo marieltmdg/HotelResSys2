@@ -183,11 +183,14 @@ public class Model {
 
     public int checkValidReservation(int roomIndex, int resIndex){
         int i = 0;
-        if(hotelList.get(selectedHotelIndex).getRoom(roomIndex).getReservationList().size() < resIndex)
-            i = 1;
 
-        if(getRoomCount() < roomIndex)
-            i = 2;
+        if(getRoomCount()-1 < roomIndex || roomIndex < 0)
+            return 2;
+
+        if(hotelList.get(selectedHotelIndex).getRoom(roomIndex).getReservationList().size()-1 < resIndex || resIndex < 0)
+            return 1;
+
+       
 
         return i;
     }

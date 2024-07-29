@@ -23,4 +23,21 @@ public class CButton extends JButton {
         setFont(new Font("Verdana", Font.BOLD, fontSize));
         setPreferredSize(new Dimension(width, height));
     }
+
+    public CButton(String x, int width, int height, int fontSize, Color color) {
+        super(x);
+        setFont(new Font("Verdana", Font.BOLD, fontSize));
+        setPreferredSize(new Dimension(width, height));
+        setBackground(color);
+    }
+
+    
+    public CButton(String x, int width, int height, int fontSize, Color bgColor, Color fgColor) {
+        super(x);
+        setFont(new Font("Verdana", Font.BOLD, fontSize));
+        setPreferredSize(new Dimension(width, height));
+        setBackground(bgColor);
+        setForeground(fgColor);
+        setBorder(BorderFactory.createEmptyBorder());
+    }
 }

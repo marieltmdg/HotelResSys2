@@ -40,6 +40,9 @@ public class View extends JFrame {
 
     //res inquiry
     private CButton inquireResBtn;
+
+    //login
+    private CButton registerBtn, cancelRegisterBtn;
     
     private final int SMALL_TF_WIDTH = 50;
     private final int TF_WIDTH = 200;
@@ -75,9 +78,9 @@ public class View extends JFrame {
     private void init() {
 
         //BUTTONS
-        this.loginBtn = new CButton("Log-in", BTN_WIDTH, SMALL_BTN_HEIGHT);
-        this.createManagerBtn = new CButton("New Manager", BTN_WIDTH, SMALL_BTN_HEIGHT);
-        this.guestBtn = new CButton("Guest mode", BTN_WIDTH, BTN_HEIGHT);
+        this.loginBtn = new CButton("Log-in", BTN_WIDTH, SMALL_BTN_HEIGHT, 12, Color.WHITE);
+        this.createManagerBtn = new CButton("New Manager", BTN_WIDTH, SMALL_BTN_HEIGHT, 12, Color.WHITE);
+        this.guestBtn = new CButton("<html><u>Guest Mode</u></html>", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12, Color.decode("#1B384B"), Color.WHITE);
         this.createBtn = new CButton("Create a Hotel", BTN_WIDTH, BTN_HEIGHT);
         this.openBtn = new CButton("Open a Hotel", BTN_WIDTH, BTN_HEIGHT);
         this.logoutBtn = new CButton("Log out", BTN_WIDTH, BTN_HEIGHT);
@@ -134,6 +137,10 @@ public class View extends JFrame {
         //res info
         inquireResBtn = new CButton("Inquire", BTN_WIDTH, SMALL_BTN_HEIGHT, 14);
 
+        //register
+        registerBtn = new CButton("Register", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12, Color.WHITE);
+        cancelRegisterBtn = new CButton("Cancel", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12, Color.WHITE);
+
 
         //NORTH PANEL
         this.titleLbl = new CLabel();
@@ -168,16 +175,64 @@ public class View extends JFrame {
         northPnl = new JPanel();
         northPnl.setLayout(new FlowLayout());
         northPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH,TF_HEIGHT+15));
-        northPnl.add(titleLbl);
+
 
         centerPnl = new JPanel();
         westPnl = new JPanel();
 
-        setTitleLblText("Hotel Reservation System 2.0");
 
-        this.add(northPnl, BorderLayout.NORTH);
+
         this.add(centerPnl,BorderLayout.CENTER);
         this.add(westPnl, BorderLayout.WEST);
+        this.revalidate();
+        this.repaint();
+    }
+
+    public void registerPage(){
+        this.remove(this.centerPnl);
+        this.remove(westPnl);
+
+        centerPnl = new JPanel();
+        westPnl = new JPanel();
+
+        JPanel centerMainPnl = new JPanel(new BorderLayout());
+        centerMainPnl.setMaximumSize(new Dimension(MAINFRAME_WIDTH/2, MAINFRAME_HEIGHT-180));
+        
+        JPanel newPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        newPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH/2, MAINFRAME_HEIGHT-200));
+        newPnl.setBackground(Color.decode("#ADCAD6"));
+        createManagerTf = new JTextField();
+        createManagerPwTf = new JTextField();
+        createManagerTf.setPreferredSize(new Dimension(TF_WIDTH,TF_HEIGHT));
+        createManagerPwTf.setPreferredSize(new Dimension(TF_WIDTH,TF_HEIGHT));
+
+        newPnl.add(new CLabel("  No account yet? Register now!  ", SUBTITLE_HEIGHT, Font.BOLD));
+        newPnl.add(new CLabel("Username: ", SUBTITLE_HEIGHT-2, Font.BOLD));
+        newPnl.add(createManagerTf);
+        newPnl.add(new CLabel("Password: ", SUBTITLE_HEIGHT-2, Font.BOLD));
+        newPnl.add(createManagerPwTf);
+        newPnl.add(createManagerBtn);
+
+        newPnl.add(cancelRegisterBtn);
+
+        JPanel logoPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        logoPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH/2, 180));
+
+        BufferedImage logo;
+        try {
+            logo = ImageIO.read(new File( "HRSLogo.png"));
+            JLabel picLabel = new JLabel(new ImageIcon(logo));
+            picLabel.setMaximumSize(new Dimension(MAINFRAME_WIDTH/2, 175));
+            logoPnl.add(picLabel);
+        } catch (IOException e) {
+        }
+
+        centerMainPnl.add(logoPnl, BorderLayout.WEST);
+        centerMainPnl.add(newPnl, BorderLayout.EAST);
+
+        centerPnl.add(centerMainPnl, BorderLayout.CENTER);
+
+        this.add(centerPnl, BorderLayout.CENTER);
         this.revalidate();
         this.repaint();
     }
@@ -196,7 +251,7 @@ public class View extends JFrame {
         centerPnl = new JPanel(new BorderLayout());
         JPanel loginPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JPanel centerMainPnl = new JPanel(new BorderLayout());
-        loginPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, MAINFRAME_HEIGHT-300));
+        centerMainPnl.setMaximumSize(new Dimension(MAINFRAME_WIDTH/2, MAINFRAME_HEIGHT-180));
         centerPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH,MAINFRAME_HEIGHT-100));
         loginPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH/2, MAINFRAME_HEIGHT-180));
         loginPnl.setBackground(Color.decode("#ADCAD6"));
@@ -209,32 +264,21 @@ public class View extends JFrame {
         loginPnl.add(new CLabel("List of Hotels to Load: ", SUBTITLE_HEIGHT, Font.BOLD));
         loginPnl.add(hotelNameTf);
         loginPnl.add(loginBtn);
-
-        JPanel newPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        newPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH/2, MAINFRAME_HEIGHT-200));
-        createManagerTf = new JTextField();
-        createManagerPwTf = new JTextField();
-        createManagerTf.setPreferredSize(new Dimension(TF_WIDTH,TF_HEIGHT));
-        createManagerPwTf.setPreferredSize(new Dimension(TF_WIDTH,TF_HEIGHT));
+        loginPnl.add(new CLabel("                                    ", SUBTITLE_HEIGHT, Font.BOLD));
+        loginPnl.add(new CLabel("  No account yet? Register now!  ", SUBTITLE_HEIGHT, Font.BOLD));
+        loginPnl.add(registerBtn);
 
         JPanel logoPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        logoPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, 180));
+        logoPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH/2, 180));
 
         BufferedImage logo;
         try {
             logo = ImageIO.read(new File( "HRSLogo.png"));
             JLabel picLabel = new JLabel(new ImageIcon(logo));
-            picLabel.setMaximumSize(new Dimension(MAINFRAME_WIDTH, 175));
+            picLabel.setMaximumSize(new Dimension(MAINFRAME_WIDTH/2, 175));
             logoPnl.add(picLabel);
         } catch (IOException e) {
         }
-
-        newPnl.add(new CLabel("  No account yet? Register now!  ", SUBTITLE_HEIGHT, Font.BOLD));
-        newPnl.add(new CLabel("Username: ", SUBTITLE_HEIGHT-2, Font.BOLD));
-        newPnl.add(createManagerTf);
-        newPnl.add(new CLabel("Password: ", SUBTITLE_HEIGHT-2, Font.BOLD));
-        newPnl.add(createManagerPwTf);
-        newPnl.add(createManagerBtn);
 
         JPanel guestPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
         guestPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, 70));
@@ -244,9 +288,9 @@ public class View extends JFrame {
         guestPnl.add(guestLbl);
         guestPnl.add(guestBtn);
 
-        centerMainPnl.add(logoPnl, BorderLayout.NORTH);
-        centerMainPnl.add(loginPnl, BorderLayout.WEST);
-        centerMainPnl.add(newPnl, BorderLayout.EAST);
+        centerMainPnl.add(logoPnl, BorderLayout.WEST);
+        centerMainPnl.add(loginPnl, BorderLayout.EAST);
+        
         centerMainPnl.add(guestPnl, BorderLayout.SOUTH);
 
         centerPnl.add(centerMainPnl, BorderLayout.CENTER);
@@ -255,7 +299,7 @@ public class View extends JFrame {
         westPnl = new JPanel();
         westPnl.setPreferredSize(new Dimension( 0,0));
 
-        setTitleLblText("Hotel Reservation System 2.0");
+    
 
         this.add(centerPnl, BorderLayout.CENTER);
         this.revalidate();
@@ -283,14 +327,14 @@ public class View extends JFrame {
 
 
         //ADD EVERYTHING
-        this.add(titleLbl, BorderLayout.NORTH);
+
         this.add(centerPnl, BorderLayout.CENTER);
         this.add(westPnl, BorderLayout.WEST);
 
-        setTitleLblText("Main Menu");
+
 
         //ADD EVERYTHING
-        this.add(northPnl, BorderLayout.NORTH);
+   
         this.add(centerPnl, BorderLayout.CENTER);
         this.add(westPnl, BorderLayout.WEST);
         this.add(southPnl, BorderLayout.SOUTH);
@@ -1402,6 +1446,15 @@ public class View extends JFrame {
     public void setGuestListener(ActionListener actionListener){
         this.guestBtn.addActionListener(actionListener);
     }
+
+    public void setRegisterBtnListener(ActionListener actionListener){
+        this.registerBtn.addActionListener(actionListener);
+    }
+
+    public void setCancelRegisterBtnListener(ActionListener actionListener){
+        this.cancelRegisterBtn.addActionListener(actionListener);
+    }
+    
 
     public void setCreateListener(ActionListener actionListener){
         this.createBtn.addActionListener(actionListener);
