@@ -22,8 +22,8 @@ public class Model {
     private int selectedHotelIndex;
     private String savesDirPath = "saves" + File.separator;
     private ArrayList<Manager> managerList;
-    private Map<String, Long> lastModifiedMap = new HashMap<>();
-    private boolean managerPresence = false;
+    private Map<String, Long> lastModifiedMap;
+    private boolean managerPresence;
 
     /**
      * Constructs a Driver instance and initializes the necessary objects.
@@ -32,6 +32,8 @@ public class Model {
         this.utility = new Utility();
         this.hotelList = new ArrayList<Hotel>();
         this.managerList = new ArrayList<Manager>();
+        this.lastModifiedMap = new HashMap<>();
+        this.managerPresence = false;
     }
 
     public int addHotel(String name, int standardRoomCount, int deluxeRoomCount, int execRoomCount) {
@@ -418,7 +420,7 @@ public class Model {
         return this.managerPresence;
     }
 
-    public void setManagerPresence(Boolean b){
+    public void setManagerPresence(boolean b){
         this.managerPresence = b;
     }
 }

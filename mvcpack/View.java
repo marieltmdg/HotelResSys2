@@ -209,7 +209,7 @@ public class View extends JFrame {
         newPnl.add(cancelRegisterBtn);
 
         JPanel logoPnl = new JPanel();
-        logoPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH / 2, MAINFRAME_HEIGHT - 100));
+        logoPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH / 2 + 2, MAINFRAME_HEIGHT - 100));
         logoPnl.setBackground(Color.decode("#EEF0E5"));
 
         BufferedImage logo = null;
@@ -217,7 +217,7 @@ public class View extends JFrame {
         try {
             logo = ImageIO.read(logoFile);
             JLabel picLabel = new JLabel(new ImageIcon(logo));
-            picLabel.setMaximumSize(new Dimension(MAINFRAME_WIDTH / 2, 175));
+            picLabel.setMaximumSize(new Dimension(MAINFRAME_WIDTH / 2, MAINFRAME_HEIGHT - 100));
             logoPnl.add(picLabel);
         } catch (IOException e) {
             e.printStackTrace();
@@ -270,7 +270,7 @@ public class View extends JFrame {
         loginPnl.add(registerBtn);
 
         JPanel logoPnl = new JPanel();
-        logoPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH / 2, MAINFRAME_HEIGHT - 100));
+        logoPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH / 2 + 2, MAINFRAME_HEIGHT - 100));
         logoPnl.setBackground(Color.decode("#EEF0E5"));
 
         BufferedImage logo = null;
@@ -285,7 +285,7 @@ public class View extends JFrame {
         }
 
         JPanel guestPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        guestPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, 70));
+        guestPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, 50));
         guestPnl.setBackground(Color.decode("#B6C4B6"));
 
         CLabel guestLbl = new CLabel("Experience the system even without being a manager!", SUBTITLE_HEIGHT - 2, Font.BOLD);

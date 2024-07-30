@@ -264,7 +264,7 @@ public abstract class Room implements Serializable {
     }
 
     /**
-     * the getPriceAfterDiscountBreakdown() method gets the price per night, given the discount,
+     * The getPriceAfterDiscountBreakdown() method gets the price per night, given the discount,
      * and the date price modifier.
      *
      * @param promoValidity The promo validity.
