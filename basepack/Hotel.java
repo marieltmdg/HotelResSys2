@@ -63,6 +63,12 @@ public class Hotel implements Serializable {
         return roomList.get(index);
     }
 
+    /**
+     * Returns the count of rooms of a given type in the hotel.
+     *
+     * @param  type  the type of room to count (Standard, Deluxe, Executive)
+     * @return       the number of rooms of the given type
+     */
     public int getRoomTypeCount(String type){
         int total = 0;
 
@@ -226,13 +232,13 @@ public class Hotel implements Serializable {
     /**
      * The updateDatePrice() method sets the date price modifier for a specific date.
      *
-     * @param index is the date the price would be set.
+     * @param date is the date the price would be set.
      * @param percent is the percent modifier that will be set.
      */
-    public void updateDatePrice(int index, double percent){
+    public void updateDatePrice(int date, double percent){
         //set the base price for all rooms to the new price
         for(int i=0; i<roomList.size(); i++)
-            roomList.get(i).setDatePrice(index, percent);
+            roomList.get(i).setDatePrice(date, percent);
 
     }
 
@@ -314,6 +320,12 @@ public class Hotel implements Serializable {
         return roomList.get(0).getBasePrice();
     }
 
+    /**
+     * Retrieves the price per type of a room based on its index in the roomList.
+     *
+     * @param  index  the index of the room in the roomList
+     * @return        the price per type of the room, or the base price of the first room if the index is out of bounds or the room is of an unknown type
+     */
     public double getPricePerType(int index) {
         if (roomList.get(index) instanceof Standard) {
             return ((Standard) roomList.get(index)).getBasePrice();
