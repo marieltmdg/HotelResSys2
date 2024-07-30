@@ -21,8 +21,8 @@ public class Model {
     private ArrayList<Hotel> hotelList;
     private int selectedHotelIndex;
     private String savesDirPath = "saves" + File.separator;
+    private String hotelSavesDirPath = "saves" + File.separator + "hotels" + File.separator;
     private ArrayList<Manager> managerList;
-    private Map<String, Long> lastModifiedMap;
     private Manager currentManager;
 
     /**
@@ -32,7 +32,6 @@ public class Model {
         this.utility = new Utility();
         this.hotelList = new ArrayList<Hotel>();
         this.managerList = new ArrayList<Manager>();
-        this.lastModifiedMap = new HashMap<>();
         this.currentManager = null;
     }
 
@@ -325,23 +324,12 @@ public class Model {
 
     public String serializeHotelList(String name) {
         String serName = name + ".ser";
-        File file = new File(savesDirPath + serName);
-
-        if (file.exists()) {
-            long lastModified = file.lastModified();
-            Long recordedLastModified = lastModifiedMap.get(savesDirPath + serName);
-
-            if (recordedLastModified != null && lastModified != recordedLastModified) {
-                return "File already exists. Choose a different name or delete the existing file";
-            }
-        }
+        File file = new File(hotelSavesDirPath + serName);
 
         try (FileOutputStream fileOut = new FileOutputStream(file);
              ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
             out.writeObject(hotelList);
             System.out.println("Serialized data is saved in " + serName);
-            lastModifiedMap.put(savesDirPath+serName, file.lastModified());
-            serializeLastModifiedMap();
             return "Save successful";
         } catch (IOException i) {
             return "Save unsuccessful";
@@ -351,7 +339,7 @@ public class Model {
     public String deserializeHotelList(String name) {
         String serName = name + ".ser";
 
-        try (FileInputStream fileIn = new FileInputStream(savesDirPath+ serName);
+        try (FileInputStream fileIn = new FileInputStream(hotelSavesDirPath+ serName);
              ObjectInputStream in = new ObjectInputStream(fileIn)) {
             hotelList = (ArrayList<Hotel>) in.readObject();
         } catch (IOException i) {
@@ -426,33 +414,9 @@ public class Model {
 
         if (file.exists()){
             file.delete();
-            lastModifiedMap.remove(savesDirPath + serName);
-            serializeLastModifiedMap();
             return "List deleted";
         } else {
             return "List not found";
-        }
-    }
-
-    public void serializeLastModifiedMap() {
-        try (FileOutputStream fileOut = new FileOutputStream(savesDirPath + "lastModifiedMap.ser");
-             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
-            out.writeObject(lastModifiedMap);
-            System.out.println("Serialized lastModifiedMap to " + savesDirPath + "lastModifiedMap.ser");
-        } catch (IOException i) {
-            System.out.println("LastModifiedMap serialization unsuccessful. e1");
-        }
-    }
-
-    public void deserializeLastModifiedMap() {
-        try (FileInputStream fileIn = new FileInputStream(savesDirPath + "lastModifiedMap.ser");
-             ObjectInputStream in = new ObjectInputStream(fileIn)) {
-            lastModifiedMap = (Map<String, Long>) in.readObject();
-            System.out.println("Deserialized lastModifiedMap from " + savesDirPath + "lastModifiedMap.ser");
-        } catch (IOException i) {
-            System.out.println("LastModifiedMap not found. e1");
-        } catch (ClassNotFoundException c) {
-            System.out.println("LastModifiedMap not found. e2");
         }
     }
 

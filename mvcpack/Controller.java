@@ -12,7 +12,6 @@ public class Controller {
         this.view = view;
 
         model.deserializeManagerList();
-        model.deserializeLastModifiedMap();
         loginListeners();
         mainMenuListeners();
         openHotelListeners();

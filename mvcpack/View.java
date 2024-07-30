@@ -349,15 +349,25 @@ public class View extends JFrame {
         this.remove(centerPnl);
 
         centerPnl = new JPanel();
-        centerPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        centerPnl.setLayout(new BorderLayout());
         centerPnl.setBackground(Color.decode("#304D30"));
+        centerPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
 
-        centerPnl.add(new CLabel("                                                       ", SUBTITLE_HEIGHT, Font.BOLD));
-        centerPnl.add(new CLabel("Are you sure?", 14, Font.PLAIN));
-        centerPnl.add(new CLabel("                                                       ", SUBTITLE_HEIGHT, Font.BOLD));
-        centerPnl.add(new CLabel("This action cannot be undone", 14, Font.BOLD));
-        centerPnl.add(new CLabel("                                                       ", SUBTITLE_HEIGHT, Font.BOLD));
-        centerPnl.add(confirmDeleteManagerBtn);
+        setCenterTitleLblText("Delete Manager");
+
+        JPanel deletePnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        deletePnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
+        deletePnl.setBackground(Color.decode("#304D30"));
+
+        deletePnl.add(new CLabel("                                                    ", 22, Font.BOLD));
+        deletePnl.add(new CLabel("Are you sure?", 14, Font.PLAIN));
+        deletePnl.add(new CLabel("                                                    ", 22, Font.BOLD));
+        deletePnl.add(new CLabel("This action cannot be undone", 14, Font.BOLD));
+        deletePnl.add(new CLabel("                                                    ", 22, Font.BOLD));
+        deletePnl.add(confirmDeleteManagerBtn);
+
+        centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
+        centerPnl.add(deletePnl, BorderLayout.CENTER);
 
         this.add(centerPnl);
         this.revalidate();
@@ -368,17 +378,27 @@ public class View extends JFrame {
         this.remove(centerPnl);
 
         centerPnl = new JPanel();
-        centerPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        centerPnl.setLayout(new BorderLayout());
         centerPnl.setBackground(Color.decode("#304D30"));
+        centerPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
 
-        centerPnl.add(new CLabel("                                                       ", SUBTITLE_HEIGHT, Font.BOLD));
-        centerPnl.add(new CLabel("Are you sure?", 14, Font.PLAIN));
-        centerPnl.add(new CLabel("                                                       ", SUBTITLE_HEIGHT, Font.BOLD));
-        centerPnl.add(new CLabel("This action cannot be undone", 14, Font.BOLD));
-        centerPnl.add(new CLabel("                                                       ", SUBTITLE_HEIGHT, Font.BOLD));
-        centerPnl.add(new CLabel("Input hotel list name: ", SUBTITLE_HEIGHT, Font.PLAIN));
-        centerPnl.add(hotelNameTf);
-        centerPnl.add(confirmDeleteHotelListBtn);
+        setCenterTitleLblText("Delete Saved Hotel List");
+
+        JPanel deletePnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        deletePnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
+        deletePnl.setBackground(Color.decode("#304D30"));
+
+        deletePnl.add(new CLabel("                                                    ", 22, Font.BOLD));
+        deletePnl.add(new CLabel("Are you sure?", 14, Font.PLAIN));
+        deletePnl.add(new CLabel("                                                    ", 22, Font.BOLD));
+        deletePnl.add(new CLabel("This action cannot be undone", 14, Font.BOLD));
+        deletePnl.add(new CLabel("                                                    ", 22, Font.BOLD));
+        deletePnl.add(new CLabel("Input hotel list name: ", SUBTITLE_HEIGHT, Font.PLAIN));
+        deletePnl.add(hotelNameTf);
+        deletePnl.add(confirmDeleteHotelListBtn);
+
+        centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
+        centerPnl.add(deletePnl, BorderLayout.CENTER);
 
         this.add(centerPnl);
         this.revalidate();
