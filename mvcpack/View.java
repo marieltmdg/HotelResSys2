@@ -646,7 +646,7 @@ public class View extends JFrame {
     }
 
     // there is a selected hotel
-    public void openHotel(String[] details, boolean managerPresence){
+    public void openHotel(String[] details){
         this.remove(centerPnl);
         this.remove(westPnl);
 
@@ -812,7 +812,7 @@ public class View extends JFrame {
         infoRightPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 400));
         infoRightPnl.setBackground(Color.decode("#304D30"));
 
-        CLabel iDateHeaderLbl = new CLabel("Inquire Date", SUBTITLE_HEIGHT, Font.BOLD);
+        CLabel iDateHeaderLbl = new CLabel("Inquire Day: " + day, SUBTITLE_HEIGHT, Font.BOLD);
 
         infoRightPnl.add(iDateHeaderLbl);
 
