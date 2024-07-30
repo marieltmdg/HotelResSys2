@@ -32,11 +32,11 @@ public class Controller {
 
                 if (model.loadManager(username, password)) {
                     if(model.utility.isEmpty(hotels)){
-                        view.home(model.getManagerPresence());
+                        view.home(true);
                         view.setFeedbackLblText("Login successful");
                     } else {
                         String add = model.deserializeHotelList(hotels);
-                        view.home(model.getManagerPresence());
+                        view.home(true);
                         view.setFeedbackLblText("Login successful." + add);
                     }
                 } else {
@@ -84,7 +84,8 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 view.setFeedbackLblText("");
-                view.home(model.getManagerPresence());
+                model.logoutManager();
+                view.home(false);
             }
         });
     }
@@ -174,9 +175,10 @@ public class Controller {
         this.view.setLogoutListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                view.loginPage();
                 model.resetHotelList();
                 model.logoutManager();
+
+                view.loginPage();
                 view.setFeedbackLblText("Logout successful");
             }
         });
@@ -194,6 +196,7 @@ public class Controller {
                 boolean result = model.deleteManager();
 
                 if (result) {
+                    model.resetHotelList();
                     view.loginPage();
                     view.setFeedbackLblText("Manager account deletion successful");
                 } else view.setFeedbackLblText("Manager account deletion unsuccessful");
