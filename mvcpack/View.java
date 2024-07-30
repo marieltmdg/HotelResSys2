@@ -183,21 +183,34 @@ public class View extends JFrame {
         this.repaint();
     }
 
+
+    /**
+     * Removes the center and west panels, then creates new panels for the registration page.
+     * The new panels include a form for new manager registration with a username and password input fields,
+     * a "Create Manager" button, and a "Cancel" button. The form is displayed on the east side of the center panel,
+     * while a logo is displayed on the west side. The center and west panels are then added to the main frame.
+     */
     public void registerPage(){
+        // Remove the previous center and west panels
         this.remove(centerPnl);
         this.remove(westPnl);
 
+        // Create new center panel with a border layout
         centerPnl = new JPanel(new BorderLayout());
         centerPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH,MAINFRAME_HEIGHT-100));
 
+        // Create new panel for the registration form
         JPanel newPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
         newPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH/2, MAINFRAME_HEIGHT));
         newPnl.setBackground(Color.decode("#304D30"));
+
+        // Create text fields for the username and password input
         createManagerTf = new JTextField();
         createManagerPwTf = new JPasswordField();
         createManagerTf.setPreferredSize(new Dimension(TF_WIDTH,TF_HEIGHT));
         createManagerPwTf.setPreferredSize(new Dimension(TF_WIDTH,TF_HEIGHT));
 
+        // Add labels and text fields to the registration form panel
         newPnl.add(new CLabel("                                                                ", SUBTITLE_HEIGHT, Font.BOLD));
         newPnl.add(new CLabel("New Manager Registration", 20, Font.BOLD));
         newPnl.add(new CLabel("Username: ", SUBTITLE_HEIGHT-2, Font.BOLD));
@@ -208,14 +221,18 @@ public class View extends JFrame {
         newPnl.add(createManagerBtn);
         newPnl.add(cancelRegisterBtn);
 
+        // Create panel for the logo
         JPanel logoPnl = new JPanel();
         logoPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH / 2 + 2, MAINFRAME_HEIGHT - 100));
         logoPnl.setBackground(Color.decode("#EEF0E5"));
 
+        // Load the image file
         BufferedImage logo = null;
         File logoFile = new File("HRSLogo.png");
         try {
             logo = ImageIO.read(logoFile);
+
+            // Create a label for the logo and add it to the logo panel
             JLabel picLabel = new JLabel(new ImageIcon(logo));
             picLabel.setMaximumSize(new Dimension(MAINFRAME_WIDTH / 2, MAINFRAME_HEIGHT - 100));
             logoPnl.add(picLabel);
@@ -223,24 +240,68 @@ public class View extends JFrame {
             e.printStackTrace();
         }
 
+        // Set the background color of the center panel
         centerPnl.setBackground(Color.decode("#EEF0E5"));
+
+        // Add the logo panel and registration form panel to the center panel
         centerPnl.add(logoPnl, BorderLayout.WEST);
         centerPnl.add(newPnl, BorderLayout.EAST);
 
+        // Create a new west panel
         westPnl = new JPanel();
         westPnl.setPreferredSize(new Dimension(0,0));
 
+        // Add the center and west panels to the main frame
         this.add(centerPnl, BorderLayout.CENTER);
         this.add(westPnl, BorderLayout.WEST);
+
+        // Update the layout of the main frame
         this.revalidate();
         this.repaint();
     }
+    
 
+/**
+ * Creates the login page for the application.
+ *
+ * This method removes the existing center and west panels from the main frame.
+ * It then creates new components for the login page, such as text fields for username and password,
+ * and buttons for logging in and registering.
+ *
+ * The login page is divided into three main sections: the logo, the login form, and the guest section.
+ * The logo is displayed on the left side of the screen and the login form is displayed on the right side.
+ * The guest section is displayed at the bottom of the screen.
+ *
+ * The method also sets the background color and preferred size for each panel and component.
+ *
+ * Finally, the method adds the new center and west panels to the main frame and updates the layout.
+ *
+ * @return void
+ */
+    /**
+     * Creates the login page for the application.
+     * 
+     * This method removes the existing center and west panels from the main frame.
+     * It then creates new components for the login page, such as text fields for username and password, 
+     * and buttons for logging in and registering.
+     * 
+     * The login page is divided into three main sections: the logo, the login form, and the guest section.
+     * The logo is displayed on the left side of the screen and the login form is displayed on the right side.
+     * The guest section is displayed at the bottom of the screen.
+     * 
+     * The method also sets the background color and preferred size for each panel and component.
+     * 
+     * Finally, the method adds the new center and west panels to the main frame and updates the layout.
+     * 
+     * @return void
+     */
     public void loginPage() {
 
+        // Remove existing center and west panels
         this.remove(centerPnl);
         this.remove(westPnl);
 
+        // Create text fields for username and password
         generalTf = new JTextField();
         generalTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
         loginPwTf = new JPasswordField();
@@ -248,12 +309,14 @@ public class View extends JFrame {
         hotelNameTf = new JTextField();
         hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
 
+        // Create new center panel with a border layout
         centerPnl = new JPanel(new BorderLayout());
         JPanel loginPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
         centerPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, MAINFRAME_HEIGHT - 100));
         loginPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH / 2, MAINFRAME_HEIGHT - 100));
         loginPnl.setBackground(Color.decode("#304D30"));
 
+        //add login components
         loginPnl.add(new CLabel("                                                                ", SUBTITLE_HEIGHT, Font.BOLD));
         loginPnl.add(new CLabel("              Manager Log-In              ", 25, Font.BOLD));
         loginPnl.add(new CLabel("Username: ", SUBTITLE_HEIGHT - 2, Font.BOLD));
@@ -269,10 +332,12 @@ public class View extends JFrame {
         loginPnl.add(new CLabel("  No account yet? Register now!  ", SUBTITLE_HEIGHT, Font.BOLD));
         loginPnl.add(registerBtn);
 
+        //create logo panel
         JPanel logoPnl = new JPanel();
         logoPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH / 2 + 2, MAINFRAME_HEIGHT - 100));
         logoPnl.setBackground(Color.decode("#EEF0E5"));
 
+        //load logo
         BufferedImage logo = null;
         File logoFile = new File("HRSLogo.png");
         try {
@@ -284,6 +349,7 @@ public class View extends JFrame {
             e.printStackTrace();
         }
 
+        //guest panel/bar at the bottom
         JPanel guestPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
         guestPnl.setPreferredSize(new Dimension(MAINFRAME_WIDTH, 50));
         guestPnl.setBackground(Color.decode("#B6C4B6"));
@@ -307,6 +373,15 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     * Removes the existing center and west panels from the main frame and creates new panels for the home page.
+     * The new panels include a center panel with a background color of #304D30 and a west panel with a background color of #EEF0E5.
+     * The west panel contains buttons for creating, opening, saving, loading, and logging out.
+     * If the managerPresence parameter is true, the west panel also contains buttons for saving and loading.
+     * The center panel is added to the main frame at the center position and the west panel is added at the west position.
+     *
+     * @param  managerPresence  a boolean indicating whether the user has manager privileges
+     */
     public void home(boolean managerPresence){
         this.remove(this.centerPnl);
         this.remove(westPnl);

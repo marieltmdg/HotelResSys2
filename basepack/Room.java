@@ -236,6 +236,14 @@ public abstract class Room implements Serializable {
 
     public abstract double getPriceAfterMultiplier(int date);
 
+    /**
+     * Calculates the total price after discount based on the promo validity, check-in date, and check-out date.
+     *
+     * @param  promoValidity   the promo validity code
+     * @param  checkIn         the check-in date
+     * @param  checkOut        the check-out date
+     * @return                 the total price after discount
+     */
     public double getTotalPriceAfterDiscount(int promoValidity, int checkIn, int checkOut){
         double price = 0;
 
@@ -244,20 +252,21 @@ public abstract class Room implements Serializable {
         }
 
         switch(promoValidity){
-            case 1:
+            case 1://I_WORK_HERE
                 price *= 0.9;
                 break;
-            case 2:
+            case 2://STAY4_GET1
                 price -= getPriceAfterMultiplier(checkIn);
                 break;
-            case 3:
+            case 3://PAYDAY
                 price *= 0.93;
                 break;
-            default: price *= 1;
-                    break;
+            default: 
+                price *= 1;
+                break;
 
         }
-
+        //round price to 2 decimal places
         DecimalFormat df = new DecimalFormat("#0.00");      
         price = Double.valueOf(df.format(price));
         return price;

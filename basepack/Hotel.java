@@ -63,6 +63,12 @@ public class Hotel implements Serializable {
         return roomList.get(index);
     }
 
+    /**
+     * Returns the count of rooms of a specific type in the hotel.
+     *
+     * @param  type  the type of room to count ("Standard", "Deluxe", or "Executive")
+     * @return       the total number of rooms of the specified type
+     */
     public int getRoomTypeCount(String type){
         int total = 0;
 
@@ -282,7 +288,7 @@ public class Hotel implements Serializable {
             sum += r.getTotalReservationPrice();
             
         }
-
+        //round to 2 decimal places
         DecimalFormat df = new DecimalFormat("#0.00");      
         sum = Double.valueOf(df.format(sum));
         
