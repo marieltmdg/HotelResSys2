@@ -213,17 +213,6 @@ public abstract class Room implements Serializable {
         return s;
     }
 
-    /**
-     * The method printRoomInfo() prints the room name, price per night, and available check-in dates
-     * for a room.
-     */
-    public void printRoomInfo(){
-        System.out.println("Room Name: " + roomName);
-        System.out.println("Price per Night: " + basePrice);
-        System.out.println("Available Check In Dates:");
-        System.out.println(printAvailability());
-    }
-
      /**
      * The printReservation() method prints out details of a guest's reservation including guest name,
      * stay length, room details, and total price.
