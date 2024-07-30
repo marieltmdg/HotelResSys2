@@ -94,14 +94,14 @@ public class View extends JFrame {
         this.confirmDeleteHotelListBtn = new CButton("Confirm Deletion", BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
         this.createBtn = new CButton("Create a Hotel", BTN_WIDTH, BTN_HEIGHT);
         this.openBtn = new CButton("Open a Hotel", BTN_WIDTH, BTN_HEIGHT);
-        this.logoutBtn = new CButton("Log out", BTN_WIDTH, BTN_HEIGHT);
+        this.logoutBtn = new CButton("Log out", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
         loadBtn = new CButton("Load Hotels", BTN_WIDTH, BTN_HEIGHT);
         this.confirmBtn = new CButton("Confirm", BTN_WIDTH, BTN_HEIGHT);
         this.selectBtn = new CButton("Select", BTN_WIDTH, BTN_HEIGHT);
         inquireBtn = new CButton("Inquire", BTN_WIDTH, BTN_HEIGHT);
         manageBtn = new CButton("Manage", BTN_WIDTH, BTN_HEIGHT);
         reserveBtn = new CButton("Reserve", BTN_WIDTH, BTN_HEIGHT);
-        backBtn = new CButton("Back", BTN_WIDTH, BTN_HEIGHT);
+        backBtn = new CButton("Back", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
         saveBtn = new CButton("Save Hotels", BTN_WIDTH, BTN_HEIGHT);
         confirmLoadBtn = new CButton("Load Hotels", BTN_WIDTH, BTN_HEIGHT);
         confirmSaveBtn = new CButton("Save Hotels", BTN_WIDTH, BTN_HEIGHT);
@@ -330,8 +330,8 @@ public class View extends JFrame {
             this.westPnl.add(loadBtn);
         }
 
-        westPnl.add(logoutBtn);
         westPnl.add(new CLabel("                                 ", SUBTITLE_HEIGHT, Font.BOLD));
+        westPnl.add(logoutBtn);
 
         if(managerPresence) {
             this.westPnl.add(deleteManagerBtn);
@@ -659,10 +659,12 @@ public class View extends JFrame {
         westPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, CENTER_MAIN_HEIGHT));
         westPnl.setBackground(Color.decode("#EEF0E5"));
 
-        this.westPnl.add(backBtn);
         this.westPnl.add(inquireBtn);
         this.westPnl.add(manageBtn);
         this.westPnl.add(reserveBtn);
+
+        westPnl.add(new CLabel("                                 ", SUBTITLE_HEIGHT, Font.BOLD));
+        this.westPnl.add(backBtn);
 
         setCenterTitleLblText("General Hotel Details");
         this.centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
