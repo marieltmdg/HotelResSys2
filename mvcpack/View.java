@@ -88,7 +88,7 @@ public class View extends JFrame {
         this.loginBtn = new CButton("Log-in", BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
         this.createManagerBtn = new CButton("New Manager", BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
         this.guestBtn = new CButton("<html><u>Guest Mode</u></html>", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12, Color.decode("#B6C4B6"), Color.decode("#163020"));
-        this.deleteManagerBtn = new CButton("Delete Manager", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
+        this.deleteManagerBtn = new CButton("Delete Account", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
         this.deleteHotelList = new CButton("Delete Hotel List", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
         this.confirmDeleteManagerBtn = new CButton("Confirm Deletion", BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
         this.confirmDeleteHotelListBtn = new CButton("Confirm Deletion", BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
@@ -353,7 +353,7 @@ public class View extends JFrame {
         centerPnl.setBackground(Color.decode("#304D30"));
         centerPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
 
-        setCenterTitleLblText("Delete Manager");
+        setCenterTitleLblText("Delete Manager Account");
 
         JPanel deletePnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
         deletePnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
@@ -393,7 +393,7 @@ public class View extends JFrame {
         deletePnl.add(new CLabel("                                                    ", 22, Font.BOLD));
         deletePnl.add(new CLabel("This action cannot be undone", 14, Font.BOLD));
         deletePnl.add(new CLabel("                                                    ", 22, Font.BOLD));
-        deletePnl.add(new CLabel("Input hotel list name: ", SUBTITLE_HEIGHT, Font.PLAIN));
+        deletePnl.add(new CLabel("Input hotel list name: ", SUBTITLE_HEIGHT, Font.BOLD));
         deletePnl.add(hotelNameTf);
         deletePnl.add(confirmDeleteHotelListBtn);
 
@@ -417,21 +417,25 @@ public class View extends JFrame {
         CLabel selectHotelLbl = new CLabel("Input name: ", SUBTITLE_HEIGHT, Font.BOLD);
 
         centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
-        centerLeftPnl.setPreferredSize(new Dimension(245, CENTER_MAIN_HEIGHT));
+        centerLeftPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
         centerLeftPnl.setBackground(Color.decode("#304D30"));
 
         this.hotelNameTf = new JTextField();
         this.hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
 
+        centerLeftPnl.add(new CLabel("                                                    ", 22, Font.BOLD));
+        centerLeftPnl.add(new CLabel("This will overwrite any existing file", SUBTITLE_HEIGHT, Font.ITALIC));
+        centerLeftPnl.add(new CLabel("with the same name", SUBTITLE_HEIGHT, Font.ITALIC));
+        centerLeftPnl.add(new CLabel("                                                    ", 22, Font.BOLD));
         centerLeftPnl.add(selectHotelLbl);
         centerLeftPnl.add(hotelNameTf);
         centerLeftPnl.add(confirmSaveBtn);
 
-        setCenterTitleLblText("Save Hotels");
+        setCenterTitleLblText("Save Hotel List");
 
         centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
 
-        centerPnl.add(centerLeftPnl, BorderLayout.WEST);
+        centerPnl.add(centerLeftPnl, BorderLayout.CENTER);
         this.add(centerPnl);
         centerPnl.revalidate();
         centerPnl.repaint();
@@ -560,12 +564,13 @@ public class View extends JFrame {
         JPanel centerLeftPnl = new JPanel();
 
         centerLeftPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
-        centerLeftPnl.setPreferredSize(new Dimension(245, CENTER_MAIN_HEIGHT));
+        centerLeftPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
         centerLeftPnl.setBackground(Color.decode("#304D30"));
 
         this.hotelNameTf = new JTextField();
         this.hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
 
+        centerLeftPnl.add(new CLabel("                                                    ", 22, Font.BOLD));
         CLabel selectHotelLbl = new CLabel("Input hotel list name: ", SUBTITLE_HEIGHT, Font.BOLD);
 
         centerLeftPnl.add(selectHotelLbl);
@@ -573,11 +578,11 @@ public class View extends JFrame {
         centerLeftPnl.add(confirmLoadBtn);
         
 
-        setCenterTitleLblText("Load a Hotel");
+        setCenterTitleLblText("Load a Hotel List");
 
         centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
 
-        centerPnl.add(centerLeftPnl, BorderLayout.WEST);
+        centerPnl.add(centerLeftPnl, BorderLayout.CENTER);
         this.add(centerPnl);
         centerPnl.revalidate();
         centerPnl.repaint();
@@ -640,7 +645,7 @@ public class View extends JFrame {
     }
 
     // there is a selected hotel
-    public void openHotel(String[] details){
+    public void openHotel(String[] details, boolean managerPresence){
         this.remove(centerPnl);
 
         centerPnl = new JPanel(new BorderLayout());
@@ -649,10 +654,14 @@ public class View extends JFrame {
 
         this.westPnl.remove(this.createBtn);
         this.westPnl.remove(this.openBtn);
-        this.westPnl.remove(this.loadBtn);
-        this.westPnl.remove(this.saveBtn);
-        this.westPnl.remove(this.loadBtn);
         this.westPnl.remove(this.logoutBtn);
+
+        if (managerPresence) {
+            this.westPnl.remove(this.loadBtn);
+            this.westPnl.remove(this.saveBtn);
+            this.westPnl.remove(this.deleteManagerBtn);
+            this.westPnl.remove(this.deleteHotelList);
+        }
 
         setCenterTitleLblText("General Hotel Details");
         this.centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
@@ -1321,6 +1330,7 @@ public class View extends JFrame {
        
         centerPnl = new JPanel();
         centerPnl.setLayout(new BorderLayout());
+        centerPnl.setBackground(Color.decode("#304D30"));
         
         JPanel resPnl = new JPanel();
         resPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, 315));

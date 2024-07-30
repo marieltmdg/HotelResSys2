@@ -650,9 +650,9 @@ public class Model {
              ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
             out.writeObject(managerList);
             System.out.println("Serialized data is saved in " + savesDirPath + "managers.ser");
-            return "Manager deleted";
+            return "Manager account removed";
         } catch(IOException i) {
-            return "Manager deletion unsuccessful";
+            return "Manager account removal unsuccessful";
         }
     }
 
@@ -664,7 +664,7 @@ public class Model {
      */
     public String deleteHotelList(String listName){
         String serName = listName + ".ser";
-        File file = new File(savesDirPath + serName);
+        File file = new File(hotelSavesDirPath + serName);
 
         if (file.exists()){
             file.delete();

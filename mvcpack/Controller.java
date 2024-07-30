@@ -119,13 +119,12 @@ public class Controller {
                 if(index != -1) {
                     result = model.openHotel(index-1);
                     if(!(result[0].equals("\0"))) {
-                        view.openHotel(result);
+                        view.openHotel(result, model.getManagerPresence());
                         view.setFeedbackLblText("");
                     } else view.setFeedbackLblText("Input out of bounds");
                 } else view.setFeedbackLblText("Please input a positive number");
             }
         });
-
 
         this.view.setLoadListener(new ActionListener() {
             @Override
