@@ -290,6 +290,22 @@ public class Hotel implements Serializable {
     }
 
     /**
+     * Retrieves the details of the hotel, including the hotel name, room count, and reservation count.
+     *
+     * @return A string array containing the hotel details:
+     *         details[0] - Hotel name
+     *         details[1] - Room count
+     *         details[2] - Reservation count
+     */
+    public String[] getHotelDetails() {
+        String[] details = new String[3];
+        details[0] = this.getHotelName(); // Assuming getHotelName() method exists
+        details[1] = String.valueOf(this.getRoomCount()); // Assuming getRoomCount() method exists
+        details[2] = String.valueOf(this.getReservationCount()); // Assuming getReservationCount() method exists
+        return details;
+    }
+
+    /**
      * The method getBasePrice() gets the base price of the hotel.
      *
      * @return The base price of the hotel.

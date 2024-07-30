@@ -72,14 +72,13 @@ public class Model {
         return cont;
     }
 
-    public String openHotel(int hotelIndex) {
+    public String[] openHotel(int hotelIndex) {
         //checker for invalid hotel indices
         if (hotelIndex >= 0 && hotelIndex < hotelList.size()) {
-            //TESTING
             this.selectedHotelIndex = hotelIndex;
-            return hotelList.get(hotelIndex).getHotelName();
+            return hotelList.get(hotelIndex).getHotelDetails();
         } else {
-            return "\0";
+            return new String[] {"\0"};
         }
     }
 

@@ -67,8 +67,10 @@ public class Controller {
                     view.setFeedbackLblText("Please complete all fields");
                 } else {
                     String result = model.saveManager(username, password);
-                    view.setFeedbackLblText(result);
-                    view.loginPage();
+                    if (result.equals("Username already exists")) {
+                        view.setFeedbackLblText(result);
+                    } else view.loginPage();
+
                 }
                 
             }
@@ -87,8 +89,7 @@ public class Controller {
         this.view.setCreateListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                System.out.println("pressed create"); // CHECKER
+
                 String[] hotelListNames= model.getHotelListNames();
                 view.createHotel(hotelListNames);
                 view.setFeedbackLblText("");
@@ -108,15 +109,15 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e){
                 int index = (model.utility.getPosNumValue(view.getHotelNameTfText()));
-                String result = "Please input a positive number";
+                String[] result;
 
                 if(index != -1) {
                     result = model.openHotel(index-1);
-                    if(!(result.equals("\0"))) {
+                    if(!(result[0].equals("\0"))) {
                         view.openHotel(result);
                         view.setFeedbackLblText("");
                     } else view.setFeedbackLblText("Input out of bounds");
-                } else view.setFeedbackLblText(result);
+                } else view.setFeedbackLblText("Please input a positive number");
             }
         });
 
@@ -182,7 +183,6 @@ public class Controller {
         this.view.setConfirmListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                System.out.println("confirm create");
                 view.getHotelNameTfText();
                 String hotelName = view.getHotelNameTfText();
 
