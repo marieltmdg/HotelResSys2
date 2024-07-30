@@ -81,7 +81,9 @@ public class View extends JFrame {
         loginPage();
     }
 
-    //initial values when opening
+    /**
+     * Declare initial values
+     */
     private void init() {
 
         //BUTTONS
@@ -188,6 +190,9 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     * Menu for registering a new manager
+     */
     public void registerPage(){
         this.remove(centerPnl);
         this.remove(westPnl);
@@ -241,6 +246,9 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     * Log-in page. Includes an image logo, and various textfields and buttons.
+     */
     public void loginPage() {
 
         this.remove(centerPnl);
@@ -312,6 +320,11 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     * Updates the home view of the application.
+     *
+     * @param  managerPresence   a boolean indicating whether the current user is a manager
+     */
     public void home(boolean managerPresence){
         this.remove(this.centerPnl);
         this.remove(westPnl);
@@ -346,6 +359,9 @@ public class View extends JFrame {
         this.repaint();
     }
 
+/**
+ * Menu for deleting the current manager.
+ */
     public void deleteManager(){
         this.remove(centerPnl);
 
@@ -375,6 +391,10 @@ public class View extends JFrame {
         this.repaint();
     }
 
+/**
+ * Menu for deleting a hotelList
+ *
+ */
     public void deleteHotelList(){
         this.remove(centerPnl);
 
@@ -409,6 +429,10 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    
+    /**
+     * Menu for saving hotels
+     */
     public void saveHotels(){
         this.remove(centerPnl);
 
@@ -446,7 +470,14 @@ public class View extends JFrame {
     }
 
     
-  // PRINT HOTEL PANEL
+   
+    /**
+     * Creates a JScrollPane containing a JPanel with a list of hotels.
+     *
+     * @param  hotelNames  an array of strings representing the names of the hotels
+     * @param  width       the width of the JScrollPane
+     * @return             a JScrollPane containing a JPanel with a list of hotels
+     */
     public JScrollPane printHotels(String[] hotelNames, int width){
         int num;
 
@@ -480,7 +511,12 @@ public class View extends JFrame {
     }
 
     
-    // CREATE HOTEL PRESSED
+    
+    /**
+     * Creates a new hotel with the given hotel names and displays it on the center panel.
+     *
+     * @param  hotelNames  an array of strings representing the names of the hotels
+     */
     public void createHotel(String[] hotelNames){
         this.remove(centerPnl);
 
@@ -558,6 +594,10 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     * Menu for loading hotel file
+     * 
+     */
     public void loadHotel(){
         this.remove(centerPnl);
 
@@ -592,6 +632,13 @@ public class View extends JFrame {
         centerPnl.repaint();
     }
 
+    /**
+     * Creates a JPanel that displays the details of a hotel. The panel is centered and has a fixed size.
+     * It contains labels for the hotel name, room count, and reservation count.
+     *
+     * @param  details  an array of strings containing the hotel name, room count, and reservation count
+     * @return          a JPanel containing the hotel details
+     */
     public JPanel loadHotelDetails(String[] details){
         JPanel detPnl = new JPanel();
         detPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -611,6 +658,11 @@ public class View extends JFrame {
         return detPnl;
     }
 
+    /**
+     * Selects a hotel from a list of hotel names.
+     *
+     * @param  hotelNames  an array of hotel names
+     */
     public void selectHotel(String[] hotelNames){
         this.remove(centerPnl);
 
@@ -648,7 +700,12 @@ public class View extends JFrame {
         centerPnl.repaint();
     }
 
-    // there is a selected hotel
+ 
+    /**
+     * Opens a hotel with the given details.
+     *
+     * @param  details  an array of strings containing the hotel details
+     */
     public void openHotel(String[] details){
         this.remove(centerPnl);
         this.remove(westPnl);
@@ -679,6 +736,12 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     * Creates and returns a JPanel containing buttons for inquiries related to the hotel.
+     *
+     * @return  a JPanel with FlowLayout and preferred size set to (SMALL_BTN_WIDTH+10, CENTER_MAIN_HEIGHT)
+     *          and background color set to #304D30, containing buttons for inquiries related to the hotel
+     */
     public JPanel inquireHotelLeftPanel(){
         JPanel centerLeftPnl = new JPanel();
 
@@ -694,6 +757,9 @@ public class View extends JFrame {
         return centerLeftPnl;
     }
 
+    /**
+     * Menu for inquiries related to the hotel.
+     */
     public void inquireHotel(){
         this.remove(this.centerPnl);
         centerPnl = new JPanel();
@@ -717,6 +783,16 @@ public class View extends JFrame {
     }
 
 
+    /**
+     * Displays the information of a hotel in the centerRight panel.
+     *
+     * @param  hotelName   the name of the hotel
+     * @param  roomCount   the total number of rooms in the hotel
+     * @param  standardRmCt   the number of standard rooms in the hotel
+     * @param  delRmCt   the number of deluxe rooms in the hotel
+     * @param  exRmCt   the number of executive rooms in the hotel
+     * @param  earnings   the estimated earnings for the month
+     */
     public void inquireHotelInfo(String hotelName, int roomCount, int standardRmCt,
                                  int delRmCt, int exRmCt,  double earnings){
         this.remove(centerPnl);
@@ -773,6 +849,13 @@ public class View extends JFrame {
         this.repaint();
     }
 
+/**
+ * Creates a JScrollPane containing a list of available room names.
+ *
+ * @param  roomNames   an array of strings representing the names of the rooms
+ * @param  height      the height of the JScrollPane
+ * @return             a JScrollPane containing the list of available room names
+ */
     public JScrollPane printAvailableRooms(String[] roomNames, int height){
         int num;
         
@@ -803,6 +886,14 @@ public class View extends JFrame {
         return printRoomsScrPane;
     }
 
+    /**
+     * Displays information about a specific day, including the total number of booked rooms and available rooms.
+     *
+     * @param  day           the day for which information is being displayed
+     * @param  bookedRooms   the total number of booked rooms on the specified day
+     * @param  freeRooms     the total number of available rooms on the specified day
+     * @param  roomNames     an array of strings representing the names of the rooms
+     */
     public void displayDateInfo(int day, int bookedRooms, int freeRooms, String[] roomNames){
         this.remove(centerPnl);
         centerPnl = new JPanel(new BorderLayout());
@@ -841,6 +932,11 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     * Displays information about the rooms in the hotel and allows the user to select a room.
+     *
+     * @param  roomNames  an array of strings representing the names of the rooms in the hotel
+     */
     public void inquireRoomInfo(String[] roomNames){
         this.remove(centerPnl);
         centerPnl = new JPanel(new BorderLayout());
@@ -872,6 +968,13 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     * Displays information about a selected room, including the room name, price per night, and availability dates.
+     *
+     * @param  roomName   the name of the selected room
+     * @param  price      the price per night for the selected room
+     * @param  availableDates  an array of strings representing the availability dates for the selected room
+     */
     public void inquireSelectedRoom(String roomName, double price, String[] availableDates){
         this.remove(centerPnl);
         centerPnl = new JPanel(new BorderLayout());
@@ -912,6 +1015,10 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     * Menu for inquiring dates.
+     * 
+     */
     public void inquireDatesPanel(){
         this.remove(centerPnl);
         centerPnl = new JPanel(new BorderLayout());
@@ -948,6 +1055,11 @@ public class View extends JFrame {
     }
         
 
+    /**
+     * Creates and returns a JPanel containing buttons for managing the hotel.
+     *
+     * @return  a JPanel containing buttons for managing the hotel
+     */
     public JPanel manageHotelLeftPanel(){
         JPanel centerLeftPnl = new JPanel();
 
@@ -966,6 +1078,9 @@ public class View extends JFrame {
         return centerLeftPnl;
     }
 
+    /**
+     * Main menu for managing the hotel.
+     */
     public void manageHotel(){
         this.remove(this.centerPnl);
 
@@ -988,6 +1103,9 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     *  Renaming menu under manage hotel.
+     */
     public void renameHotel(){
         this.remove(centerPnl);
 
@@ -1019,6 +1137,9 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     *  Add room menu under manage hotel.
+     */
     public void addRoom(){
         this.remove(centerPnl);
 
@@ -1080,6 +1201,9 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     * remove room menu under manage hotel
+     */
     public void removeRoom(String[] roomNames){
         this.remove(centerPnl);
 
@@ -1125,6 +1249,11 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     * Menu for updating the price under manage hotel.
+     *
+     * @param  basePrice the current base price of the hotel
+     */
     public void updatePrice(double basePrice){
         this.remove(centerPnl);
 
@@ -1161,6 +1290,12 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     * Updates the price per date for the hotel.
+     *
+     * @param  prices  an array of doubles representing the price multiplier per date
+     *
+     */
     public void datePrice(double[] prices){
         this.remove(centerPnl);
 
@@ -1212,6 +1347,12 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     * Displays the selected reservation details and breakdown.
+     *
+     * @param reservationDetails an array of strings containing the reservation details
+     * @param breakdown          an array of strings containing the breakdown of the reservation
+     */
     public void displaySelectedReservation(String[] reservationDetails, String[] breakdown){
         this.remove(centerPnl);
 
@@ -1274,6 +1415,12 @@ public class View extends JFrame {
 
     }
 
+    /**
+     * Displays the reservation inquiry panel with the given room count and reservation names.
+     *
+     * @param  roomCount     the number of rooms available for reservation
+     * @param  reservationNames  a 2D array of strings containing reservation information
+     */
     public void inquireReservation(int roomCount, String[][] reservationNames){
         this.remove(centerPnl);
 
@@ -1323,6 +1470,12 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     * Displays the remove reservation panel with the given room count and reservation names.
+     *
+     * @param  roomCount     the number of rooms available for reservation
+     * @param  reservationNames  a 2D array of strings containing reservation information
+     */
     public void removeReservation(int roomCount, String[][] reservationNames){
         this.remove(centerPnl);
 
@@ -1372,6 +1525,9 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     * Displays the remove hotel panel under manage hotel.
+     */
     public void removeHotel(){
         this.remove(centerPnl);
 
@@ -1403,6 +1559,14 @@ public class View extends JFrame {
         this.repaint();
     }
 
+    /**
+     * Creates a JScrollPane displaying the prices per date.
+     *
+     * @param  prices   an array of doubles representing the prices per date
+     * @param  width    the width of the JScrollPane
+     * @param  height   the height of the JScrollPane
+     * @return          a JScrollPane displaying the prices per date
+     */
     public JScrollPane printPricePerDate(double[] prices, int width, int height){
         int num;
 
@@ -1432,6 +1596,14 @@ public class View extends JFrame {
         return printRoomsScrPane;
     }
 
+    /**
+     * Generates a JScrollPane containing a list of room names.
+     *
+     * @param roomNames an array of room names
+     * @param width     the width of the JScrollPane
+     * @param height    the height of the JScrollPane
+     * @return a JScrollPane containing the list of room names
+     */
     public JScrollPane printRooms(String[] roomNames, int width, int height){
         int num;
         
@@ -1461,6 +1633,16 @@ public class View extends JFrame {
         return printRoomsScrPane;
     }
 
+    /**
+     * Generates a JScrollPane containing a list of room names and their associated reservations.
+     *
+     * @param roomCount the number of rooms
+     * @param reservationNames a 2D array of reservation names, where the first dimension represents the room number 
+     *                         and the second dimension represents the reservation number within that room
+     * @param width the width of the JScrollPane
+     * @param height the height of the JScrollPane
+     * @return a JScrollPane containing the list of room names and their associated reservations
+     */
     public JScrollPane printReservation(int roomCount, String[][] reservationNames, int width, int height){
         int num = 0;
         int roomNum = 0;
@@ -1514,6 +1696,12 @@ public class View extends JFrame {
         return printRoomsScrPane;
     }
 
+    /**
+     * Prints the breakdown price per day of a reservation.
+     *
+     * @param breakdown an array of strings containing the breakdown price per day of the reservation
+     * @param height the height of the JPanel
+     */
     public void printReserveBreakdown(String[] breakdown, int height){
         JPanel mainBreakdownPnl = new JPanel();
         mainBreakdownPnl.setLayout(new BoxLayout(mainBreakdownPnl, BoxLayout.Y_AXIS));
@@ -1542,6 +1730,11 @@ public class View extends JFrame {
         resRightPnl.repaint();
     }
 
+    /**
+     * Menu for reserving a room
+     *
+     * @param  priceBreakdown  an array of strings representing the price breakdown of the reservation
+     */
     public void reserveHotel(String[] priceBreakdown){
         this.remove(centerPnl);
 
