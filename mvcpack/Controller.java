@@ -12,6 +12,7 @@ public class Controller {
         this.view = view;
 
         model.deserializeManagerList();
+        model.deserializeLastModifiedMap();
         loginListeners();
         mainMenuListeners();
         openHotelListeners();
@@ -26,15 +27,20 @@ public class Controller {
         this.view.setLoginListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                String hotelList = view.getHotelNameTfText();
+                String hotels = view.getHotelNameTfText();
 
                 String username = view.getGeneralTf();
                 String password = view.getLoginPwTfText();
 
                 if (model.loadManager(username, password)) {
-                    model.deserializeHotelList(hotelList);
-                    view.home(model.getManagerPresence());
-                    view.setFeedbackLblText("Login successful");
+                    if(model.utility.isEmpty(hotels)){
+                        view.home(model.getManagerPresence());
+                        view.setFeedbackLblText("Login successful.");
+                    } else {
+                        String add = model.deserializeHotelList(hotels);
+                        view.home(model.getManagerPresence());
+                        view.setFeedbackLblText("Login successful." + add);
+                    }
                 } else {
                     view.setFeedbackLblText("Wrong username or password");
                 }

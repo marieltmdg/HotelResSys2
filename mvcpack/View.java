@@ -325,16 +325,6 @@ public class View extends JFrame {
             westPnl.add(loadBtn);
         }
         westPnl.add(logoutBtn);
-
-
-        //ADD EVERYTHING
-
-        this.add(centerPnl, BorderLayout.CENTER);
-        this.add(westPnl, BorderLayout.WEST);
-
-
-
-        //ADD EVERYTHING
    
         this.add(centerPnl, BorderLayout.CENTER);
         this.add(westPnl, BorderLayout.WEST);
@@ -522,23 +512,23 @@ public class View extends JFrame {
         centerPnl.repaint();
     }
 
-    public void loadHotelDetails(String[] details){
+    public JPanel loadHotelDetails(String[] details){
         JPanel detPnl = new JPanel();
         detPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
-        detPnl.setPreferredSize(new Dimension(230, CENTER_MAIN_HEIGHT));
+        detPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
         detPnl.setBackground(Color.decode("#304D30"));
 
-        detPnl.add(new CLabel("                                   ", SUBTITLE_HEIGHT, Font.BOLD));
-        detPnl.add(new CLabel("Hotel name: ", SUBTITLE_HEIGHT, Font.BOLD));
+        detPnl.add(new CLabel("                                         ", 22, Font.BOLD));
+        detPnl.add(new CLabel("Hotel name: ", 20, Font.BOLD));
         detPnl.add(new CLabel("<html> "+ details[0] + "<html>", SUBTITLE_HEIGHT, Font.PLAIN));
-        detPnl.add(new CLabel("                                   ", SUBTITLE_HEIGHT, Font.BOLD));
-        detPnl.add(new CLabel("Room count: ", SUBTITLE_HEIGHT, Font.BOLD));
+        detPnl.add(new CLabel("                                         ", 22, Font.BOLD));
+        detPnl.add(new CLabel("Room count: ", 20, Font.BOLD));
         detPnl.add(new CLabel(details[1], SUBTITLE_HEIGHT, Font.PLAIN));
-        detPnl.add(new CLabel("                                   ", SUBTITLE_HEIGHT, Font.BOLD));
-        detPnl.add(new CLabel("Reservation count: ", SUBTITLE_HEIGHT, Font.BOLD));
+        detPnl.add(new CLabel("                                         ", 22, Font.BOLD));
+        detPnl.add(new CLabel("Reservation count: ", 20, Font.BOLD));
         detPnl.add(new CLabel(details[2], SUBTITLE_HEIGHT, Font.PLAIN));
 
-        this.centerPnl.add(detPnl, BorderLayout.EAST);
+        return detPnl;
     }
 
     public void selectHotel(String[] hotelNames){
@@ -582,7 +572,7 @@ public class View extends JFrame {
     public void openHotel(String[] details){
         this.remove(centerPnl);
 
-        centerPnl = new JPanel();
+        centerPnl = new JPanel(new BorderLayout());
         centerPnl.setBackground(Color.decode("#304D30"));
         centerPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
 
@@ -593,12 +583,15 @@ public class View extends JFrame {
         this.westPnl.remove(this.loadBtn);
         this.westPnl.remove(this.logoutBtn);
 
-        loadHotelDetails(details);
+        setCenterTitleLblText("General Hotel Details");
+        this.centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
+        centerPnl.add(loadHotelDetails(details), BorderLayout.CENTER);
 
         westPnl.add(backBtn);
         this.westPnl.add(inquireBtn);
         this.westPnl.add(manageBtn);
         this.westPnl.add(reserveBtn);
+
 
         this.add(centerPnl, BorderLayout.CENTER);
         this.revalidate();
@@ -812,12 +805,12 @@ public class View extends JFrame {
         datePnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
         datePnl.setBackground(Color.decode("#304D30"));
 
-        centerRightPnl.add(new CLabel("                                 ", SUBTITLE_HEIGHT, Font.BOLD));
+        centerRightPnl.add(new CLabel("                                                  ", SUBTITLE_HEIGHT, Font.BOLD));
         centerRightPnl.add(new CLabel("Room name: ", SUBTITLE_HEIGHT, Font.BOLD));
         centerRightPnl.add(new CLabel(roomName, SUBTITLE_HEIGHT, Font.PLAIN));
         centerRightPnl.add(new CLabel("Price per night: ", SUBTITLE_HEIGHT, Font.BOLD));
         centerRightPnl.add(new CLabel(""+price, SUBTITLE_HEIGHT, Font.PLAIN));
-        centerRightPnl.add(new CLabel("                                 ", SUBTITLE_HEIGHT, Font.BOLD));
+        centerRightPnl.add(new CLabel("                                                  ", SUBTITLE_HEIGHT, Font.BOLD));
         centerRightPnl.add(new CLabel("Availability: ", SUBTITLE_HEIGHT, Font.BOLD));
 
         for(int i = 0; i < 5; i++) {

@@ -329,10 +329,11 @@ public class Model {
 
         if (file.exists()) {
             long lastModified = file.lastModified();
-            Long recordedLastModified = lastModifiedMap.get(savesDirPath+serName);
+            Long recordedLastModified = lastModifiedMap.get(savesDirPath + serName);
 
-            if (recordedLastModified != null && lastModified == recordedLastModified) {
-            } else return "File already exists. Choose a different name or delete the existing file.";
+            if (recordedLastModified != null && lastModified != recordedLastModified) {
+                return "File already exists. Choose a different name or delete the existing file";
+            }
         }
 
         try (FileOutputStream fileOut = new FileOutputStream(file);
@@ -340,6 +341,7 @@ public class Model {
             out.writeObject(hotelList);
             System.out.println("Serialized data is saved in " + serName);
             lastModifiedMap.put(savesDirPath+serName, file.lastModified());
+            serializeLastModifiedMap();
             return "Save successful";
         } catch (IOException i) {
             return "Save unsuccessful";
@@ -353,12 +355,12 @@ public class Model {
              ObjectInputStream in = new ObjectInputStream(fileIn)) {
             hotelList = (ArrayList<Hotel>) in.readObject();
         } catch (IOException i) {
-            return "List not found. e1";
+            return " List not found";
         } catch (ClassNotFoundException c) {
-            return "List not found. e2";
+            return " List not found";
         }
 
-        return "Successfully loaded hotels";
+        return " Successfully loaded hotels";
     }
 
     public String saveManager(String userName, String password){
@@ -387,17 +389,13 @@ public class Model {
         try (FileInputStream fileIn = new FileInputStream(savesDirPath+ "managers.ser");
              ObjectInputStream in = new ObjectInputStream(fileIn)) {
             managerList = (ArrayList<Manager>) in.readObject();
+            System.out.println("Successfully loaded managers");
         } catch (IOException i) {
-            System.out.println("List not found. e1");
+            System.out.println("Manager list not found. e1");
         } catch (ClassNotFoundException c) {
-            System.out.println("List not found. e2");
+            System.out.println("Manager list not found. e2");
         }
 
-        System.out.println("Successfully loaded managers");
-
-        for(Manager m : managerList){
-            System.out.println(m.getUsername());
-        }
     }
 
     public boolean loadManager(String userName, String password){
@@ -410,6 +408,28 @@ public class Model {
             }
         }
         return false;
+    }
+
+    public void serializeLastModifiedMap() {
+        try (FileOutputStream fileOut = new FileOutputStream(savesDirPath + "lastModifiedMap.ser");
+             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+            out.writeObject(lastModifiedMap);
+            System.out.println("Serialized lastModifiedMap from " + savesDirPath + "lastModifiedMap.ser");
+        } catch (IOException i) {
+            System.out.println("LastModifiedMap serialization unsuccessful. e1");
+        }
+    }
+
+    public void deserializeLastModifiedMap() {
+        try (FileInputStream fileIn = new FileInputStream(savesDirPath + "lastModifiedMap.ser");
+             ObjectInputStream in = new ObjectInputStream(fileIn)) {
+            lastModifiedMap = (Map<String, Long>) in.readObject();
+            System.out.println("Deserialized lastModifiedMap from " + savesDirPath + "lastModifiedMap.ser");
+        } catch (IOException i) {
+            System.out.println("LastModifiedMap not found. e1");
+        } catch (ClassNotFoundException c) {
+            System.out.println("LastModifiedMap not found. e2");
+        }
     }
 
     public void resetHotelList(){
