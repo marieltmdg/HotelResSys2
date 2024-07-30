@@ -329,6 +329,7 @@ public class View extends JFrame {
             this.westPnl.add(saveBtn);
             this.westPnl.add(loadBtn);
         }
+
         westPnl.add(logoutBtn);
         westPnl.add(new CLabel("                                 ", SUBTITLE_HEIGHT, Font.BOLD));
 
@@ -647,32 +648,28 @@ public class View extends JFrame {
     // there is a selected hotel
     public void openHotel(String[] details, boolean managerPresence){
         this.remove(centerPnl);
+        this.remove(westPnl);
 
         centerPnl = new JPanel(new BorderLayout());
         centerPnl.setBackground(Color.decode("#304D30"));
         centerPnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
 
-        this.westPnl.remove(this.createBtn);
-        this.westPnl.remove(this.openBtn);
-        this.westPnl.remove(this.logoutBtn);
+        westPnl = new JPanel();
+        westPnl.setLayout(new FlowLayout());
+        westPnl.setPreferredSize(new Dimension(BTN_WIDTH+10, CENTER_MAIN_HEIGHT));
+        westPnl.setBackground(Color.decode("#EEF0E5"));
 
-        if (managerPresence) {
-            this.westPnl.remove(this.loadBtn);
-            this.westPnl.remove(this.saveBtn);
-            this.westPnl.remove(this.deleteManagerBtn);
-            this.westPnl.remove(this.deleteHotelList);
-        }
+        this.westPnl.add(backBtn);
+        this.westPnl.add(inquireBtn);
+        this.westPnl.add(manageBtn);
+        this.westPnl.add(reserveBtn);
 
         setCenterTitleLblText("General Hotel Details");
         this.centerPnl.add(centerTitleLbl, BorderLayout.NORTH);
         centerPnl.add(loadHotelDetails(details), BorderLayout.CENTER);
 
-        westPnl.add(backBtn);
-        this.westPnl.add(inquireBtn);
-        this.westPnl.add(manageBtn);
-        this.westPnl.add(reserveBtn);
-
         this.add(centerPnl, BorderLayout.CENTER);
+        this.add(westPnl, BorderLayout.WEST);
         this.revalidate();
         this.repaint();
     }
