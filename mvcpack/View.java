@@ -37,7 +37,8 @@ public class View extends JFrame {
     private JPasswordField loginPwTf, createManagerPwTf;
 
     private CButton confirmResBtn, finalizeResButton, cancelResButton, standardRoomBtn, deluxeRoomBtn, executiveRoomBtn;
-    private CButton saveBtn, loadBtn, confirmSaveBtn, confirmLoadBtn;
+    private CButton saveBtn, loadBtn, confirmSaveBtn, confirmLoadBtn, deleteManagerBtn, deleteHotelList
+            , confirmDeleteManagerBtn, confirmDeleteHotelListBtn;
 
     //date inquiry
     private CButton[] dateButtons = new CButton[30];
@@ -87,6 +88,10 @@ public class View extends JFrame {
         this.loginBtn = new CButton("Log-in", BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
         this.createManagerBtn = new CButton("New Manager", BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
         this.guestBtn = new CButton("<html><u>Guest Mode</u></html>", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12, Color.decode("#B6C4B6"), Color.decode("#163020"));
+        this.deleteManagerBtn = new CButton("Delete Manager", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
+        this.deleteHotelList = new CButton("Delete Hotel List", SMALL_BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
+        this.confirmDeleteManagerBtn = new CButton("Confirm Deletion", BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
+        this.confirmDeleteHotelListBtn = new CButton("Confirm Deletion", BTN_WIDTH, SMALL_BTN_HEIGHT, 12);
         this.createBtn = new CButton("Create a Hotel", BTN_WIDTH, BTN_HEIGHT);
         this.openBtn = new CButton("Open a Hotel", BTN_WIDTH, BTN_HEIGHT);
         this.logoutBtn = new CButton("Log out", BTN_WIDTH, BTN_HEIGHT);
@@ -322,14 +327,60 @@ public class View extends JFrame {
 
         if(managerPresence) {
             this.westPnl.add(saveBtn);
-            westPnl.add(loadBtn);
+            this.westPnl.add(loadBtn);
         }
         westPnl.add(logoutBtn);
+        westPnl.add(new CLabel("                                 ", SUBTITLE_HEIGHT, Font.BOLD));
+
+        if(managerPresence) {
+            this.westPnl.add(deleteManagerBtn);
+            this.westPnl.add(deleteHotelList);
+        }
    
         this.add(centerPnl, BorderLayout.CENTER);
         this.add(westPnl, BorderLayout.WEST);
         this.add(southPnl, BorderLayout.SOUTH);
 
+        this.revalidate();
+        this.repaint();
+    }
+
+    public void deleteManager(){
+        this.remove(centerPnl);
+
+        centerPnl = new JPanel();
+        centerPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        centerPnl.setBackground(Color.decode("#304D30"));
+
+        centerPnl.add(new CLabel("                                                       ", SUBTITLE_HEIGHT, Font.BOLD));
+        centerPnl.add(new CLabel("Are you sure?", 14, Font.PLAIN));
+        centerPnl.add(new CLabel("                                                       ", SUBTITLE_HEIGHT, Font.BOLD));
+        centerPnl.add(new CLabel("This action cannot be undone", 14, Font.BOLD));
+        centerPnl.add(new CLabel("                                                       ", SUBTITLE_HEIGHT, Font.BOLD));
+        centerPnl.add(confirmDeleteManagerBtn);
+
+        this.add(centerPnl);
+        this.revalidate();
+        this.repaint();
+    }
+
+    public void deleteHotelList(){
+        this.remove(centerPnl);
+
+        centerPnl = new JPanel();
+        centerPnl.setLayout(new FlowLayout(FlowLayout.CENTER));
+        centerPnl.setBackground(Color.decode("#304D30"));
+
+        centerPnl.add(new CLabel("                                                       ", SUBTITLE_HEIGHT, Font.BOLD));
+        centerPnl.add(new CLabel("Are you sure?", 14, Font.PLAIN));
+        centerPnl.add(new CLabel("                                                       ", SUBTITLE_HEIGHT, Font.BOLD));
+        centerPnl.add(new CLabel("This action cannot be undone", 14, Font.BOLD));
+        centerPnl.add(new CLabel("                                                       ", SUBTITLE_HEIGHT, Font.BOLD));
+        centerPnl.add(new CLabel("Input hotel list name: ", SUBTITLE_HEIGHT, Font.PLAIN));
+        centerPnl.add(hotelNameTf);
+        centerPnl.add(confirmDeleteHotelListBtn);
+
+        this.add(centerPnl);
         this.revalidate();
         this.repaint();
     }
@@ -591,7 +642,6 @@ public class View extends JFrame {
         this.westPnl.add(inquireBtn);
         this.westPnl.add(manageBtn);
         this.westPnl.add(reserveBtn);
-
 
         this.add(centerPnl, BorderLayout.CENTER);
         this.revalidate();
@@ -1559,6 +1609,21 @@ public class View extends JFrame {
         this.createManagerBtn.addActionListener(actionListener);
     }
 
+    public void setDeleteManagerListener(ActionListener actionListener){
+        this.deleteManagerBtn.addActionListener(actionListener);
+    }
+
+    public void setDeleteHotelListListener(ActionListener actionListener){
+        this.deleteHotelList.addActionListener(actionListener);
+    }
+
+    public void setConfirmDeleteManagerListener(ActionListener actionListener){
+        this.confirmDeleteManagerBtn.addActionListener(actionListener);
+    }
+
+    public void setConfirmDeleteHotelListListener(ActionListener actionListener){
+        this.confirmDeleteHotelListBtn.addActionListener(actionListener);
+    }
 
     public void setGuestListener(ActionListener actionListener){
         this.guestBtn.addActionListener(actionListener);

@@ -23,7 +23,7 @@ public class Model {
     private String savesDirPath = "saves" + File.separator;
     private ArrayList<Manager> managerList;
     private Map<String, Long> lastModifiedMap;
-    private boolean managerPresence;
+    private Manager currentManager;
 
     /**
      * Constructs a Driver instance and initializes the necessary objects.
@@ -33,7 +33,7 @@ public class Model {
         this.hotelList = new ArrayList<Hotel>();
         this.managerList = new ArrayList<Manager>();
         this.lastModifiedMap = new HashMap<>();
-        this.managerPresence = false;
+        this.currentManager = null;
     }
 
     public int addHotel(String name, int standardRoomCount, int deluxeRoomCount, int execRoomCount) {
@@ -375,8 +375,6 @@ public class Model {
         ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
             out.writeObject(managerList);
             System.out.println("Serialized data is saved in " + savesDirPath + "managers.ser");
-            File file = new File(savesDirPath + "managers.ser");
-            lastModifiedMap.put(savesDirPath+ "managers.ser", file.lastModified());
 
             return "Manager added to list";
         } catch (IOException i) {
@@ -402,7 +400,7 @@ public class Model {
         for(Manager m : managerList){
             if (m.getUsername().equals(userName)) {
                 if (m.getPassword().equals(password)){
-                    managerPresence = true;
+                    this.currentManager = m;
                     return true;
                 }
             }
@@ -410,11 +408,37 @@ public class Model {
         return false;
     }
 
+    public String deleteManager(){
+        managerList.remove(currentManager);
+        try (FileOutputStream fileOut = new FileOutputStream(savesDirPath + "managers.ser");
+             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+            out.writeObject(managerList);
+            System.out.println("Serialized data is saved in " + savesDirPath + "managers.ser");
+            return "Manager deleted";
+        } catch(IOException i) {
+            return "Manager deletion unsuccessful";
+        }
+    }
+
+    public String deleteHotelList(String listName){
+        String serName = listName + ".ser";
+        File file = new File(savesDirPath + serName);
+
+        if (file.exists()){
+            file.delete();
+            lastModifiedMap.remove(savesDirPath + serName);
+            serializeLastModifiedMap();
+            return "List deleted";
+        } else {
+            return "List not found";
+        }
+    }
+
     public void serializeLastModifiedMap() {
         try (FileOutputStream fileOut = new FileOutputStream(savesDirPath + "lastModifiedMap.ser");
              ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
             out.writeObject(lastModifiedMap);
-            System.out.println("Serialized lastModifiedMap from " + savesDirPath + "lastModifiedMap.ser");
+            System.out.println("Serialized lastModifiedMap to " + savesDirPath + "lastModifiedMap.ser");
         } catch (IOException i) {
             System.out.println("LastModifiedMap serialization unsuccessful. e1");
         }
@@ -437,11 +461,12 @@ public class Model {
     }
 
     public boolean getManagerPresence(){
-        return this.managerPresence;
+         if (currentManager != null){
+             return true;
+         } else return false;
     }
 
-    public void setManagerPresence(boolean b){
-        this.managerPresence = b;
+    public void logoutManager(){this.currentManager = null;
     }
 }
 

@@ -35,7 +35,7 @@ public class Controller {
                 if (model.loadManager(username, password)) {
                     if(model.utility.isEmpty(hotels)){
                         view.home(model.getManagerPresence());
-                        view.setFeedbackLblText("Login successful.");
+                        view.setFeedbackLblText("Login successful");
                     } else {
                         String add = model.deserializeHotelList(hotels);
                         view.home(model.getManagerPresence());
@@ -179,8 +179,45 @@ public class Controller {
             public void actionPerformed(ActionEvent e){
                 view.loginPage();
                 model.resetHotelList();
-                model.setManagerPresence(false);
+                model.logoutManager();
                 view.setFeedbackLblText("Logout successful");
+            }
+        });
+
+        this.view.setDeleteManagerListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.deleteManager();
+            }
+        });
+
+        this.view.setConfirmDeleteManagerListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                String result = model.deleteManager();
+
+                if (result.equals("Manager deleted")) {
+                    view.loginPage();
+                    view.setFeedbackLblText(result);
+                } else view.setFeedbackLblText(result);
+            }
+        });
+
+        this.view.setDeleteHotelListListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.deleteHotelList();
+            }
+        });
+
+        this.view.setConfirmDeleteHotelListListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                String listName = view.getHotelNameTfText();
+
+                String result = model.deleteHotelList(listName);
+
+                view.setFeedbackLblText(result);
             }
         });
     }

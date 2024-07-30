@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1a3c063-36ad-42a4-9cf8-b9bfbf30ed1b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/basepack/Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hotels/1.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mvcpack/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvcpack/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvcpack/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvcpack/Model.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvcpack/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvcpack/View.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/HRSLogo.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/HRSLogo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Hotel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Hotel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Manager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Manager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Reservation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Reservation.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Room.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/hotels/1.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/roompack/Deluxe.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/roompack/Deluxe.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/roompack/Executive.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/roompack/Executive.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/roompack/Standard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/roompack/Standard.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$10.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$11.class" afterDir="false" />
@@ -48,7 +54,13 @@
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$36.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$36.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$37.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$37.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$38.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$38.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$39.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$39.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$40.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$40.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$41.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$41.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$42.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$42.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$43.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$43.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$44.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$44.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$6.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$7.class" afterDir="false" />
@@ -57,6 +69,10 @@
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Model.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/View.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/custompack/CButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/custompack/CButton.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/custompack/CLabel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/custompack/CLabel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/saves/lastModifiedMap.ser" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/saves/lastModifiedMap.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/saves/lastModifiedMap.ser" beforeDir="false" afterPath="$PROJECT_DIR$/saves/lastModifiedMap.ser" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,11 +120,17 @@
     &quot;git-widget-placeholder&quot;: &quot;BonusFeatures&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/marie/OneDrive/Documents/GitHub/HotelResSys2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;ChangesTree.GroupingKeys&quot;: [
@@ -140,6 +162,14 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -148,8 +178,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1721828810214</updated>
+      <workItem from="1722232764048" duration="255000" />
+      <workItem from="1722306254756" duration="3132000" />
+      <workItem from="1722309702816" duration="6987000" />
+      <workItem from="1722330697115" duration="1133000" />
+      <workItem from="1722331851382" duration="1182000" />
+      <workItem from="1722337821444" duration="5273000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="RECENT_FILTERS">
@@ -195,6 +234,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.IndexOutOfBoundsException" package="java.lang" />
           <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" log-message="true" log-stack="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="2" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
