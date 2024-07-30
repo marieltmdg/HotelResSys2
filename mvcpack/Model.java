@@ -642,17 +642,18 @@ public class Model {
     /**
      * The deleteManager() method deletes the current manager from the managerList.
      *
-     * @return A string indicating the status of the deletion operation.
+     * @return A boolean value indicating the status of the deletion operation. Returns true if the manager was deleted successfully,
+     * and false otherwise.
      */
-    public String deleteManager(){
-        managerList.remove(currentManager);
+    public boolean deleteManager(){
         try (FileOutputStream fileOut = new FileOutputStream(savesDirPath + "managers.ser");
              ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+            managerList.remove(currentManager);
             out.writeObject(managerList);
             System.out.println("Serialized data is saved in " + savesDirPath + "managers.ser");
-            return "Manager account removed";
+            return true;
         } catch(IOException i) {
-            return "Manager account removal unsuccessful";
+            return false;
         }
     }
 

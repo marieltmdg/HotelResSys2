@@ -191,12 +191,12 @@ public class Controller {
         this.view.setConfirmDeleteManagerListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                String result = model.deleteManager();
+                boolean result = model.deleteManager();
 
-                if (result.equals("Manager deleted")) {
+                if (result) {
                     view.loginPage();
-                    view.setFeedbackLblText(result);
-                } else view.setFeedbackLblText(result);
+                    view.setFeedbackLblText("Manager account deletion successful");
+                } else view.setFeedbackLblText("Manager account deletion unsuccessful");
             }
         });
 
