@@ -17,7 +17,7 @@ public class View extends JFrame {
     private JLabel feedbackLbl;
     private JLabel centerTitleLbl;
     private JTextField hotelNameTf, numStandardTf, numDeluxeTf, numExecutiveTf,
-                        numCheckInTf, numCheckOutTf, generalTf, promoCodeTf, nameTf, infoDateTf;
+                        numCheckInTf, numCheckOutTf, generalTf, promoCodeTf, nameTf;
     private CButton loginBtn, createManagerBtn, guestBtn, logoutBtn, createBtn, openBtn, confirmBtn, selectBtn;
     private JPanel southPnl, westPnl, centerPnl, resLeftPnl, resRightPnl, infoRightPnl;
 
@@ -1459,7 +1459,6 @@ public class View extends JFrame {
     }
 
     public JScrollPane printReservation(int roomCount, String[][] reservationNames, int width, int height){
-        System.out.println("PRINT Reservations"); // CHECKER
         int num = 0;
         int roomNum = 0;
 
@@ -1916,14 +1915,6 @@ public class View extends JFrame {
     }
     public void setExecutiveRoomBtnClickable(Boolean b){
         this.executiveRoomBtn.setEnabled(b);
-    }
-
-    public void setResRightPnl(JScrollPane breakdown){
-        this.resRightPnl.add(breakdown);
-    }
-
-    public void deleteResRightPnl(){
-        this.remove(resRightPnl);
     }
 
     public void setReserveDetailsEditable(Boolean b){

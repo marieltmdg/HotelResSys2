@@ -1,7 +1,5 @@
 package basepack;
 
-import java.util.ArrayList;
-
 /**
  * The Utility class provides various helper methods for user input and validation.
  */
