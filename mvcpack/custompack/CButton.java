@@ -11,7 +11,7 @@ public class CButton extends JButton {
     public CButton(String x){
         super(x);
         
-        setBackground(Color.decode("#0BA843"));
+        setBackground(Color.decode("#163020"));
         setForeground(Color.WHITE);
     }
 
@@ -20,7 +20,7 @@ public class CButton extends JButton {
         setFont(new Font("Verdana", Font.BOLD, 20));
         setPreferredSize(new Dimension(width, height));
         
-        setBackground(Color.decode("#0BA843"));
+        setBackground(Color.decode("#163020"));
         setForeground(Color.WHITE);
    }
 
@@ -29,7 +29,7 @@ public class CButton extends JButton {
         setFont(new Font("Verdana", Font.BOLD, fontSize));
         setPreferredSize(new Dimension(width, height));
 
-        setBackground(Color.decode("#0BA843"));
+        setBackground(Color.decode("#163020"));
         setForeground(Color.WHITE);
     }
 

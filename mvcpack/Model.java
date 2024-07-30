@@ -15,6 +15,7 @@ import java.util.Map;
 /**
  * The Model class is responsible for managing the overall operations involving hotels, rooms, and reservations.
  */
+@SuppressWarnings("ALL")
 public class Model {
     public Utility utility;
     private ArrayList<Hotel> hotelList;

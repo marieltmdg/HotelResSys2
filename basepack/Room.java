@@ -48,6 +48,12 @@ public abstract class Room implements Serializable {
         return basePrice;
     }
 
+    /**
+     * The getDatePricePercent() method returns the price percent multiplier for a given date index.
+     *
+     * @param index The index of the date.
+     * @return The price percent multiplier for the specified date index.
+     */
     public double getDatePricePercent(int index){
         return datePricePercentMultiplier[index];
     }
@@ -61,14 +67,31 @@ public abstract class Room implements Serializable {
         return roomName;
     }
 
+    /**
+     * The getReservationListCount() method returns the number of reservations in the reservation list.
+     *
+     * @return The number of reservations.
+     */
     public int getReservationListCount() {
         return reservationList.size();
     }
 
+    /**
+     * The getReservationName() method returns the name of the guest for a reservation at the specified index.
+     *
+     * @param index The index of the reservation.
+     * @return The name of the guest.
+     */
     public String getReservationName(int index){
         return reservationList.get(index).getGuestName();
     }
 
+    /**
+     * The getResDates() method returns the check-in and check-out dates for a reservation at the specified index.
+     *
+     * @param index The index of the reservation.
+     * @return A string representing the check-in and check-out dates.
+     */
     public String getResDates(int index){
         int checkIn = reservationList.get(index).getCheckIn();
         int checkOut = reservationList.get(index).getCheckOut();
@@ -76,9 +99,16 @@ public abstract class Room implements Serializable {
         return "(" +checkIn+"-"+checkOut +")";
     }
 
+    /**
+     * The getResBreakdown() method returns the breakdown of the reservation at the specified index.
+     *
+     * @param index The index of the reservation.
+     * @return An array of strings representing the breakdown of the reservation.
+     */
     public String[] getResBreakdown(int index){
         return reservationList.get(index).getReservationBreakdown();
     }
+
     /**
      * The method setBasePrice() updates the base price with a new value.
      * 
@@ -89,6 +119,12 @@ public abstract class Room implements Serializable {
         this.basePrice = newPrice;
     }
 
+    /**
+     * The setDatePrice() method sets the price percent multiplier for a specific date.
+     *
+     * @param date The date for which the price percent multiplier is to be set.
+     * @param percent The price percent multiplier to be set.
+     */
     public void setDatePrice(int date, double percent){
         datePricePercentMultiplier[date-1] = percent;
     }
@@ -158,7 +194,6 @@ public abstract class Room implements Serializable {
         return sum;
     }
 
-    
     /**
      * The method printAvailability() generates a formatted string representing the availability of
      * items for each day within a specified range.
@@ -177,7 +212,6 @@ public abstract class Room implements Serializable {
         }
         return s;
     }
-
 
     /**
      * The method printRoomInfo() prints the room name, price per night, and available check-in dates
@@ -317,6 +351,13 @@ public abstract class Room implements Serializable {
         return breakdown;
     }
 
+    /**
+     * The setResTotalPrice() method sets the total price of the most recent reservation after applying any discounts.
+     *
+     * @param promoValidity The validity period of the promotion.
+     * @param checkIn The check-in date.
+     * @param checkOut The check-out date.
+     */
     public void setResTotalPrice(int promoValidity, int checkIn, int checkOut){
         reservationList.get(reservationList.size()-1).setTotalPrice(promoValidity, checkIn, checkOut);
     }

@@ -380,9 +380,8 @@ public class Controller {
                 boolean result = model.renameHotel(newName);
 
                 if (result) {
-                    view.setFeedbackLblText("Hotel Rename Successful");
-                    view.setTitleLblText("Current Hotel: " + newName);
-                } else view.setFeedbackLblText("Hotel Name Already Taken");
+                    view.setFeedbackLblText("Hotel rename successful");
+                } else view.setFeedbackLblText("Hotel name already taken");
             }
         });
 
@@ -401,7 +400,7 @@ public class Controller {
                 if(!(numStandard == -1 || numDeluxe == -1 || numExecutive == -1)){
                     if(model.getRoomCount() + numStandard + numDeluxe + numExecutive >= 51){
                         System.out.println(model.getRoomCount() + numStandard + numDeluxe + numExecutive);
-                        view.setFeedbackLblText("Hotel Room Count Cannot Exceed 50");
+                        view.setFeedbackLblText("Hotel room count cannot exceed 50");
                     } else {
                         for (int i = 0; i < numStandard; i++) {
                             model.addRoom(1, model.getCurrentHotelIndex());

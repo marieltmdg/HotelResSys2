@@ -93,8 +93,6 @@ public class Hotel implements Serializable {
         return total;
     }
 
-    
-
     /**
      * The generateRoomName() method generates a room name based on the room count, with a leading number calculated
      * from the room count divided by 10 plus 1, followed by a hyphen and the room count modulo 10.

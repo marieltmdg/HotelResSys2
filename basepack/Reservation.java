@@ -100,12 +100,23 @@ public class Reservation implements Serializable {
         return resInfo;
     }
 
+    /**
+     * The setTotalPrice() method sets the total price of the reservation after applying any discounts.
+     *
+     * @param promoValidity The validity period of the promotion.
+     * @param checkIn The check-in date.
+     * @param checkOut The check-out date.
+     */
     public void setTotalPrice(int promoValidity, int checkIn, int checkOut){
         this.totalPrice = room.getTotalPriceAfterDiscount(promoValidity, checkIn, checkOut);
     }
 
+    /**
+     * The getReservationBreakdown() method returns the breakdown of the reservation.
+     *
+     * @return An array of strings representing the breakdown of the reservation.
+     */
     public String[] getReservationBreakdown(){
         return this.breakdown;
     }
-
 }
