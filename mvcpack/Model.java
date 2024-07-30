@@ -669,9 +669,9 @@ public class Model {
 
         if (file.exists()){
             file.delete();
-            return "List deleted";
+            return "Hotel list deleted successfully";
         } else {
-            return "List not found";
+            return "Hotel list not found";
         }
     }
 

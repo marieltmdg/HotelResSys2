@@ -389,6 +389,9 @@ public class View extends JFrame {
         deletePnl.setPreferredSize(new Dimension(CENTER_MAIN_WIDTH, CENTER_MAIN_HEIGHT));
         deletePnl.setBackground(Color.decode("#304D30"));
 
+        hotelNameTf = new JTextField();
+        hotelNameTf.setPreferredSize(new Dimension(TF_WIDTH, TF_HEIGHT));
+
         deletePnl.add(new CLabel("                                                    ", 22, Font.BOLD));
         deletePnl.add(new CLabel("Are you sure?", 14, Font.PLAIN));
         deletePnl.add(new CLabel("                                                    ", 22, Font.BOLD));
