@@ -135,7 +135,8 @@ public abstract class Room implements Serializable {
      * 
      * @param name The name parameter represents the name of the person making the reservation.
      * @param checkIn The check-in date for the reservation. 
-     * @param checkOut The check-out represents the date when the reservation ends. 
+     * @param checkOut The check-out represents the date when the reservation ends.
+     * @param breakdown The breakdown of the reservation.
      */
     public void addReservation(String name, int checkIn, int checkOut, String[] breakdown){
         reservationList.add(new Reservation(name, checkIn, checkOut, this, breakdown));
@@ -218,13 +219,28 @@ public abstract class Room implements Serializable {
      * stay length, room details, and total price.
      * 
      * @param resIndex The index of the reservation.
+      * @return The String[] that lists down the details of the reservation.
      */
     public String[] printReservation(int resIndex){
         return reservationList.get(resIndex).printReservation();
     }
 
+    /**
+     * The getPriceAfterMultiplier() method gets the price per night, given the date price modifier.
+     *
+     * @param date The date for which the price is to be calculated.
+     * @return The price after multiplier for the specified date.
+     */
     public abstract double getPriceAfterMultiplier(int date);
 
+    /**
+     * The getTotalPriceAfterDiscount() method calculates the total price of a stay after applying any discounts.
+     *
+     * @param promoValidity The validity period of the promotion.
+     * @param checkIn The check-in date.
+     * @param checkOut The check-out date.
+     * @return The total price of the stay after applying any discounts.
+     */
     public double getTotalPriceAfterDiscount(int promoValidity, int checkIn, int checkOut){
         double price = 0;
 

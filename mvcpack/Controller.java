@@ -9,6 +9,12 @@ public class Controller {
     private Model model;
     private View view;
 
+    /**
+     * Constructs a Controller instance with the specified Model and View instances.
+     *
+     * @param model The Model instance.
+     * @param view The View instance.
+     */
     public Controller(Model model, View view){
         this.model = model;
         this.view = view;

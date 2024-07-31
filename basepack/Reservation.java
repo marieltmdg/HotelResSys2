@@ -23,6 +23,7 @@ public class Reservation implements Serializable {
      * @param checkIn The check-in date.
      * @param checkOut The check-out date.
      * @param room The room associated with the reservation.
+     * @param breakdown The breakdown of the reservation.
      */
     public Reservation(String guestName, int checkIn, int checkOut, Room room, String[] breakdown) {
         this.guestName = guestName;
@@ -82,6 +83,8 @@ public class Reservation implements Serializable {
     /**
      * The printReservation() method prints out details of a guest's reservation including guest name,
      * stay length, room details, and total price.
+     *
+     * @return An array of strings representing the reservation details.
      */
     public String[] printReservation(){
         int length = this.checkOut - this.checkIn;

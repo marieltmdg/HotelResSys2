@@ -71,6 +71,9 @@ public class View extends JFrame {
     private final int SUBTITLE_HEIGHT = 15;
 
 
+    /**
+     * The constructor for the View class.
+     */
     public View() {
         super("Hotel Reservation System");
         setLayout(new BorderLayout());

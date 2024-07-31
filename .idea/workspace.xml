@@ -1,13 +1,179 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AnalysisUIOptions">
-    <option name="CUSTOM_SCOPE_NAME" value="Module 'HotelResSys2'" />
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d444d486-5114-44da-b019-26482d001a69" name="Changes" comment="" />
+    <list default="true" id="76978e8d-d7c2-40f9-9533-185d559a2a8c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/HotelResSys2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basepack/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/basepack/Hotel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basepack/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/basepack/Reservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basepack/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/basepack/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/allclasses-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/allclasses-index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/allpackages-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/allpackages-index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/basepack/Hotel.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/basepack/Hotel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/basepack/Manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/basepack/Manager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/basepack/Reservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/basepack/Reservation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/basepack/Room.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/basepack/Room.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/basepack/Utility.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/basepack/Utility.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/basepack/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/basepack/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/basepack/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/basepack/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/basepack/roompack/Deluxe.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/basepack/roompack/Deluxe.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/basepack/roompack/Executive.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/basepack/roompack/Executive.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/basepack/roompack/Standard.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/basepack/roompack/Standard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/basepack/roompack/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/basepack/roompack/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/basepack/roompack/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/basepack/roompack/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/constant-values.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/help-doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/help-doc.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-10.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-10.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-11.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-11.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-12.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-12.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-13.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-13.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-14.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-14.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-15.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-15.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-16.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-16.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-17.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-18.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-19.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-20.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-5.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-6.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-6.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-7.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-7.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-8.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-8.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index-files/index-9.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index-files/index-9.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/legal/COPYRIGHT" beforeDir="false" afterPath="$PROJECT_DIR$/docs/legal/COPYRIGHT" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/legal/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/docs/legal/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/legal/jquery.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/legal/jquery.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/legal/jqueryUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/legal/jqueryUI.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/member-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/member-search-index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mvcpack/Controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mvcpack/Controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mvcpack/Model.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mvcpack/Model.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mvcpack/View.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mvcpack/View.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mvcpack/custompack/CButton.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mvcpack/custompack/CButton.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mvcpack/custompack/CLabel.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mvcpack/custompack/CLabel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mvcpack/custompack/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mvcpack/custompack/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mvcpack/custompack/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mvcpack/custompack/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mvcpack/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mvcpack/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mvcpack/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mvcpack/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/overview-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/overview-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/overview-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/resource-files/jquery-ui.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/resource-files/jquery-ui.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/script-files/jquery-3.6.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/script-files/jquery-3.6.1.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/script-files/jquery-ui.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/script-files/jquery-ui.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/serialized-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/serialized-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvcpack/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvcpack/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvcpack/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Hotel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/basepack/Hotel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/Main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/allclasses-index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/allpackages-index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/basepack/Hotel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/basepack/Manager.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/basepack/Reservation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/basepack/Room.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/basepack/Utility.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/basepack/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/basepack/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/basepack/roompack/Deluxe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/basepack/roompack/Executive.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/basepack/roompack/Standard.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/basepack/roompack/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/basepack/roompack/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/constant-values.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/element-list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/help-doc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-10.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-11.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-12.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-13.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-14.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-15.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-16.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-17.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-18.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-19.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-20.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-5.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-6.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-7.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-8.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index-files/index-9.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/legal/COPYRIGHT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/legal/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/legal/jquery.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/legal/jqueryUI.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/member-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/module-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/mvcpack/Controller.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/mvcpack/Model.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/mvcpack/View.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/mvcpack/custompack/CButton.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/mvcpack/custompack/CLabel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/mvcpack/custompack/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/mvcpack/custompack/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/mvcpack/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/mvcpack/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/overview-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/overview-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/package-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/resource-files/copy.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/resource-files/glass.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/resource-files/jquery-ui.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/resource-files/link.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/resource-files/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/resource-files/x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/script-files/jquery-3.6.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/script-files/jquery-ui.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/script-files/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/script-files/search-page.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/script-files/search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/search.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/serialized-form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/tag-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/docs/type-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$32.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$32.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$33.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$33.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$34.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$34.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$35.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$35.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$36.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$36.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$37.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$37.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$38.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$38.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$39.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$39.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$40.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$40.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$41.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$41.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$42.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$42.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$43.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$43.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$44.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$44.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$45.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$45.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$46.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$46.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$47.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$47.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$48.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$48.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$49.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$49.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$50.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$50.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Model.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/saves/managers.ser" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,7 +197,7 @@
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 6
 }]]></component>
-  <component name="ProjectId" id="2jzVQU1ZOE1jlmRakVzA007PmSl" />
+  <component name="ProjectId" id="2jzff8F4zfEi48zyuqhzsOklqAM" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -40,6 +206,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "BonusFeatures",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/marie/OneDrive/Documents/GitHub/HotelResSys2",
@@ -62,12 +229,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d444d486-5114-44da-b019-26482d001a69" name="Changes" comment="" />
-      <created>1722389875542</created>
+      <changelist id="76978e8d-d7c2-40f9-9533-185d559a2a8c" name="Changes" comment="" />
+      <created>1722394926133</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1722389875542</updated>
-      <workItem from="1722389876641" duration="1150000" />
+      <updated>1722394926133</updated>
+      <workItem from="1722394927266" duration="593000" />
     </task>
     <servers />
   </component>

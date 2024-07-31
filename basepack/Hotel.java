@@ -249,6 +249,8 @@ public class Hotel implements Serializable {
      * @param name The name of the person making the hotel reservation.
      * @param checkIn The checkIn parameter represents the check-in date for the hotel reservation.
      * @param checkOut The checkOut parameter represents the check-out date for a hotel reservation.
+     * @param roomIndex The roomIndex parameter represents the index of the room in the roomList.
+     * @param breakdown The breakdown parameter represents the list of items that the guest will be charged for.
      * @return String display feedback message.
      */
     public String addHotelReservation(String name, int checkIn, int checkOut, int roomIndex, String[] breakdown){
@@ -369,6 +371,12 @@ public class Hotel implements Serializable {
         return ret;
     }
 
+    /**
+     * The method getAvailableDatesForRoom() gets the available dates for a room.
+     *
+     * @param index The index of the room.
+     * @return The available dates for the room.
+     */
     public String[] getAvailableDatesForRoom(int index){
         return roomList.get(index).printAvailability();
     }
@@ -413,6 +421,7 @@ public class Hotel implements Serializable {
      * 
      * @param roomIndex The index of the room.
      * @param resIndex The index of the reservation.
+     * @return The method is returning the room name, price per night, and available check-in dates.
      */
     public String[] printReservation(int roomIndex, int resIndex){
         return roomList.get(roomIndex).printReservation(resIndex);
