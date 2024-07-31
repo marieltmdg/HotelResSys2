@@ -74,9 +74,12 @@ public class Controller {
                     view.setFeedbackLblText("Please complete all fields");
                 } else {
                     String result = model.saveManager(username, password);
-                    if (result.equals("Username already exists")) {
+                    if (result.equals("\0")) {
+                        view.setFeedbackLblText("Username already exists");
+                    } else {
+                        view.loginPage();
                         view.setFeedbackLblText(result);
-                    } else view.loginPage();
+                    }
 
                 }
                 

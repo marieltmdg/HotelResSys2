@@ -586,7 +586,7 @@ public class Model {
     public String saveManager(String userName, String password){
         for(Manager m : managerList){
             if (m.getUsername().equals(userName)) {
-                return "Username already exists";
+                return "\0";
             }
         }
         managerList.add(new Manager(userName, password));
@@ -596,9 +596,9 @@ public class Model {
             out.writeObject(managerList);
             System.out.println("Serialized data is saved in " + savesDirPath + "managers.ser");
 
-            return "Manager added to list";
+            return "Manager registration successful";
         } catch (IOException i) {
-            return "Manager addition unsuccessful";
+            return "Manager registration unsuccessful";
         }
 
     }
