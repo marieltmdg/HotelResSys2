@@ -3,6 +3,9 @@ package mvcpack.custompack;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * A Custom Button class.
+ */
 public class CButton extends JButton {
     public CButton(){
         super();

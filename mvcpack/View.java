@@ -11,6 +11,10 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
+/**
+ * The View class is responsible for the user interface of the application.
+ * It contains methods for creating and updating the GUI components.
+ */
 public class View extends JFrame {
     private CLabel createLbl;
     private CLabel openLbl;
@@ -191,7 +195,7 @@ public class View extends JFrame {
     }
 
     /**
-     * Menu for registering a new manager
+     * Menu for registering a new manager.
      */
     public void registerPage(){
         this.remove(centerPnl);
@@ -392,7 +396,7 @@ public class View extends JFrame {
     }
 
 /**
- * Menu for deleting a hotelList
+ * Menu for deleting a hotelList.
  *
  */
     public void deleteHotelList(){
@@ -431,7 +435,7 @@ public class View extends JFrame {
 
     
     /**
-     * Menu for saving hotels
+     * Menu for saving hotels.
      */
     public void saveHotels(){
         this.remove(centerPnl);
@@ -595,7 +599,7 @@ public class View extends JFrame {
     }
 
     /**
-     * Menu for loading hotel file
+     * Menu for loading hotel file.
      * 
      */
     public void loadHotel(){
@@ -1202,7 +1206,9 @@ public class View extends JFrame {
     }
 
     /**
-     * remove room menu under manage hotel
+     * Remove room menu under manage hotel.
+     *
+     * @param roomNames  an array of strings representing the names of the rooms in the hotel.
      */
     public void removeRoom(String[] roomNames){
         this.remove(centerPnl);
@@ -1731,7 +1737,7 @@ public class View extends JFrame {
     }
 
     /**
-     * Menu for reserving a room
+     * Menu for reserving a room.
      *
      * @param  priceBreakdown  an array of strings representing the price breakdown of the reservation
      */

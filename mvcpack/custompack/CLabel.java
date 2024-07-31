@@ -3,6 +3,9 @@ package mvcpack.custompack;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * A Custom Label class.
+ */
 public class CLabel extends JLabel{
     private final String DEFAULT_FONT = "Verdana";
 

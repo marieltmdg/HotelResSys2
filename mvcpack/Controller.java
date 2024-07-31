@@ -2,6 +2,9 @@ package mvcpack;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The Controller class that acts as the middleman between the Model and View classes.
+ */
 public class Controller {
     private Model model;
     private View view;
