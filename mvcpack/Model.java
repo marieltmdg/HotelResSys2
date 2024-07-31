@@ -124,7 +124,6 @@ public class Model {
      * @param hotelIndex The index of the hotel to add the room to.
      */
     public void addRoom(int roomType, int hotelIndex) {
-        System.out.println("Room addition");
 
         switch (roomType) {
             case 1: //standard
@@ -548,7 +547,7 @@ public class Model {
         try (FileOutputStream fileOut = new FileOutputStream(file);
              ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
             out.writeObject(hotelList);
-            System.out.println("Serialized data is saved in " + serName);
+            System.out.println("Serialized data is saved in " + hotelSavesDirPath + serName);
             return "Save successful";
         } catch (IOException i) {
             return "Save unsuccessful";

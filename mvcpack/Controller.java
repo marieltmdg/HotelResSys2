@@ -448,7 +448,6 @@ public class Controller {
 
                 if(!(numStandard == -1 || numDeluxe == -1 || numExecutive == -1)){
                     if(model.getRoomCount() + numStandard + numDeluxe + numExecutive >= 51){
-                        System.out.println(model.getRoomCount() + numStandard + numDeluxe + numExecutive);
                         view.setFeedbackLblText("Hotel room count cannot exceed 50");
                     } else {
                         for (int i = 0; i < numStandard; i++) {
@@ -599,7 +598,6 @@ public class Controller {
             this.view.setConfirmResListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    System.out.println("Confirm");
                     String stringGuestName = view.getNameTf();
                     String stringRoomIndex = (view.getGeneralTf());
                     String stringCheckIn = (view.getNumCheckInTf());
