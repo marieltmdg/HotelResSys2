@@ -416,12 +416,11 @@ public class Hotel implements Serializable {
     }
 
     /**
-     * The method printReservation() prints the room name, price per night, and available check-in dates
-     * for a room.
+     * The method printReservation() prints the guest name, room name, price per night, and stay length
      * 
      * @param roomIndex The index of the room.
      * @param resIndex The index of the reservation.
-     * @return The method is returning the room name, price per night, and available check-in dates.
+     * @return The method is returning the guest name, room name, price per night, and stay length
      */
     public String[] printReservation(int roomIndex, int resIndex){
         return roomList.get(roomIndex).printReservation(resIndex);
