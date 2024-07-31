@@ -254,27 +254,6 @@ public class Model {
     }
 
     /**
-     * The getAvailableRoomNames() method returns the names of all available rooms in the hotel at the selected index
-     * for the specified check-in and check-out dates.
-     *
-     * @param checkIn The check-in date.
-     * @param checkOut The check-out date.
-     * @return An array of strings containing the names of all available rooms in the hotel at the selected index.
-     */
-    public String[] getAvailableRoomNames(int checkIn, int checkOut) {
-        String[] names = new String[hotelList.get(selectedHotelIndex).getRoomList().size()];
-        int j = 0;
-        for (int i = 0; i < hotelList.get(selectedHotelIndex).getRoomList().size(); i++) {
-            if (hotelList.get(selectedHotelIndex).getRoomList().get(i).isAvailable(checkIn, checkOut)) {
-                names[j] = hotelList.get(selectedHotelIndex).getRoomName(i);
-                j++;
-            }
-        }
-
-        return names;
-    }
-
-    /**
      * The checkValidReservation() method checks the validity of the room and reservation indices.
      *
      * @param roomIndex The index of the room to check.
