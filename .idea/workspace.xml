@@ -8,20 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1a3c063-36ad-42a4-9cf8-b9bfbf30ed1b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_30_2024_8_48_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_30_2024_8_48_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvcpack/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvcpack/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvcpack/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvcpack/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Controller$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/Model.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/mvcpack/View.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/saves/hotels/hotel1.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/saves/hotels/yo.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/saves/lastModifiedMap.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HotelResSys2/saves/managers.ser" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelResSys2/saves/managers.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/saves/hotels/hotel1.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/saves/hotels/yo.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelResSys2.drawio" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelResSys2.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
