@@ -408,34 +408,6 @@ public class Hotel implements Serializable {
     }
 
     /**
-     * The method checkForReservations() counts the number of rooms that are not available for booking
-     * on a specific date.
-     * 
-     * @return The method is returning whether there is any reservation in a hotel.
-     */
-    public boolean checkForReservations(){
-        //iterate through all dates and check if available
-        for(int date = 1; date < 31; date++){
-            for(Room r: roomList){
-                if(!(r.isAvailable(date, date+1)))
-                    return true;
-            }
-        
-        }
-        return false; 
-    }
-
-    /**
-     * The method printRoomStates() prints the available and booked rooms, given a date.
-     * 
-     * @param date The date to check.
-     */
-    public void printRoomStates(int date){
-        System.out.println("Available Rooms: " + checkNumAvailableRooms(date));
-        System.out.println("Reserved Rooms: " + checkNumBookedRooms(date));
-    }
-
-    /**
      * The method printReservation() prints the room name, price per night, and available check-in dates
      * for a room.
      * 
