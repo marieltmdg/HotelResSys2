@@ -6,7 +6,12 @@ A collaborative Java project by [marieltmdg](https://github.com/marieltmdg) and 
 
 This is a Hotel Reservation System that is implemented with Java Swing
 
+```
+Type the following in cmd to run the program
 
+To compile: 'Javac Main.java'
+To run: 'Java Main'
+```
 ### Functionalities:
 
 - Manager Accounts
